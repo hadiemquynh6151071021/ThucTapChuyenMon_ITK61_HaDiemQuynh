@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Ceramics_Store.Models.LOAISANPHAM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout_admin.cshtml";
+}
+
+<main id="main" class="main">
+    <h2 class="title">Danh sách loại sản phẩm</h2>
+    <a href="/admin/loaisanphams/create" class="create"><i class="fa-solid fa-circle-plus"></i></a>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TENSP)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENSP)
+                </td>
+                <td>
+                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.MALSP }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.MALSP })
+                </td>
+            </tr>
+        }
+
+    </table>
+</main>

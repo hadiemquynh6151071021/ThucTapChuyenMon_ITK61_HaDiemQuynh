@@ -1,0 +1,151 @@
+﻿@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css
+">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    @Styles.Render("~/Content/StyleCSS/Layout.css")
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/bootstrap.min.css")
+    @Styles.Render("~/Scripts/bootstrap.min.js")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="row row-header">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                @Html.ActionLink("Ceramics Store", "Index", "Store", new { @class = "navbar-brand" })
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a href="~/Views/Store/Login.cshtml">
+                            <i class="fa-regular fa-user"></i>
+                        </a>
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Ceramics Store</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body ">
+                        <ul class="navbar-nav flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                @Html.ActionLink("Trang chủ", "Index", "Home", new { @class = "nav-link active" })
+
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Giới thiệu", "Introduction", "Home", new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item dropdown">
+                                @Html.ActionLink("Sản phẩm", "", "", new { @class = "nav-link dropdown-toggle", role = "button", data_bs_toggle = "dropdown", aria_expanded = "false" })
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Bát", "", "", new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Đĩa", "", "", new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Khay", "", "", new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Bình, lọ", "", "", new { @class = "dropdown-item" })</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#croll-lienhe">Liên hệ</a>
+                            </li>
+                        </ul>
+                        <form action="" class="search-bar mt-3">
+                            <input type="text" placeholder="Tìm kiếm" name="q">
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                        @Html.Partial("_LoginPartial")
+                        @*@Html.ActionLink("Đăng nhập", "Login", "Store", new { @class = "link_login" })*@
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container-fluid body-content">
+        @RenderBody()
+    </div>
+    <footer class="row row-footer" id="croll-lienhe">
+        <div class="col-sm-4 information-content">
+            <span class="title-footer">
+                CERAMICS STORE
+            </span>
+            <span class="small-devide">&mdash;&mdash;</span>
+            <p class="address">
+                Địa chỉ: 22/7, hẻm 22, đường số 8, Tăng Nhơn Phú B, Quận 9, TP.Hồ Chí Minh
+            </p>
+            <p class="phonenumber">
+                Hotline: 0926654783
+            </p>
+
+        </div>
+        <div class="col-sm-3 fanpage">
+            <span class="title-footer">FANPAGE</span>
+            <span class="small-devide">&mdash;&mdash;</span>
+            <iframe class="showfanpage"
+                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fceramicsstore16%2F&tabs=timeline&width=340&height=70&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId"
+                    width="340" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowfullscreen="true"
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        </div>
+        <div class="col-sm-5 map">
+            <span class="title-footer">MAP</span>
+            <span class="small-devide">&mdash;&mdash;</span>
+            <iframe class="showmap"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.6974423190873!2d106.77443621471906!3d10.834450092282205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752704028ac45b%3A0xfbc12f3ecfccd9ef!2zMjIgxJDGsOG7nW5nIHPhu5EgOCwgVMSDbmcgTmjGoW4gUGjDuiBCLCBRdeG6rW4gOSwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1675930898508!5m2!1svi!2s"
+                    width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </footer>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

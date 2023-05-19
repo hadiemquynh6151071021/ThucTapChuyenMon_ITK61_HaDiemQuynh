@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e93f567236d04cae9028b6a3f65748d6" Name="Diagram1">
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.AspNetRole" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.AspNetUser" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="CERAMICS_STOREModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CERAMICS_STOREModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CERAMICS_STOREModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.CHATLIEU" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.CHITIETDONHANG" Width="1.5" PointX="9.875" PointY="8.375" />
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.DONHANG" Width="1.5" PointX="7.625" PointY="4" />
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.HINHANHSP" Width="1.5" PointX="9.875" PointY="11.75" />
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.KHACHHANG" Width="1.5" PointX="5.25" PointY="14.875" />
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.LOAISANPHAM" Width="1.5" PointX="5.375" PointY="8.75" />
+        <EntityTypeShape EntityType="CERAMICS_STOREModel.SANPHAM" Width="1.5" PointX="7.625" PointY="7.875" />
+        <AssociationConnector Association="CERAMICS_STOREModel.RBTV_PF_DONHANG" />
+        <AssociationConnector Association="CERAMICS_STOREModel.RBTV_PF_KHACHHANG" />
+        <AssociationConnector Association="CERAMICS_STOREModel.RBTV_PF1_SANPHAM" />
+        <AssociationConnector Association="CERAMICS_STOREModel.RBTV_PF1_CHITIETDONHANG" />
+        <AssociationConnector Association="CERAMICS_STOREModel.RBTV_PF2_CHITIETDONHANG" />
+        <AssociationConnector Association="CERAMICS_STOREModel.RBTV_PF_HINHANHSP" />
+        <AssociationConnector Association="CERAMICS_STOREModel.RBTV_PF2_SANPHAM" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

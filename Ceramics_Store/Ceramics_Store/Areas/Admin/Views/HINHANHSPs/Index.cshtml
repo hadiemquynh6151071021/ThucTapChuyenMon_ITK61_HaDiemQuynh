@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Ceramics_Store.Models.HINHANHSP>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout_admin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENANH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SANPHAM.TENSP)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENANH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SANPHAM.TENSP)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MAANH }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MAANH }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MAANH })
+        </td>
+    </tr>
+}
+
+</table>

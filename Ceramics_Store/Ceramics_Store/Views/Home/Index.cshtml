@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Trang chủ -Ceramics Store";
+}
+@Styles.Render("~/Content/StyleCSS/main.css")
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/bootstrap.min.css")
+@Styles.Render("~/Scripts/bootstrap.min.js")
+<div class="row row-slider">
+    <div class=" col-sm-12">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/photos/Slide/Ceramics store.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/photos/Slide/Ceramics store (1).png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/photos/Slide/Ceramics store (2).png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/photos/Slide/Ceramics store (3).png" class="d-block w-100" alt="...">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" row row-product-sale">
+    <h4 class="title">KHUYẾN MÃI SỐC!</h4>
+</div>
+<div class="row list-product-sale ">
+    @*@foreach(int i in ViewBag.a)
+            {
+                <div>i</div>
+            }*@
+    @for (int i = 0; i < 4; i++)
+    {
+        <div class=" col-sm-3 box-item">
+            <div class="product-item-sale">
+                <img class="product-item-img"
+                    src="~/photos/photo_intro/280376204_519557896391206_8404298024682779819_n.jpg"
+                     alt="Lỗi">
+                <p class="product-item-content" href="#"> Đĩa Hearthside Cumberland</p>
+                <p class="product-item-price">
+                    50.000đ
+                    <i class="fa-solid fa-arrow-right symbols-arrow"></i>
+                </p>
+            </div>
+        </div>
+    }
+</div>
+<div class="row row-product-top">
+    <h4 class="title">HÀNG BÁN CHẠY!</h4>
+</div>
+<div class="row list-product-top">
+    @for (int i = 0; i < 4; i++)
+    {
+        <div class=" col-sm-3 box-item">
+            <div class="product-item-top">
+                <img class="product-item-img"
+                     src="~/photos/photo_intro/280376204_519557896391206_8404298024682779819_n.jpg"
+                     alt="Lỗi">
+                <p class="product-item-content" href="#"> Đĩa Hearthside Cumberland</p>
+                <p class="product-item-price">
+                    50.000đ
+                    <i class="fa-solid fa-arrow-right symbols-arrow"></i>
+                </p>
+            </div>
+        </div>
+    }
+</div>
