@@ -32,10 +32,14 @@ namespace Ceramics_Store.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<CHATLIEU> CHATLIEUx { get; set; }
         public virtual DbSet<CHITIETDONHANG> CHITIETDONHANGs { get; set; }
+        public virtual DbSet<DANHGIASP> DANHGIASPs { get; set; }
         public virtual DbSet<DONHANG> DONHANGs { get; set; }
+        public virtual DbSet<GIOHANG> GIOHANGs { get; set; }
+        public virtual DbSet<HINHANHSLIDE> HINHANHSLIDEs { get; set; }
         public virtual DbSet<HINHANHSP> HINHANHSPs { get; set; }
-        public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
+        public virtual DbSet<KHUYENMAI> KHUYENMAIs { get; set; }
         public virtual DbSet<LOAISANPHAM> LOAISANPHAMs { get; set; }
         public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
+        public virtual DbSet<THONGTINCUAHANG> THONGTINCUAHANGs { get; set; }
     }
 }

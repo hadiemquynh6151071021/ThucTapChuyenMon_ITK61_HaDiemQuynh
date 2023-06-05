@@ -12,9 +12,9 @@ namespace Ceramics_Store.Controllers
         public ActionResult Index()
         {
             // Lấy danh sách các vai trò
-            string[] roles = Roles.GetAllRoles();
+            //string[] roles = Roles.GetAllRoles();
 
-            ViewBag.a = roles;
+            //ViewBag.a = roles;
 
             //// Kiểm tra xem một người dùng có thuộc một vai trò hay không
             //bool isInRole = Roles.IsUserInRole("username", "rolename");

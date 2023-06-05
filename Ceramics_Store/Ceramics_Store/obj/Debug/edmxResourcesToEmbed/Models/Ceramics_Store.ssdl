@@ -76,7 +76,16 @@
     <Property Name="MAVANDON" Type="int" />
     <Property Name="MASP" Type="int" />
     <Property Name="SOLUONG" Type="int" />
-    <Property Name="NGAYDAT" Type="date" />
+    <Property Name="NGAYDAT" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DANHGIASP">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USERNAME" Type="nvarchar" MaxLength="256" />
+    <Property Name="NOIDUNG" Type="nvarchar" MaxLength="500" />
+    <Property Name="SAO" Type="int" />
   </EntityType>
   <EntityType Name="DONHANG">
     <Key>
@@ -84,13 +93,28 @@
     </Key>
     <Property Name="MAVANDON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MAKH" Type="nvarchar" MaxLength="128" />
+    <Property Name="TENNGUOINHAN" Type="nvarchar" MaxLength="255" />
     <Property Name="SDT" Type="char" MaxLength="10" />
     <Property Name="DIACHI" Type="ntext" />
     <Property Name="TINHTRANG" Type="nvarchar" MaxLength="128" />
-    <Property Name="NGAYDAT" Type="date" />
+    <Property Name="NGAYDAT" Type="datetime" />
     <Property Name="TONGTIEN" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="PHUONGTHUCTHANHTOAN" Type="nvarchar" MaxLength="128" />
-    <Property Name="TIENTHU" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="GIOHANG">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MASP" Type="int" />
+    <Property Name="ID_USER" Type="nvarchar" MaxLength="128" />
+    <Property Name="SOLUONG" Type="int" />
+  </EntityType>
+  <EntityType Name="HINHANHSLIDE">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HINHANH" Type="varchar" MaxLength="225" />
   </EntityType>
   <EntityType Name="HINHANHSP">
     <Key>
@@ -100,13 +124,17 @@
     <Property Name="MASP" Type="int" />
     <Property Name="TENANH" Type="varchar" MaxLength="128" />
   </EntityType>
-  <EntityType Name="KHACHHANG">
+  <EntityType Name="KHUYENMAI">
     <Key>
-      <PropertyRef Name="MAKH" />
+      <PropertyRef Name="MAKM" />
     </Key>
-    <Property Name="MAKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ID_USER" Type="nvarchar" MaxLength="128" />
-    <Property Name="TENKH" Type="text" />
+    <Property Name="MAKM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENKM" Type="nvarchar" MaxLength="225" />
+    <Property Name="HINHANH" Type="varchar" MaxLength="225" />
+    <Property Name="CHITIET" Type="ntext" />
+    <Property Name="NGAYBATDAU" Type="datetime" />
+    <Property Name="NGAYKETHUC" Type="datetime" />
+    <Property Name="TILE" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="LOAISANPHAM">
     <Key>
@@ -123,10 +151,25 @@
     <Property Name="MACL" Type="int" />
     <Property Name="MALSP" Type="int" />
     <Property Name="TENSP" Type="nvarchar" MaxLength="255" />
+    <Property Name="CHIEURONG" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="CHIEUCAO" Type="decimal" Precision="18" Scale="0" />
     <Property Name="MOTA" Type="ntext" />
+    <Property Name="NGAYDANG" Type="date" />
     <Property Name="SOLUONGTONKHO" Type="int" />
     <Property Name="SOLUONGDABAN" Type="int" />
     <Property Name="GIA" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="THONGTINCUAHANG">
+    <Key>
+      <PropertyRef Name="MATT" />
+    </Key>
+    <Property Name="MATT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENCH" Type="nvarchar" MaxLength="225" />
+    <Property Name="DIACHI" Type="nvarchar" MaxLength="500" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="225" />
+    <Property Name="SDT" Type="varchar" MaxLength="10" />
+    <Property Name="FLUGINPAGE" Type="ntext" />
+    <Property Name="URLMAP" Type="ntext" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -184,6 +227,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'RBTV_PF_DANHGIASP' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="RBTV_PF_DANHGIASP" />-->
   <Association Name="RBTV_PF_DONHANG">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
     <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
@@ -196,6 +242,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="RBTV_PF_GIOHANG">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GIOHANG">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="RBTV_PF_HINHANHSP">
     <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
     <End Role="HINHANHSP" Type="Self.HINHANHSP" Multiplicity="*" />
@@ -205,18 +263,6 @@
       </Principal>
       <Dependent Role="HINHANHSP">
         <PropertyRef Name="MASP" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="RBTV_PF_KHACHHANG">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
-    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="KHACHHANG">
-        <PropertyRef Name="ID_USER" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -277,11 +323,15 @@
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CHATLIEU" EntityType="Self.CHATLIEU" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CHITIETDONHANG" EntityType="Self.CHITIETDONHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DANHGIASP" EntityType="Self.DANHGIASP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DONHANG" EntityType="Self.DONHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GIOHANG" EntityType="Self.GIOHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HINHANHSLIDE" EntityType="Self.HINHANHSLIDE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HINHANHSP" EntityType="Self.HINHANHSP" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHUYENMAI" EntityType="Self.KHUYENMAI" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LOAISANPHAM" EntityType="Self.LOAISANPHAM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="THONGTINCUAHANG" EntityType="Self.THONGTINCUAHANG" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -302,13 +352,13 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="DONHANG" EntitySet="DONHANG" />
     </AssociationSet>
+    <AssociationSet Name="RBTV_PF_GIOHANG" Association="Self.RBTV_PF_GIOHANG">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="GIOHANG" EntitySet="GIOHANG" />
+    </AssociationSet>
     <AssociationSet Name="RBTV_PF_HINHANHSP" Association="Self.RBTV_PF_HINHANHSP">
       <End Role="SANPHAM" EntitySet="SANPHAM" />
       <End Role="HINHANHSP" EntitySet="HINHANHSP" />
-    </AssociationSet>
-    <AssociationSet Name="RBTV_PF_KHACHHANG" Association="Self.RBTV_PF_KHACHHANG">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
     </AssociationSet>
     <AssociationSet Name="RBTV_PF1_CHITIETDONHANG" Association="Self.RBTV_PF1_CHITIETDONHANG">
       <End Role="DONHANG" EntitySet="DONHANG" />

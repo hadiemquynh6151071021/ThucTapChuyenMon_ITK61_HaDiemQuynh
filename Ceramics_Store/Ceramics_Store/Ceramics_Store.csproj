@@ -170,12 +170,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\CHATLIEUxController.cs" />
-    <Compile Include="Areas\Admin\Controllers\DONHANGsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HINHANHSPsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HOMExController.cs" />
-    <Compile Include="Areas\Admin\Controllers\LOAISANPHAMsController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SANPHAMsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\THONGTINCUAHANGsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -219,14 +215,23 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>Ceramics_Store.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DANHGIASP.cs">
+      <DependentUpon>Ceramics_Store.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DONHANG.cs">
+      <DependentUpon>Ceramics_Store.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GIOHANG.cs">
+      <DependentUpon>Ceramics_Store.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HINHANHSLIDE.cs">
       <DependentUpon>Ceramics_Store.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HINHANHSP.cs">
       <DependentUpon>Ceramics_Store.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\KHACHHANG.cs">
+    <Compile Include="Models\KHUYENMAI.cs">
       <DependentUpon>Ceramics_Store.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LOAISANPHAM.cs">
@@ -234,6 +239,9 @@
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SANPHAM.cs">
+      <DependentUpon>Ceramics_Store.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THONGTINCUAHANG.cs">
       <DependentUpon>Ceramics_Store.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -323,13 +331,6 @@
     <Content Include="photos\photo_intro\307857911_114555188064467_5944749908045721130_n.jpg" />
     <Content Include="photos\photo_intro\317274634_530878108658797_2760594860937895788_n.jpg" />
     <Content Include="fonts\Gistesy.ttf" />
-    <EntityDeploy Include="Models\Ceramics_Store.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Ceramics_Store.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Ceramics_Store.edmx.diagram">
-      <DependentUpon>Ceramics_Store.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\Layout_admin.cshtml" />
     <Content Include="photos\Slide\Ceramics store %281%29.png" />
@@ -442,26 +443,11 @@
       <Generator>SassTranspiler</Generator>
       <LastGenOutput>Layout.css</LastGenOutput>
     </Content>
-    <Content Include="Areas\Admin\Views\CHATLIEUx\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\CHATLIEUx\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\CHATLIEUx\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\CHATLIEUx\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HOMEx\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\LOAISANPHAMs\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\LOAISANPHAMs\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\LOAISANPHAMs\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\LOAISANPHAMs\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\SANPHAMs\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\DONHANGs\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\DONHANGs\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\SANPHAMs\Index.cshtml" />
     <Content Include="Content\AdminStyle\main.scss">
       <Generator>SassTranspiler</Generator>
       <LastGenOutput>main.css</LastGenOutput>
     </Content>
-    <Content Include="Areas\Admin\Views\HINHANHSPs\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\HINHANHSPs\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\HINHANHSPs\Index.cshtml" />
     <Content Include="Scripts\ckeditor\bender-runner.config.json" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
@@ -476,13 +462,19 @@
     <Content Include="Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Scripts\ckeditor\SECURITY.md" />
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
-    <Content Include="Areas\Admin\Views\HINHANHSPs\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\SANPHAMs\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\SANPHAMs\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\HINHANHSPs\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\SANPHAMs\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\CHATLIEUx\Index_1.cshtml" />
-    <Content Include="Areas\Admin\Views\CHATLIEUx\View.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <EntityDeploy Include="Models\Ceramics_Store.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Ceramics_Store.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Ceramics_Store.edmx.diagram">
+      <DependentUpon>Ceramics_Store.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\THONGTINCUAHANGs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\THONGTINCUAHANGs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\THONGTINCUAHANGs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\THONGTINCUAHANGs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\THONGTINCUAHANGs\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\chart.js" />
     <Content Include="Scripts\chart.min.js" />

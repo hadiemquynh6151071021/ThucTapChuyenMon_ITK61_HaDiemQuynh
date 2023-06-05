@@ -56,6 +56,127 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CHATLIEUx">
+      <EntityTypeMapping TypeName="CERAMICS_STOREModel.CHATLIEU">
+        <MappingFragment StoreEntitySet="CHATLIEU">
+          <ScalarProperty Name="MACL" ColumnName="MACL" />
+          <ScalarProperty Name="TENCL" ColumnName="TENCL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHITIETDONHANGs">
+      <EntityTypeMapping TypeName="CERAMICS_STOREModel.CHITIETDONHANG">
+        <MappingFragment StoreEntitySet="CHITIETDONHANG">
+          <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DANHGIASPs">
+      <EntityTypeMapping TypeName="CERAMICS_STOREModel.DANHGIASP">
+        <MappingFragment StoreEntitySet="DANHGIASP">
+          <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+          <ScalarProperty Name="SAO" ColumnName="SAO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONHANGs">
+      <EntityTypeMapping TypeName="CERAMICS_STOREModel.DONHANG">
+        <MappingFragment StoreEntitySet="DONHANG">
+          <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
+          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+          <ScalarProperty Name="TENNGUOINHAN" ColumnName="TENNGUOINHAN" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
+          <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
+          <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GIOHANGs">
+      <EntityTypeMapping TypeName="CERAMICS_STOREModel.GIOHANG">
+        <MappingFragment StoreEntitySet="GIOHANG">
+          <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HINHANHSLIDEs">
+      <EntityTypeMapping TypeName="CERAMICS_STOREModel.HINHANHSLIDE">
+        <MappingFragment StoreEntitySet="HINHANHSLIDE">
+          <ScalarProperty Name="STT" ColumnName="STT" />
+          <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HINHANHSPs">
+      <EntityTypeMapping TypeName="CERAMICS_STOREModel.HINHANHSP">
+        <MappingFragment StoreEntitySet="HINHANHSP">
+          <ScalarProperty Name="MAANH" ColumnName="MAANH" />
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="TENANH" ColumnName="TENANH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHUYENMAIs">
+      <EntityTypeMapping TypeName="CERAMICS_STOREModel.KHUYENMAI">
+        <MappingFragment StoreEntitySet="KHUYENMAI">
+          <ScalarProperty Name="MAKM" ColumnName="MAKM" />
+          <ScalarProperty Name="TENKM" ColumnName="TENKM" />
+          <ScalarProperty Name="HINHANH" ColumnName="HINHANH" />
+          <ScalarProperty Name="CHITIET" ColumnName="CHITIET" />
+          <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+          <ScalarProperty Name="NGAYKETHUC" ColumnName="NGAYKETHUC" />
+          <ScalarProperty Name="TILE" ColumnName="TILE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAISANPHAMs">
+      <EntityTypeMapping TypeName="CERAMICS_STOREModel.LOAISANPHAM">
+        <MappingFragment StoreEntitySet="LOAISANPHAM">
+          <ScalarProperty Name="MALSP" ColumnName="MALSP" />
+          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SANPHAMs">
+      <EntityTypeMapping TypeName="CERAMICS_STOREModel.SANPHAM">
+        <MappingFragment StoreEntitySet="SANPHAM">
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="MACL" ColumnName="MACL" />
+          <ScalarProperty Name="MALSP" ColumnName="MALSP" />
+          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+          <ScalarProperty Name="CHIEURONG" ColumnName="CHIEURONG" />
+          <ScalarProperty Name="CHIEUCAO" ColumnName="CHIEUCAO" />
+          <ScalarProperty Name="MOTA" ColumnName="MOTA" />
+          <ScalarProperty Name="NGAYDANG" ColumnName="NGAYDANG" />
+          <ScalarProperty Name="SOLUONGTONKHO" ColumnName="SOLUONGTONKHO" />
+          <ScalarProperty Name="SOLUONGDABAN" ColumnName="SOLUONGDABAN" />
+          <ScalarProperty Name="GIA" ColumnName="GIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="THONGTINCUAHANGs">
+      <EntityTypeMapping TypeName="CERAMICS_STOREModel.THONGTINCUAHANG">
+        <MappingFragment StoreEntitySet="THONGTINCUAHANG">
+          <ScalarProperty Name="MATT" ColumnName="MATT" />
+          <ScalarProperty Name="TENCH" ColumnName="TENCH" />
+          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="FLUGINPAGE" ColumnName="FLUGINPAGE" />
+          <ScalarProperty Name="URLMAP" ColumnName="URLMAP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="CERAMICS_STOREModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -64,79 +185,5 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="CHATLIEUx">
-      <EntityTypeMapping TypeName="CERAMICS_STOREModel.CHATLIEU">
-        <MappingFragment StoreEntitySet="CHATLIEU">
-          <ScalarProperty Name="TENCL" ColumnName="TENCL" />
-          <ScalarProperty Name="MACL" ColumnName="MACL" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CHITIETDONHANGs">
-      <EntityTypeMapping TypeName="CERAMICS_STOREModel.CHITIETDONHANG">
-        <MappingFragment StoreEntitySet="CHITIETDONHANG">
-          <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
-          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-          <ScalarProperty Name="MASP" ColumnName="MASP" />
-          <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
-          <ScalarProperty Name="STT" ColumnName="STT" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DONHANGs">
-      <EntityTypeMapping TypeName="CERAMICS_STOREModel.DONHANG">
-        <MappingFragment StoreEntitySet="DONHANG">
-          <ScalarProperty Name="TIENTHU" ColumnName="TIENTHU" />
-          <ScalarProperty Name="PHUONGTHUCTHANHTOAN" ColumnName="PHUONGTHUCTHANHTOAN" />
-          <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
-          <ScalarProperty Name="NGAYDAT" ColumnName="NGAYDAT" />
-          <ScalarProperty Name="TINHTRANG" ColumnName="TINHTRANG" />
-          <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
-          <ScalarProperty Name="SDT" ColumnName="SDT" />
-          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
-          <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HINHANHSPs">
-      <EntityTypeMapping TypeName="CERAMICS_STOREModel.HINHANHSP">
-        <MappingFragment StoreEntitySet="HINHANHSP">
-          <ScalarProperty Name="TENANH" ColumnName="TENANH" />
-          <ScalarProperty Name="MASP" ColumnName="MASP" />
-          <ScalarProperty Name="MAANH" ColumnName="MAANH" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="KHACHHANGs">
-      <EntityTypeMapping TypeName="CERAMICS_STOREModel.KHACHHANG">
-        <MappingFragment StoreEntitySet="KHACHHANG">
-          <ScalarProperty Name="TENKH" ColumnName="TENKH" />
-          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
-          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="LOAISANPHAMs">
-      <EntityTypeMapping TypeName="CERAMICS_STOREModel.LOAISANPHAM">
-        <MappingFragment StoreEntitySet="LOAISANPHAM">
-          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
-          <ScalarProperty Name="MALSP" ColumnName="MALSP" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SANPHAMs">
-      <EntityTypeMapping TypeName="CERAMICS_STOREModel.SANPHAM">
-        <MappingFragment StoreEntitySet="SANPHAM">
-          <ScalarProperty Name="GIA" ColumnName="GIA" />
-          <ScalarProperty Name="SOLUONGDABAN" ColumnName="SOLUONGDABAN" />
-          <ScalarProperty Name="SOLUONGTONKHO" ColumnName="SOLUONGTONKHO" />
-          <ScalarProperty Name="MOTA" ColumnName="MOTA" />
-          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
-          <ScalarProperty Name="MALSP" ColumnName="MALSP" />
-          <ScalarProperty Name="MACL" ColumnName="MACL" />
-          <ScalarProperty Name="MASP" ColumnName="MASP" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

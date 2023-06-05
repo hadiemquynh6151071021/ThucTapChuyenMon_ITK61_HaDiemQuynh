@@ -20,7 +20,4 @@ namespace Ceramics_Store.Models
     
         public virtual SANPHAM SANPHAM { get; set; }
     }
-
-
-    
 }

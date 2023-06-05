@@ -25,11 +25,14 @@ namespace Ceramics_Store.Models
         public Nullable<int> MACL { get; set; }
         public Nullable<int> MALSP { get; set; }
         public string TENSP { get; set; }
+        public Nullable<decimal> CHIEURONG { get; set; }
+        public Nullable<decimal> CHIEUCAO { get; set; }
         public string MOTA { get; set; }
+        public Nullable<System.DateTime> NGAYDANG { get; set; }
         public Nullable<int> SOLUONGTONKHO { get; set; }
         public Nullable<int> SOLUONGDABAN { get; set; }
         public Nullable<decimal> GIA { get; set; }
-
+    
         public virtual CHATLIEU CHATLIEU { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETDONHANG> CHITIETDONHANGs { get; set; }

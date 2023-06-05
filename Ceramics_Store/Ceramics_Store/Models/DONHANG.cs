@@ -22,13 +22,12 @@ namespace Ceramics_Store.Models
     
         public int MAVANDON { get; set; }
         public string MAKH { get; set; }
+        public string TENNGUOINHAN { get; set; }
         public string SDT { get; set; }
         public string DIACHI { get; set; }
         public string TINHTRANG { get; set; }
         public Nullable<System.DateTime> NGAYDAT { get; set; }
         public Nullable<decimal> TONGTIEN { get; set; }
-        public string PHUONGTHUCTHANHTOAN { get; set; }
-        public Nullable<decimal> TIENTHU { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

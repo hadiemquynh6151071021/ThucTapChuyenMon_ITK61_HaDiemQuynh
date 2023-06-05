@@ -1,0 +1,43 @@
+﻿@model TeacherManager.Models.NEWS
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .content-new{
+        text-align:justify;
+    }
+</style>
+    <section id="about" class="mt-4">
+        <div class="container px-4">
+            <div class="row gx-4 justify-content-center">
+                <div class="col-lg-8">
+                    <b class="fs-4">@Model.TITLE</b>
+                    <p class="fst-italic">@Model.DATESUBMIT</p>
+                    @Html.Raw("<div class='content-new'>" + Model.CONTENT + "</div>")
+                    @foreach(var item in ViewBag.image)
+            {
+                <img class="w-100 m-auto" src="~/Content/images/news/@item.IMAGES" />
+                <p class="fw-semibold fst-italic m-auto">@item.IMAGES_ALT</p>
+            }
+                </div>
+                <div class="col-lg-4">
+                    <div class="row fs-5"><b>TIN TỨC</b></div>
+                    <div class="row">
+                        @Html.Action("GetListNewsNew", "NEWS")
+                    </div>
+                    <div class="row fs-5"><b>THÔNG BÁO</b></div>
+                    <div class="row">
+                        @Html.Action("GetListNotificationsNew", "NOTIFICATIONs")
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="row fs-5">TIN LIÊN QUAN</div>
+                    @Html.Action("GetListNewsSimilar", "NEWS",new { id = @Model.ID })
+
+                </div>
+            </div>
+        </div>
+
+    </section>

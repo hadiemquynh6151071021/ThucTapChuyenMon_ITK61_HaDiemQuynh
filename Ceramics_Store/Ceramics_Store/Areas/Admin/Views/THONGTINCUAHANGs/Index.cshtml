@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Ceramics_Store.Models.THONGTINCUAHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout_admin.cshtml";
+}
+
+<main id="main" class="main">
+    <h2>Thông tin cửa hàng</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENCH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DIACHI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FLUGINPAGE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.URLMAP)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENCH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DIACHI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMAIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FLUGINPAGE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.URLMAP)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MATT }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MATT }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MATT })
+        </td>
+    </tr>
+}
+
+</table>
+</main>
