@@ -5,16 +5,21 @@ using System.Web;
 using System.Web.Mvc;
 using TeacherManager.Models;
 using TeacherManager.Models.Class;
+using Microsoft.AspNet.Identity;
 
 namespace TeacherManager.Controllers
 {
     public class TeachingScheduleController : Controller
     {
+      
         TeacherWorkEntities db = new TeacherWorkEntities();
+        [Authorize]
+        
         // GET: TeachingSchedule
         public ActionResult Index()
         {
-            TEACHER tEACHER = db.TEACHERs.Where(m => m.ID == 1).First();
+            string ID_USER = User.Identity.GetUserId();
+            TEACHER tEACHER = db.TEACHERs.Where(m => m.ID_USER.Equals(ID_USER)).First();
             DateTime date = new DateTime(2023, 06, 05);
             var ls = GetWeek(date);
             ViewBag.ls = ls;

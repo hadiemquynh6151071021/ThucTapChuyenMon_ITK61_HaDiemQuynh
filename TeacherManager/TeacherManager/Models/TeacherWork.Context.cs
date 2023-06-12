@@ -25,11 +25,6 @@ namespace TeacherManager.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<IMAGES_NEW> IMAGES_NEW { get; set; }
         public virtual DbSet<IMAGES_NEW_TYPE> IMAGES_NEW_TYPE { get; set; }
         public virtual DbSet<NEWS> NEWS { get; set; }
@@ -42,8 +37,13 @@ namespace TeacherManager.Models
         public virtual DbSet<ROOM> ROOMs { get; set; }
         public virtual DbSet<ROOM_IS_TAKEN> ROOM_IS_TAKEN { get; set; }
         public virtual DbSet<SUBJECT> SUBJECTs { get; set; }
-        public virtual DbSet<TEACHER> TEACHERs { get; set; }
         public virtual DbSet<TEACHER_TYPE> TEACHER_TYPE { get; set; }
         public virtual DbSet<TIME_SLOT> TIME_SLOT { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<TEACHER> TEACHERs { get; set; }
     }
 }

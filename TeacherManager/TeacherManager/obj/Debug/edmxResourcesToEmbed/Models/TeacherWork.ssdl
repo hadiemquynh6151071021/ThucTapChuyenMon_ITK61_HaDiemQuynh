@@ -171,6 +171,7 @@
     <Property Name="ID_TEACHERTYPE" Type="int" />
     <Property Name="ID_ACADEMIC_RANK" Type="int" />
     <Property Name="NAME" Type="ntext" />
+    <Property Name="ID_USER" Type="nvarchar" MaxLength="128" />
   </EntityType>
   <EntityType Name="TEACHER_TYPE">
     <Key>
@@ -187,6 +188,18 @@
     <Property Name="ID_DAY" Type="int" />
     <Property Name="NAME" Type="ntext" />
   </EntityType>
+  <Association Name="FK__TEACHER__ID_USER__03F0984C">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TEACHER">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -421,6 +434,10 @@
     <EntitySet Name="TEACHER" EntityType="Self.TEACHER" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TEACHER_TYPE" EntityType="Self.TEACHER_TYPE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TIME_SLOT" EntityType="Self.TIME_SLOT" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__TEACHER__ID_USER__03F0984C" Association="Self.FK__TEACHER__ID_USER__03F0984C">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="TEACHER" EntitySet="TEACHER" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />

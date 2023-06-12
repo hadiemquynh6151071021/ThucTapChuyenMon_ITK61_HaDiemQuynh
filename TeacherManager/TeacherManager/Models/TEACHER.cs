@@ -15,14 +15,14 @@ namespace TeacherManager.Models
 
     public partial class TEACHER
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-
         TeacherWorkEntities db = new TeacherWorkEntities();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TEACHER()
         {
             this.CLASSROOMs = new HashSet<CLASSROOM>();
             this.SUBJECTs = new HashSet<SUBJECT>();
         }
+
         public List<SUBJECT> GetSUBJECTs(DateTime date)
         {
             var result = db.SUBJECTs
@@ -35,13 +35,14 @@ namespace TeacherManager.Models
                .ToList();
             return result;
         }
-
         public int ID { get; set; }
         public Nullable<int> ID_TEACHERTYPE { get; set; }
         public Nullable<int> ID_ACADEMIC_RANK { get; set; }
         public string NAME { get; set; }
+        public string ID_USER { get; set; }
     
         public virtual ACADEMIC_RANK ACADEMIC_RANK { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLASSROOM> CLASSROOMs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

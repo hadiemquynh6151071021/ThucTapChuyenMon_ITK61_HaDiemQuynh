@@ -15,8 +15,8 @@ namespace TeacherManager.Models
 
     public partial class SUBJECT
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         TeacherWorkEntities db = new TeacherWorkEntities();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SUBJECT()
         {
             this.ARRANGE_TIME_SLOT = new HashSet<ARRANGE_TIME_SLOT>();
@@ -33,6 +33,7 @@ namespace TeacherManager.Models
                    .ToList();
             return slots;
         }
+
         public int ID { get; set; }
         public Nullable<int> ID_TEACHER { get; set; }
         public Nullable<int> ID_CLASSROOM { get; set; }
