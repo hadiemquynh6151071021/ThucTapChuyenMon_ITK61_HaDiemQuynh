@@ -249,3 +249,91 @@ footer {
     height: 48px;
     background: #aaa;
 }
+
+
+@media(max-width: 768px) {
+    .profile ul {
+        width: 160px;
+        height: 250px;
+        border-radius: 10px;
+        top: 7px;
+        position: absolute;
+        padding: 8px;
+        transition: all 0.1s;
+        z-index: 1;
+        background-color: aqua;
+        right: -50px;
+    }
+}
+
+.profile {
+    position: relative;
+    text-align: center;
+}
+
+    .profile img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        cursor: pointer
+    }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background-color: #f1f1f1;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    transition: all 0.1s;
+}
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block
+    }
+
+        .dropdown-content a:hover {
+            background-color: #ddd
+        }
+
+.dropdown:hover .dropdown-content {
+    display: block
+}
+
+.profile ul {
+    background-color: #fff;
+    width: 160px;
+    height: 250px;
+    border-radius: 10px;
+    right: 0;
+    top: 7px;
+    position: absolute;
+    padding: 8px;
+    transition: all 0.1s;
+    z-index: 1
+}
+
+
+    .profile ul li {
+        list-style: none;
+        text-align: left;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        transition: all 0.1s;
+        cursor: pointer;
+        border-radius: 4px
+    }
+
+        .profile ul li:hover {
+            background-color: #eee
+        }
+
+        .profile ul li i {
+            margin-right: 7px
+        }

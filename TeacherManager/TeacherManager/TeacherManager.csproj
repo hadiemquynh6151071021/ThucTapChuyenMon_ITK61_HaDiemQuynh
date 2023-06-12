@@ -208,6 +208,7 @@
     <Compile Include="Models\CLASSROOM.cs">
       <DependentUpon>TeacherWork.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Class\Event.cs" />
     <Compile Include="Models\Class\Schedule.cs" />
     <Compile Include="Models\Class\ScheduleEvolution.cs" />
     <Compile Include="Models\Class\SchedulePopulation.cs" />
@@ -606,6 +607,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>styles.scss</DependentUpon>
     </Content>
+    <Content Include="Content\images\account\icons8-account-64.png" />
     <Content Include="Content\images\design_images\Fingerprint-rafiki.png" />
     <Content Include="Content\images\news\cong_doan_1.jpg" />
     <Content Include="Content\images\news\cong_doan_2.jpg" />
@@ -771,6 +773,7 @@
     <Content Include="Views\TeachingSchedule\RegistertoSchedule.cshtml" />
     <Content Include="Views\TeachingSchedule\Register.cshtml" />
     <Content Include="Views\TeachingSchedule\Show.cshtml" />
+    <Content Include="Views\Account\_MyDialog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

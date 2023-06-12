@@ -1,22 +1,58 @@
 ﻿@using Microsoft.AspNet.Identity
+<link rel="stylesheet" href="~/Content/design/css/schedule_style.css" />
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right imgLogin" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <div class="profile">
+                    <img class="dropbtn" src="~/Content/images/account/icons8-account-64.png">
+                    <div class="dropdown-content">
+                        <ul>
+                            <li>
+                                <span><a class="nav-link" href="#">Tài khoản</a></span>
+                            </li>
+                            <li>
+                                <span><a class="nav-link" href="/TeachingSchedule/">Lịch dạy</a></span>
+                            </li>
+                            <li>
+                                <span><a class="nav-link" href="/TeachingSchedule/RegistertoSchedule">Đăng ký dạy bù</a></span>
+                            </li>
+                            <li>
+                                <span><a class="nav-link" href="#">Đăng ký nghỉ</a></span>
+                            </li>
+                            <li>
+                                <span><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            @*<li>
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>*@
+        </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+        <li>@Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink show-dialog", @class= "nav-link" })</li>
+        @*<button id="show-dialog">Show Dialog</button>*@
     </ul>
 }
+@*<div id="dialog-container"></div>*@
+@*@section scripts{
+    <script>
+        $('#show-dialog').click(function () {
+            $('#dialog-container').load('/Account/MyDialog');
+            $('#dialog-container').dialog({ modal: true });
+        });
+    </script>
+}*@
+
