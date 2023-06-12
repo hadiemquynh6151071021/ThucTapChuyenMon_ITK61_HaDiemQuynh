@@ -11,16 +11,31 @@ namespace TeacherManager.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class TEACHER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+
+        TeacherWorkEntities db = new TeacherWorkEntities();
         public TEACHER()
         {
             this.CLASSROOMs = new HashSet<CLASSROOM>();
             this.SUBJECTs = new HashSet<SUBJECT>();
         }
-    
+        public List<SUBJECT> GetSUBJECTs(DateTime date)
+        {
+            var result = db.SUBJECTs
+               .Join(db.ARRANGE_TIME_SLOT, subject => subject.ID, arrangeTimeSlot => arrangeTimeSlot.ID_SUBJECT, (subject, arrangeTimeSlot) => new { subject, arrangeTimeSlot })
+               .Join(db.TIME_SLOT, temp => temp.arrangeTimeSlot.ID_TIME_SLOT, timeSlot => timeSlot.ID, (temp, timeSlot) => new { temp.subject, temp.arrangeTimeSlot, timeSlot })
+               .Join(db.DAYs, temp => temp.timeSlot.ID_DAY, day => day.ID, (temp, day) => new { temp.subject, temp.arrangeTimeSlot, temp.timeSlot, day })
+               .Where(temp => temp.subject.ID_TEACHER == 1 && temp.day.NAME.ToString() == date.DayOfWeek.ToString() && date > temp.subject.START_DAY && date < temp.subject.END_DAY)
+               .GroupBy(temp => temp.subject.ID)
+               .Select(group => group.FirstOrDefault().subject)
+               .ToList();
+            return result;
+        }
+
         public int ID { get; set; }
         public Nullable<int> ID_TEACHERTYPE { get; set; }
         public Nullable<int> ID_ACADEMIC_RANK { get; set; }

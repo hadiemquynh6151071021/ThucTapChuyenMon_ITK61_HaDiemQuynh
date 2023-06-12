@@ -182,6 +182,7 @@
     <Compile Include="Controllers\NEWSController.cs" />
     <Compile Include="Controllers\NOTIFICATIONsController.cs" />
     <Compile Include="Controllers\Recommend.cs" />
+    <Compile Include="Controllers\TeachingScheduleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -599,6 +600,7 @@
     <Content Include="Content\ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="Content\ckeditor\styles.js" />
     <Content Include="Content\ckeditor\vendor\promise.js" />
+    <Content Include="Content\design\css\schedule_style.css" />
     <Content Include="Content\design\scss\styles.css">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -765,6 +767,10 @@
     <Content Include="Views\NOTIFICATIONs\GetListNotificationsSimilar.cshtml" />
     <Content Include="Views\NEWS\Index.cshtml" />
     <Content Include="Views\NOTIFICATIONs\Index.cshtml" />
+    <Content Include="Views\TeachingSchedule\Index.cshtml" />
+    <Content Include="Views\TeachingSchedule\RegistertoSchedule.cshtml" />
+    <Content Include="Views\TeachingSchedule\Register.cshtml" />
+    <Content Include="Views\TeachingSchedule\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

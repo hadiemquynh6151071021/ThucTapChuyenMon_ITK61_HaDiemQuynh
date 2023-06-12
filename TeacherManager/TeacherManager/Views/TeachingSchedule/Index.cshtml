@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/design/css/schedule_style.css" />
+
+<section class="timetable m-5">
+    <h3>Lịch giảng dạy</h3>
+    <table>
+        <tr class="timings">
+            <td>Tiết 1</td>
+            <td>Tiết 2</td>
+            <td>Tiết 3</td>
+            <td>Tiết 4</td>
+            <td>Tiết 5</td>
+            <td>Tiết 6</td>
+            <td>Tiết 7</td>
+            <td>Tiết 8</td>
+            <td>Tiết 9</td>
+            <td>Tiết 10</td>
+        </tr>
+    </table>
+    <ol class="week">
+        <li class="day">
+            <span class="name">Mon</span>
+            @foreach (var item in ViewBag.Mon)
+            {
+                var list = item.GetTIME_SLOTs(ViewBag.ls[1]);
+                string num = list.Count.ToString();
+                string slotStart = list[0].NAME;
+                ViewBag.num = num;
+                ViewBag.slotStart = slotStart;
+
+
+                <div class="hour slot" data-num="@ViewBag.num" data-slotstart="@ViewBag.slotStart">
+                    <div class="title text-center">@item.NAME</div>
+                    <div class="text-center">Lớp: @item.CLASSROOM.NAME</div>
+                    <div class="text-center">Phòng: ?</div>
+                </div>
+            }
+        </li>
+        <li class="day">
+            <span class="name">Tue</span>
+            @foreach (var item in ViewBag.Tue)
+            {
+                var list = item.GetTIME_SLOTs(ViewBag.ls[2]);
+                string num = list.Count.ToString();
+                string slotStart = list[0].NAME;
+                ViewBag.num = num;
+                ViewBag.slotStart = slotStart;
+
+
+                <div class="hour slot" data-num="@ViewBag.num" data-slotstart="@ViewBag.slotStart">
+                    <div class="title">@item.NAME</div>
+                    <div class="text-center text-center">Lớp: @item.CLASSROOM.NAME</div>
+                    <div class="text-center">Phòng: ?</div>
+                </div>
+            }
+        </li>
+        <li class="day">
+            <span class="name">Wed</span>
+            @foreach (var item in ViewBag.Wed)
+            {
+                var list = item.GetTIME_SLOTs(ViewBag.ls[3]);
+                string num = list.Count.ToString();
+                string slotStart = list[0].NAME;
+                ViewBag.num = num;
+                ViewBag.slotStart = slotStart;
+
+
+                <div class="hour slot" data-num="@ViewBag.num" data-slotstart="@ViewBag.slotStart">
+                    <div class="title text-center">@item.NAME</div>
+                    <div class="text-center">Lớp: @item.CLASSROOM.NAME</div>
+                    <div class="text-center">Phòng: ?</div>
+                </div>
+            }
+        </li>
+        <li class="day">
+            <span class="name">Thur</span>
+            @foreach (var item in ViewBag.Thur)
+            {
+                var list = item.GetTIME_SLOTs(ViewBag.ls[4]);
+                string num = list.Count.ToString();
+                string slotStart = list[0].NAME;
+                ViewBag.num = num;
+                ViewBag.slotStart = slotStart;
+
+
+                <div class="hour slot" data-num="@ViewBag.num" data-slotstart="@ViewBag.slotStart">
+                    <div class="title text-center">@item.NAME</div>
+                    <div class="text-center">Lớp: @item.CLASSROOM.NAME</div>
+                    <div class="text-center">Phòng: ?</div>
+                </div>
+            }
+        </li>
+        <li class="day">
+            <span class="name">Fri</span>
+            @foreach (var item in ViewBag.Fri)
+            {
+                var list = item.GetTIME_SLOTs(ViewBag.ls[5]);
+                string num = list.Count.ToString();
+                string slotStart = list[0].NAME;
+                ViewBag.num = num;
+                ViewBag.slotStart = slotStart;
+
+
+                <div class="hour slot" data-num="@ViewBag.num" data-slotstart="@ViewBag.slotStart">
+                    <div class="title text-center">@item.NAME</div>
+                    <div class="text-center">Lớp: @item.CLASSROOM.NAME</div>
+                    <div class="text-center">Phòng: ?</div>
+                </div>
+            }
+        </li>
+        <li class="day">
+            <span class="name">Sat</span>
+            @foreach (var item in ViewBag.Sat)
+            {
+                var list = item.GetTIME_SLOTs(ViewBag.ls[6]);
+                string num = list.Count.ToString();
+                string slotStart = list[0].NAME;
+                ViewBag.num = num;
+                ViewBag.slotStart = slotStart;
+
+
+                <div class="hour slot" data-num="@ViewBag.num" data-slotstart="@ViewBag.slotStart">
+                    <div class="title text-center">@item.NAME</div>
+                    <div class="text-center">Lớp: @item.CLASSROOM.NAME</div>
+                    <div class="text-center">Phòng: ?</div>
+                </div>
+            }
+        </li>
+
+    </ol>
+</section>
+
+@section scripts{
+    <script>
+        window.addEventListener('load', function () {
+            var elements = document.querySelectorAll(".hour.slot");
+            elements.forEach(function (element) {
+                var num = element.getAttribute("data-num");
+                var slotStart = element.getAttribute("data-slotstart");
+                element.classList.add("hour--" + num);
+                element.classList.add("hour__" + slotStart);
+            });
+        });
+
+
+    </script>
+}
+

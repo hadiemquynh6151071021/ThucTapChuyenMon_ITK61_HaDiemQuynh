@@ -11,15 +11,28 @@ namespace TeacherManager.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class SUBJECT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        TeacherWorkEntities db = new TeacherWorkEntities();
         public SUBJECT()
         {
             this.ARRANGE_TIME_SLOT = new HashSet<ARRANGE_TIME_SLOT>();
         }
-    
+
+        public List<TIME_SLOT> GetTIME_SLOTs(DateTime Day)
+        {
+            var slots = db.SUBJECTs
+                   .Join(db.ARRANGE_TIME_SLOT, subject => subject.ID, arrangeTimeSlot => arrangeTimeSlot.ID_SUBJECT, (subject, arrangeTimeSlot) => new { subject, arrangeTimeSlot })
+                   .Join(db.TIME_SLOT, temp => temp.arrangeTimeSlot.ID_TIME_SLOT, timeSlot => timeSlot.ID, (temp, timeSlot) => new { temp.subject, temp.arrangeTimeSlot, timeSlot })
+                   .Join(db.DAYs, temp => temp.timeSlot.ID_DAY, day => day.ID, (temp, day) => new { temp.subject, temp.arrangeTimeSlot, temp.timeSlot, day })
+                   .Where(temp => temp.day.NAME.ToString() == Day.DayOfWeek.ToString() && temp.subject.ID == this.ID)
+                   .Select(temp => temp.timeSlot)
+                   .ToList();
+            return slots;
+        }
         public int ID { get; set; }
         public Nullable<int> ID_TEACHER { get; set; }
         public Nullable<int> ID_CLASSROOM { get; set; }

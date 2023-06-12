@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Register", "TeachingSchedule", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.DropDownList("Classrooms", ViewBag.Classrooms as SelectList, "-- Chọn lớp --", new { @class = "form-control col-md-2", id = "ddlClassrooms" })
+    <br />
+    @Html.DropDownList("Subjects", new SelectList(string.Empty, "Value", "Text"), "-- Select Subject --", new { @class = "form-control col-md-2", id = "ddlSubject" })
+    <br />
+    <input type="number" class="col-md-2 form-control" id="number_lesson" name="number_lesson" min="1" max="10" value="1" />
+    <br />
+    <button type="submit" class="btn btn-primary">Register</button>
+}
+
+@section scripts{
+    <script>
+        function loadSubjects(classroomId) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    var data = JSON.parse(this.responseText);
+                    var ddlSubject = document.getElementById("ddlSubject");
+                    ddlSubject.innerHTML = "";
+                    var option = document.createElement("option");
+                    option.text = "-- Chọn môn --";
+                    option.value = "";
+                    ddlSubject.add(option);
+                    for (var i = 0; i < data.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = data[i].Text;
+                        option.value = data[i].Value;
+                        ddlSubject.add(option);
+                    }
+                }
+            };
+            xhr.open("GET", "/TeachingSchedule/LoadSubjects?classroomId=" + classroomId, true);
+            xhr.send();
+        }
+
+        document.getElementById("ddlClassrooms").addEventListener("change", function (e) {
+            var classroomId = e.target.value;
+            loadSubjects(classroomId);
+        });
+
+    </script>
+}
+
