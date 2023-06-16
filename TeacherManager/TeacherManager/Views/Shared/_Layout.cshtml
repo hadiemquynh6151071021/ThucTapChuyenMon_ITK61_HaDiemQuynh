@@ -6,18 +6,11 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     @Styles.Render("~/Content/bootstrap.css")
     @Styles.Render("~/Content/bootstrap.min.css")
     @Styles.Render("~/Content/design/css/styles.css")
-    @Styles.Render("~/Content/design/scss/styles.css")
-    @Scripts.Render("~/Scripts/bootstrap.bundle.js")
-    @Scripts.Render("~/Scripts/bootstrap.js")
-    @Scripts.Render("~/Scripts/bootstrap.bundle.min.js")
-    @Scripts.Render("~/Scripts/js/scripts.js")
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <script src="~/Content/ckeditor/ckeditor.js"></script>
+
 
 </head>
 <body id="page-top">
@@ -70,5 +63,12 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+@Scripts.Render("~/Scripts/bootstrap.bundle.js")
+@Scripts.Render("~/Scripts/bootstrap.js")
+@Scripts.Render("~/Scripts/bootstrap.bundle.min.js")
+@Scripts.Render("~/Scripts/js/scripts.js")
+<!-- Core theme CSS (includes Bootstrap)-->
+<script src="~/Content/ckeditor/ckeditor.js"></script>
 
 

@@ -1,23 +1,61 @@
-﻿
+﻿@*@model  TeacherManager.Models.Class.Schedule*@
 @{
     ViewBag.Title = "Show";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Show</h2>
 
-<h3>Đăng ký lịch dạy</h3>
-<div>Giảng viên: @ViewBag.schedule.Teacher.NAME</div>
-<div>Ngày: @ViewBag.schedule.Day</div>
-<div>Độ tương thích: @ViewBag.schedule.GetFitness()</div>
-<div>Số tiết có thể chọn</div>
+<div class="row justify-content-center my-4">
+    <div class="col-xl-10 col-md-12">
+        <div class="card border-0">
+            <div class="card-body p-0">
+                <div class="row no-gutters">
+                    <div class="col-lg-5 col-md-12 my-5">
+                        <div class=" my-auto">
+                            <img src="~/Content/images/account/Events-bro.png" width="400px" height="400px" />
+                        </div>
 
-@{
-    foreach (var course in ViewBag.schedule.SlotAvailible(ViewBag.timeslotsls))
-    {
+                    </div>
+                    <div class="col-lg-7 col-md-12 input-infor my-5 shadow">
+                        <div class="p-5">
+                            <div class="mb-5">
+                                <h3 class="h4 font-weight-bold text-theme">Vui lòng điền đầy đủ thông tin</h3>
+                            </div>
+                            @using (Html.BeginForm("Show", "TeachingSchedule", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <h3>Đăng ký lịch dạy</h3>
+                                <div>Giảng viên: @ViewBag.Schedule.Day</div>
+                                <div>Độ tương thích: @ViewBag.Schedule.GetFitness()</div>
+                                <div>@ViewBag.ClassName.NAME</div>
+                                <div>@ViewBag.SubjectName.NAME</div>
+                                <div>Số tiết có thể chọn</div>
 
-        <div>@course.NAME</div>
+                                foreach (var course in ViewBag.schedule.SlotAvailible(ViewBag.timeslotsls))
+                                {
 
-    }
-}
+                                    <div>@course.NAME</div>
+
+                                }
+
+                                <button type="submit" class="btn btn-register">Xác nhận</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end card-body -->
+        </div>
+    </div>
+    <!-- end col -->
+</div>
+
+@*@{
+        foreach (var course in ViewBag.schedule.SlotAvailible(ViewBag.timeslotsls))
+        {
+
+            <div>@course.NAME</div>
+
+        }
+    }*@
 

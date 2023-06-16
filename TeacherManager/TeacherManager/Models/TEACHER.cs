@@ -11,7 +11,9 @@ namespace TeacherManager.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
+    using Microsoft.AspNet.Identity;
 
     public partial class TEACHER
     {
@@ -29,10 +31,12 @@ namespace TeacherManager.Models
                .Join(db.ARRANGE_TIME_SLOT, subject => subject.ID, arrangeTimeSlot => arrangeTimeSlot.ID_SUBJECT, (subject, arrangeTimeSlot) => new { subject, arrangeTimeSlot })
                .Join(db.TIME_SLOT, temp => temp.arrangeTimeSlot.ID_TIME_SLOT, timeSlot => timeSlot.ID, (temp, timeSlot) => new { temp.subject, temp.arrangeTimeSlot, timeSlot })
                .Join(db.DAYs, temp => temp.timeSlot.ID_DAY, day => day.ID, (temp, day) => new { temp.subject, temp.arrangeTimeSlot, temp.timeSlot, day })
-               .Where(temp => temp.subject.ID_TEACHER == 1 && temp.day.NAME.ToString() == date.DayOfWeek.ToString() && date > temp.subject.START_DAY && date < temp.subject.END_DAY)
+               .Where(temp => temp.subject.ID_TEACHER == this.ID && temp.day.NAME.ToString() == date.DayOfWeek.ToString() && date > temp.subject.START_DAY && date < temp.subject.END_DAY)
                .GroupBy(temp => temp.subject.ID)
                .Select(group => group.FirstOrDefault().subject)
                .ToList();
+
+          
             return result;
         }
         public int ID { get; set; }

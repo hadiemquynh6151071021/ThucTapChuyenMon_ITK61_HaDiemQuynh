@@ -33,3 +33,27 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
+$(document).ready(function () {
+    var calendar = $('#calendar');
+
+    calendar.fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        defaultView: 'month',
+        editable: true,
+        eventLimit: true,
+        events: [
+            {
+                title: 'Test',
+                start: '2023-06-14T10:30:00', // Format: yyyy-mm-ddTHH:MM:SS
+                end: '2023-06-14T12:30:00',
+                allDay: false
+            }
+            // Add more events here
+        ]
+    });
+});
+

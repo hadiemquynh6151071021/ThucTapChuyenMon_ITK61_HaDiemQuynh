@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+@Styles.Render("~/Content/design/scss/styles.css")
 <style>
     section {
         padding: 2rem 0;
@@ -64,7 +64,7 @@
                 @Html.Action("ListNewsReview", "NEWS")
             </div>
             <div class="col-xl-12 view_all">
-                @Html.ActionLink("XEM THÊM","Index", "NEWS")
+                @Html.ActionLink("XEM THÊM", "Index", "NEWS")
                 @*<a href="/news/" class="click_view_all"> XEM THÊM</a>*@
             </div>
         </div>

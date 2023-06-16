@@ -607,6 +607,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>styles.scss</DependentUpon>
     </Content>
+    <Content Include="Content\images\account\Events-bro.png" />
     <Content Include="Content\images\account\icons8-account-64.png" />
     <Content Include="Content\images\design_images\Fingerprint-rafiki.png" />
     <Content Include="Content\images\news\cong_doan_1.jpg" />
@@ -773,7 +774,6 @@
     <Content Include="Views\TeachingSchedule\RegistertoSchedule.cshtml" />
     <Content Include="Views\TeachingSchedule\Register.cshtml" />
     <Content Include="Views\TeachingSchedule\Show.cshtml" />
-    <Content Include="Views\Account\_MyDialog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

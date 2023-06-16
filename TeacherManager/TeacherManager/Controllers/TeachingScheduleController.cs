@@ -13,23 +13,46 @@ namespace TeacherManager.Controllers
     {
       
         TeacherWorkEntities db = new TeacherWorkEntities();
-        [Authorize]
+        //[Authorize]
         
         // GET: TeachingSchedule
         public ActionResult Index()
         {
-            string ID_USER = User.Identity.GetUserId();
-            TEACHER tEACHER = db.TEACHERs.Where(m => m.ID_USER.Equals(ID_USER)).First();
-            DateTime date = new DateTime(2023, 06, 05);
-            var ls = GetWeek(date);
-            ViewBag.ls = ls;
-            ViewBag.Mon = tEACHER.GetSUBJECTs(ls[1]);
-            ViewBag.Tue = tEACHER.GetSUBJECTs(ls[2]);
-            ViewBag.Wed = tEACHER.GetSUBJECTs(ls[3]);
-            ViewBag.Thur = tEACHER.GetSUBJECTs(ls[4]);
-            ViewBag.Fri = tEACHER.GetSUBJECTs(ls[5]);
-            ViewBag.Sat = tEACHER.GetSUBJECTs(ls[6]);
             return View();
+        }
+
+        public ActionResult GetEvents(DateTime startOfWeek)
+        {
+            string ID_USER = User.Identity.GetUserId();
+            TEACHER teacher = db.TEACHERs.FirstOrDefault(t => t.ID_USER==ID_USER);
+
+            List<Event> scheduleList = new List<Event>();
+
+            DateTime endOfWeek = startOfWeek.AddDays(6);
+            for (var date = startOfWeek.Date; date <= endOfWeek.Date; date = date.AddDays(1))
+            {
+                List<SUBJECT> subjectList = teacher.GetSUBJECTs(date);
+                foreach (var subject in subjectList)
+                {
+                    List<TIME_SLOT> timeSlotList = subject.GetTIME_SLOTs(date);
+
+                    Event schedule = new Event();
+                    schedule.title = "Môn: " + subject.NAME + "\nLớp: " + subject.CLASSROOM.NAME;
+                    schedule.start = date.ToString("yyyy-MM-dd") + 'T' + timeSlotList.FirstOrDefault().NAME;
+                    schedule.end = date.ToString("yyyy-MM-dd") + 'T' + timeSlotList.LastOrDefault().NAME;
+                    schedule.className = "event-" + (subject.ID % 5);
+                    scheduleList.Add(schedule);
+                }
+            }
+
+            if (HttpContext.Cache["scheduleList"] != null)
+            {
+                HttpContext.Cache.Remove("scheduleList"); // Xóa danh sách sự kiện cũ khỏi cache
+            }
+
+            HttpContext.Cache.Insert("scheduleList", scheduleList, null, DateTime.Now.AddDays(1), TimeSpan.Zero); // Lưu danh sách sự kiện mới vào cache
+
+            return Json(scheduleList, JsonRequestBehavior.AllowGet);
         }
         public ActionResult RegistertoSchedule()
         {
@@ -65,9 +88,13 @@ namespace TeacherManager.Controllers
 
         public ActionResult Register()
         {
+
+            string ID_USER = User.Identity.GetUserId();
+            TEACHER teacher = db.TEACHERs.FirstOrDefault(t => t.ID_USER == ID_USER);
+
             var result = db.CLASSROOMs
             .Join(db.SUBJECTs, classroom => classroom.ID, subject => subject.ID_CLASSROOM, (classroom, subject) => new { classroom, subject })
-            .Where(temp => temp.subject.ID_TEACHER == 1)
+            .Where(temp => temp.subject.ID_TEACHER == teacher.ID)
             .GroupBy(temp => temp.classroom.ID)
             .Select(group => group.FirstOrDefault().classroom)
             .ToList();
@@ -79,6 +106,9 @@ namespace TeacherManager.Controllers
         [HttpPost]
         public ActionResult Register(FormCollection form)
         {
+
+            string ID_USER = User.Identity.GetUserId();
+            TEACHER tEACHER = db.TEACHERs.FirstOrDefault(t => t.ID_USER == ID_USER);
             // Lấy các giá trị từ FormCollection (form) bằng phương thức TryGetValue,
             // và thực hiện các xử lý tương ứng,
             // ví dụ: lấy giá trị của dropdownlist "Classrooms"
@@ -94,7 +124,6 @@ namespace TeacherManager.Controllers
             int.TryParse(form["number_lesson"], out numberLesson);
 
             // xử lý các giá trị này theo yêu cầu
-            TEACHER tEACHER = db.TEACHERs.Where(m => m.ID == 1).First();
             var cLASSROOM = db.CLASSROOMs.Where( m=> m.ID==Idclassrooms).First();
             Schedule schedule = new Schedule(tEACHER, DateTime.Now);
 
@@ -109,31 +138,43 @@ namespace TeacherManager.Controllers
             var timeslotsls = evolution.GetTIME_SLOTs().ToList();
             ViewBag.timeslotsls = timeslotsls;
             var list = optimalSchedules.Schedules.OrderBy(m => m.GetFitness());
-            Schedule schedule1 = new Schedule();
-            Schedule a = new Schedule();
+            Schedule temp = new Schedule();
             foreach (var item in list)
             {
                 if (item.SlotAvailible(timeslotsls).Count >= numberLesson)
                 {
-                  a= item;
+                  temp = item;
                     break;
                 }
 
             }
-            ViewBag.schedule = a;
+            TempData["Id_Subject"] = Idsubjects;
+            TempData["Id_Class"] = Idclassrooms;
+            ViewBag.Schedule = temp;
+            ViewBag.ClassName = db.CLASSROOMs.Find(Idsubjects);
+            ViewBag.SubjectName = db.SUBJECTs.Find(Idclassrooms);
             return View("Show");
         }
 
+
+
         public ActionResult Show()
+        {          
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Show(FormCollection form)
         {
-           
             return View();
         }
 
         public JsonResult LoadSubjects(int classroomId)
         {
+            string ID_USER = User.Identity.GetUserId();
+            TEACHER tEACHER = db.TEACHERs.FirstOrDefault(t => t.ID_USER == ID_USER);
+
             var subjects = db.SUBJECTs
-                .Where(s => s.ID_CLASSROOM == classroomId && s.TEACHER.ID == 1)
+                .Where(s => s.ID_CLASSROOM == classroomId && s.TEACHER.ID == tEACHER.ID )
                 .Select(s => new { Value = s.ID, Text = s.NAME })
                 .ToList();
             return Json(subjects, JsonRequestBehavior.AllowGet);
@@ -153,5 +194,30 @@ namespace TeacherManager.Controllers
             }
             return weekDays;
         }
+
+        public bool HasConsecutiveNumbers(List<int> numbers)
+        {
+            int count = 1;
+            for (int i = 0; i < numbers.Count - 1; i++)
+            {
+                if (numbers[i] == numbers[i + 1] - 1)
+                {
+                    count++;
+                    if (count == 5)
+                    {
+                        // Tìm thấy 5 số liên tiếp
+                        return true;
+                    }
+                }
+                else
+                {
+                    count = 1;
+                }
+            }
+
+            // Không tìm thấy 5 số liên tiếp
+            return false;
+        }
+
     }
 }

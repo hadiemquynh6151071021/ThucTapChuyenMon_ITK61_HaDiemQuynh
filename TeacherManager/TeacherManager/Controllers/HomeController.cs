@@ -65,32 +65,62 @@ namespace TeacherManager.Controllers
         public ActionResult Contact()
         {
 
-            string ID_USER = User.Identity.GetUserId();
-            TEACHER teacher = db.TEACHERs.FirstOrDefault(t => t.ID_USER == ID_USER);
+            //string ID_USER = User.Identity.GetUserId();
+            //TEACHER teacher = db.TEACHERs.FirstOrDefault(t => t.ID_USER == ID_USER);
 
-            List<Event> scheduleList = new List<Event>();
-            DateTime startOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
-            DateTime endOfWeek = startOfWeek.AddDays(6);
-            for (var date = startOfWeek.Date; date <= endOfWeek.Date; date = date.AddDays(1))
-            {
-                List<SUBJECT> subjectList = teacher.GetSUBJECTs(date);
-                foreach (SUBJECT subject in subjectList)
-                {
-                    List<TIME_SLOT> timeSlotList = subject.GetTIME_SLOTs(date);
+            //List<Event> scheduleList = new List<Event>();
+            //DateTime startOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+            //DateTime endOfWeek = startOfWeek.AddDays(6);
+            //for (var date = startOfWeek.Date; date <= endOfWeek.Date; date = date.AddDays(1))
+            //{
+            //    List<SUBJECT> subjectList = teacher.GetSUBJECTs(date);
+            //    foreach (SUBJECT subject in subjectList)
+            //    {
+            //        List<TIME_SLOT> timeSlotList = subject.GetTIME_SLOTs(date);
  
-                        Event schedule = new Event();
-                        schedule.title = subject.NAME;
-                        schedule.start = date.ToString("yyyy-MM-dd") + 'T' +timeSlotList.FirstOrDefault().NAME;
-                        schedule.end = date.ToString("yyyy-MM-dd") + 'T' + timeSlotList.LastOrDefault().NAME;
-                        schedule.className = "event-" + (subject.ID % 5);
+            //            Event schedule = new Event();
+            //            schedule.title = subject.NAME;
+            //            schedule.start = date.ToString("yyyy-MM-dd") + 'T' +timeSlotList.FirstOrDefault().NAME;
+            //            schedule.end = date.ToString("yyyy-MM-dd") + 'T' + timeSlotList.LastOrDefault().NAME;
+            //            schedule.className = "event-" + (subject.ID % 5);
 
-                        scheduleList.Add(schedule);
-                }
-            }
+            //            scheduleList.Add(schedule);
+            //    }
+            //}
 
-            ViewBag.ScheduleList = JsonConvert.SerializeObject(scheduleList);
+            //ViewBag.ScheduleList = JsonConvert.SerializeObject(scheduleList);
 
             return View();
         }
+
+        //public ActionResult GetEvents(DateTime startOfWeek)
+        //{
+        //    string ID_USER = User.Identity.GetUserId();
+        //    TEACHER teacher = db.TEACHERs.FirstOrDefault(t => t.ID_USER == ID_USER);
+
+        //    List<Event> scheduleList = new List<Event>();
+
+        //    DateTime endOfWeek = startOfWeek.AddDays(6);
+        //    for (var date = startOfWeek.Date; date <= endOfWeek.Date; date = date.AddDays(1))
+        //    {
+        //        List<SUBJECT> subjectList = teacher.GetSUBJECTs(date);
+        //        foreach (SUBJECT subject in subjectList)
+        //        {
+        //            List<TIME_SLOT> timeSlotList = subject.GetTIME_SLOTs(date);
+
+        //            Event schedule = new Event();
+        //            schedule.title = subject.NAME;
+        //            schedule.start = date.ToString("yyyy-MM-dd") + 'T' + timeSlotList.FirstOrDefault().NAME;
+        //            schedule.end = date.ToString("yyyy-MM-dd") + 'T' + timeSlotList.LastOrDefault().NAME;
+        //            schedule.className = "event-" + (subject.ID % 5);
+
+        //            scheduleList.Add(schedule);
+        //        }
+        //    }
+
+        //    return Json(scheduleList, JsonRequestBehavior.AllowGet);
+        //}
+
+
     }
 }

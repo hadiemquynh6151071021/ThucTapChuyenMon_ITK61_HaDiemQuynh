@@ -62,11 +62,11 @@ namespace TeacherManager.Controllers
         }
 
                    
-        public ActionResult MyDialog(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return PartialView("_MyDialog");
-        }
+        //public ActionResult MyDialog(string returnUrl)
+        //{
+        //    ViewBag.ReturnUrl = returnUrl;
+        //    return PartialView("_MyDialog");
+        //}
         //
         // POST: /Account/Login
         [HttpPost]
