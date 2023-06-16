@@ -18,6 +18,7 @@ namespace TeacherManager.Models
         public ROOM()
         {
             this.ROOM_IS_TAKEN = new HashSet<ROOM_IS_TAKEN>();
+            this.TEST_SCHEDULE = new HashSet<TEST_SCHEDULE>();
         }
     
         public int ID { get; set; }
@@ -25,5 +26,7 @@ namespace TeacherManager.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ROOM_IS_TAKEN> ROOM_IS_TAKEN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TEST_SCHEDULE> TEST_SCHEDULE { get; set; }
     }
 }

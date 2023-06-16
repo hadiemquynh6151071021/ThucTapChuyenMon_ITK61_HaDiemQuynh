@@ -178,6 +178,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MAKEUP_LESSONController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NEWSController.cs" />
     <Compile Include="Controllers\NOTIFICATIONsController.cs" />
@@ -190,6 +191,9 @@
       <DependentUpon>TeacherWork.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\APPLICATION_LEAVE.cs">
+      <DependentUpon>TeacherWork.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ARRANGE_TIME_SLOT.cs">
       <DependentUpon>TeacherWork.tt</DependentUpon>
     </Compile>
@@ -228,6 +232,9 @@
     <Compile Include="Models\IMAGES_NEW_TYPE.cs">
       <DependentUpon>TeacherWork.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MAKEUP_LESSON.cs">
+      <DependentUpon>TeacherWork.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NEWS.cs">
       <DependentUpon>TeacherWork.tt</DependentUpon>
@@ -263,6 +270,9 @@
       <DependentUpon>TeacherWork.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TEACHER_TYPE.cs">
+      <DependentUpon>TeacherWork.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TEST_SCHEDULE.cs">
       <DependentUpon>TeacherWork.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIME_SLOT.cs">
@@ -770,10 +780,17 @@
     <Content Include="Views\NOTIFICATIONs\GetListNotificationsSimilar.cshtml" />
     <Content Include="Views\NEWS\Index.cshtml" />
     <Content Include="Views\NOTIFICATIONs\Index.cshtml" />
-    <Content Include="Views\TeachingSchedule\Index.cshtml" />
+    <Content Include="Views\TeachingSchedule\Timetable.cshtml" />
     <Content Include="Views\TeachingSchedule\RegistertoSchedule.cshtml" />
     <Content Include="Views\TeachingSchedule\Register.cshtml" />
     <Content Include="Views\TeachingSchedule\Show.cshtml" />
+    <Content Include="Views\TeachingSchedule\ExamTimetable.cshtml" />
+    <Content Include="Views\MAKEUP_LESSON\Create.cshtml" />
+    <Content Include="Views\MAKEUP_LESSON\Delete.cshtml" />
+    <Content Include="Views\MAKEUP_LESSON\Details.cshtml" />
+    <Content Include="Views\MAKEUP_LESSON\Edit.cshtml" />
+    <Content Include="Views\MAKEUP_LESSON\Index.cshtml" />
+    <Content Include="Views\Manage\ReviewEditInforTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

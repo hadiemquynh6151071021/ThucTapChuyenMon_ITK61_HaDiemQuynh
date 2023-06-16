@@ -195,9 +195,51 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="APPLICATION_LEAVE">
+      <EntityTypeMapping TypeName="TeacherWorkModel.APPLICATION_LEAVE">
+        <MappingFragment StoreEntitySet="APPLICATION_LEAVE">
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REASON" ColumnName="REASON" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ID_TEACHER" ColumnName="ID_TEACHER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAKEUP_LESSON">
+      <EntityTypeMapping TypeName="TeacherWorkModel.MAKEUP_LESSON">
+        <MappingFragment StoreEntitySet="MAKEUP_LESSON">
+          <ScalarProperty Name="SITUATION" ColumnName="SITUATION" />
+          <ScalarProperty Name="TIMEEND" ColumnName="TIMEEND" />
+          <ScalarProperty Name="TIMESTART" ColumnName="TIMESTART" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ID_SUBJECT" ColumnName="ID_SUBJECT" />
+          <ScalarProperty Name="ID_CLASS" ColumnName="ID_CLASS" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEST_SCHEDULE">
+      <EntityTypeMapping TypeName="TeacherWorkModel.TEST_SCHEDULE">
+        <MappingFragment StoreEntitySet="TEST_SCHEDULE">
+          <ScalarProperty Name="TIME" ColumnName="TIME" />
+          <ScalarProperty Name="TIMESTART" ColumnName="TIMESTART" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="NUMBER_STUDENT" ColumnName="NUMBER_STUDENT" />
+          <ScalarProperty Name="ID_ROOM" ColumnName="ID_ROOM" />
+          <ScalarProperty Name="ID_SUBJECT" ColumnName="ID_SUBJECT" />
+          <ScalarProperty Name="ID_TEACHER_CHECK" ColumnName="ID_TEACHER_CHECK" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TEACHERs">
       <EntityTypeMapping TypeName="TeacherWorkModel.TEACHER">
         <MappingFragment StoreEntitySet="TEACHER">
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="POSITION" ColumnName="POSITION" />
+          <ScalarProperty Name="DATE_BIRTHDAY" ColumnName="DATE_BIRTHDAY" />
+          <ScalarProperty Name="PROFILE_BACKGROUND" ColumnName="PROFILE_BACKGROUND" />
           <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
           <ScalarProperty Name="NAME" ColumnName="NAME" />
           <ScalarProperty Name="ID_ACADEMIC_RANK" ColumnName="ID_ACADEMIC_RANK" />

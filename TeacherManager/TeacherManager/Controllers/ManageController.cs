@@ -15,9 +15,17 @@ namespace TeacherManager.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        TeacherWorkEntities db = new TeacherWorkEntities();
 
         public ManageController()
         {
+        }
+
+        public ActionResult ReviewEditInforTeacher()
+        {
+            string Id_User = User.Identity.GetUserId();
+            TEACHER tEACHER = db.TEACHERs.Where(m => m.ID_USER == Id_User).First();
+            return View(tEACHER);
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -63,7 +71,7 @@ namespace TeacherManager.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
-            var userId = User.Identity.GetUserId();
+            string userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),

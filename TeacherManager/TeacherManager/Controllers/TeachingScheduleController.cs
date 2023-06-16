@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TeacherManager.Models;
 using TeacherManager.Models.Class;
 using Microsoft.AspNet.Identity;
+using System.Globalization;
 
 namespace TeacherManager.Controllers
 {
@@ -16,12 +17,12 @@ namespace TeacherManager.Controllers
         //[Authorize]
         
         // GET: TeachingSchedule
-        public ActionResult Index()
+        public ActionResult Timetable()
         {
             return View();
         }
 
-        public ActionResult GetEvents(DateTime startOfWeek)
+        public ActionResult GetEventsTimetable(DateTime startOfWeek)
         {
             string ID_USER = User.Identity.GetUserId();
             TEACHER teacher = db.TEACHERs.FirstOrDefault(t => t.ID_USER==ID_USER);
@@ -54,6 +55,53 @@ namespace TeacherManager.Controllers
 
             return Json(scheduleList, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult ExamTimetable()
+        {
+            return View();
+        }
+
+        public ActionResult GetEventsExamsTimetable(DateTime startOfWeek)
+        {
+            string ID_USER = User.Identity.GetUserId();
+            TEACHER teacher = db.TEACHERs.FirstOrDefault(t => t.ID_USER == ID_USER);
+
+            List<Event> scheduleList = new List<Event>();
+
+            DateTime endOfWeek = startOfWeek.AddDays(6);
+            for (var date = startOfWeek.Date; date <= endOfWeek.Date; date = date.AddDays(1))
+            {
+                // Thêm điều kiện kiểm tra tEST_SCHEDULEs.Count > 0 để đảm bảo chỉ lấy sự kiện lịch thi khi có ít nhất một kỳ thi được sắp xếp
+                List<TEST_SCHEDULE> tEST_SCHEDULEs = teacher.GetExamsSUBJECTs(date);
+                if (tEST_SCHEDULEs.Count > 0)
+                {
+                    foreach (var item in tEST_SCHEDULEs)
+                    {
+                        Event schedule = new Event();
+                        schedule.title = "Môn: " + item.SUBJECT.NAME + " - " + item.ROOM.NAME_ROM;
+                        schedule.start = date.ToString("yyyy-MM-dd") + 'T' + item.TIMESTART;
+                        TimeSpan timestart = TimeSpan.ParseExact(item.TIMESTART, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+                        TimeSpan time = TimeSpan.ParseExact(item.TIME, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+                        TimeSpan timeend = timestart.Add(time);
+
+                        schedule.end = date.ToString("yyyy-MM-dd") + 'T' + timeend.ToString();
+                        schedule.className = "event-" + (item.ID % 5);
+                        scheduleList.Add(schedule);
+                    }
+                }
+            }
+
+            if (HttpContext.Cache["scheduleList"] != null)
+            {
+                HttpContext.Cache.Remove("scheduleList"); // Xóa danh sách sự kiện cũ khỏi cache
+            }
+
+            HttpContext.Cache.Insert("scheduleList", scheduleList, null, DateTime.Now.AddDays(1), TimeSpan.Zero); // Lưu danh sách sự kiện mới vào cache
+
+            return Json(scheduleList, JsonRequestBehavior.AllowGet);
+        }
+
+
         public ActionResult RegistertoSchedule()
         {
             TEACHER tEACHER = db.TEACHERs.Where(m => m.ID == 1).First();
@@ -148,8 +196,12 @@ namespace TeacherManager.Controllers
                 }
 
             }
-            TempData["Id_Subject"] = Idsubjects;
-            TempData["Id_Class"] = Idclassrooms;
+            List<TIME_SLOT> lsTimeSlot = temp.SlotAvailible(ViewBag.timeslotsls);
+            ViewBag.timeStart = lsTimeSlot.OrderBy(s => s.ID).FirstOrDefault().NAME;
+            var timeTemp = lsTimeSlot.ElementAt(numberLesson-1).NAME;
+            TimeSpan time = TimeSpan.Parse("00:50:00");
+            TimeSpan timeend = TimeSpan.ParseExact(timeTemp, "hh\\:mm\\:ss", CultureInfo.InvariantCulture).Add(time);
+            ViewBag.timeEnd = timeend.ToString();
             ViewBag.Schedule = temp;
             ViewBag.ClassName = db.CLASSROOMs.Find(Idsubjects);
             ViewBag.SubjectName = db.SUBJECTs.Find(Idclassrooms);
@@ -163,9 +215,21 @@ namespace TeacherManager.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Show(FormCollection form)
+        public ActionResult AddMakeupLesson(string classname,string  subjectname, DateTime day, string timestart, string timeend)
         {
-            return View();
+            int IdClass = db.CLASSROOMs.Where(m => m.NAME == classname).First().ID;
+            int IdSubject = db.SUBJECTs.Where(m => m.NAME == subjectname).First().ID;
+            MAKEUP_LESSON mAKEUP_LESSON = new MAKEUP_LESSON();
+            mAKEUP_LESSON.ID_CLASS = IdClass;
+            mAKEUP_LESSON.ID_SUBJECT = IdSubject;
+            mAKEUP_LESSON.DATE = day;
+            mAKEUP_LESSON.TIMESTART = timestart;
+            mAKEUP_LESSON.TIMEEND = timeend;
+            mAKEUP_LESSON.SITUATION = "Đang chờ duyệt";
+            db.MAKEUP_LESSON.Add(mAKEUP_LESSON);
+            db.SaveChanges();
+
+            return RedirectToAction("Index","Home");
         }
 
         public JsonResult LoadSubjects(int classroomId)

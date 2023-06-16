@@ -1,0 +1,144 @@
+﻿@model TeacherManager.Models.TEACHER
+
+@{
+    ViewBag.Title = "ReviewEditInforTeacher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ReviewEditInforTeacher</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <div class="row m-2 shadow">
+            <div class="col-sm-12 col-md-3 d-flex mb-0 ">
+                <div class="embed-responsive embed-responsive-1by1">
+                    <img class="rounded-circle embed-responsive-item" src="~/Content/images/account/@Model.PROFILE_BACKGROUND" width="100%" height="100%" />
+                </div>
+                <div class="btn-group dropstart">
+                    <a  data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Tải ảnh lên...</a></li>
+                        <li><a class="dropdown-item" href="#">Xóa ảnh</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-9 d-flex flex-column">
+                <div class="d-flex flex-row m-3 ">
+                    <div class="form-floating mb-3 flex-fill mx-1">
+                        <input type="text" class="form-control" id="floatingInput" value="@Model.NAME" readonly>
+                        <label for="floatingInput">Tên</label>
+                    </div>
+                    <div class="form-floating mb-3 flex-fill mx-1">
+                        <input type="text" class="form-control" id="floatingInput" value="@Model.TEACHER_TYPE.NAME" readonly>
+                        <label for="floatingInput">Loại giảng viên</label>
+                    </div>
+                    <div class="form-floating mb-3 flex-fill mx-1">
+                        <input type="text" class="form-control" id="floatingInput" value="@Model.ID_ACADEMIC_RANK" readonly>
+                        <label for="floatingInput">Trình độ</label>
+                    </div>
+                    <div class="form-floating mb-3 flex-fill mx-1">
+                        <input type="text" class="form-control" id="floatingInput" value="@Model.POSITION" readonly>
+                        <label for="floatingInput">Chức vụ</label>
+                    </div>
+                </div>
+                <div class="row d-flex flex-column m-3">
+                    <div class="form-floating mb-3 w-25">
+                        <input type="datetime-local" class="form-control" id="floatingInput" value="@Model.NAME">
+                        <label for="floatingInput">Ngày sinh</label>
+                    </div>
+                    <div class="form-floating mb-3 flex-fill">
+                        <input type="text" class="form-control" id="floatingInput" value="@Model.ADDRESS">
+                        <label for="floatingInput">Địa chỉ</label>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    @*<div class="form-horizontal">
+            <h4>TEACHER</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ID_TEACHERTYPE, "ID_TEACHERTYPE", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ID_TEACHERTYPE", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ID_TEACHERTYPE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ID_ACADEMIC_RANK, "ID_ACADEMIC_RANK", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ID_ACADEMIC_RANK", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ID_ACADEMIC_RANK, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ID_USER, "ID_USER", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ID_USER", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ID_USER, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PROFILE_BACKGROUND, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PROFILE_BACKGROUND, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PROFILE_BACKGROUND, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DATE_BIRTHDAY, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DATE_BIRTHDAY, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DATE_BIRTHDAY, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.POSITION, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.POSITION, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.POSITION, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ADDRESS, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ADDRESS, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ADDRESS, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>*@
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

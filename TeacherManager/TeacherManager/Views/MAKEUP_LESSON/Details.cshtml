@@ -1,0 +1,67 @@
+﻿@model TeacherManager.Models.MAKEUP_LESSON
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MAKEUP_LESSON</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIMESTART)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIMESTART)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIMEEND)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIMEEND)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SITUATION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SITUATION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLASSROOM.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLASSROOM.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUBJECT.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUBJECT.NAME)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

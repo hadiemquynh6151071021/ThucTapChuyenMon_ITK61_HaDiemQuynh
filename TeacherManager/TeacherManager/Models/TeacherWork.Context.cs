@@ -44,6 +44,9 @@ namespace TeacherManager.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<APPLICATION_LEAVE> APPLICATION_LEAVE { get; set; }
+        public virtual DbSet<MAKEUP_LESSON> MAKEUP_LESSON { get; set; }
+        public virtual DbSet<TEST_SCHEDULE> TEST_SCHEDULE { get; set; }
         public virtual DbSet<TEACHER> TEACHERs { get; set; }
     }
 }

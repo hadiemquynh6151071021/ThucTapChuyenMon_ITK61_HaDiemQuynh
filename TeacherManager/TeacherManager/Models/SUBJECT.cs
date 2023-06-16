@@ -20,6 +20,8 @@ namespace TeacherManager.Models
         public SUBJECT()
         {
             this.ARRANGE_TIME_SLOT = new HashSet<ARRANGE_TIME_SLOT>();
+            this.MAKEUP_LESSON = new HashSet<MAKEUP_LESSON>();
+            this.TEST_SCHEDULE = new HashSet<TEST_SCHEDULE>();
         }
 
         public List<TIME_SLOT> GetTIME_SLOTs(DateTime Day)
@@ -45,6 +47,10 @@ namespace TeacherManager.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ARRANGE_TIME_SLOT> ARRANGE_TIME_SLOT { get; set; }
         public virtual CLASSROOM CLASSROOM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MAKEUP_LESSON> MAKEUP_LESSON { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TEST_SCHEDULE> TEST_SCHEDULE { get; set; }
         public virtual TEACHER TEACHER { get; set; }
     }
 }

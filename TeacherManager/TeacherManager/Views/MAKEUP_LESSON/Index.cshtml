@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TeacherManager.Models.MAKEUP_LESSON>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIMESTART)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIMEEND)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SITUATION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLASSROOM.NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SUBJECT.NAME)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIMESTART)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIMEEND)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SITUATION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLASSROOM.NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SUBJECT.NAME)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

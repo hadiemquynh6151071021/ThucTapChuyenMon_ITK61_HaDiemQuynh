@@ -18,6 +18,7 @@ namespace TeacherManager.Models
         public CLASSROOM()
         {
             this.SUBJECTs = new HashSet<SUBJECT>();
+            this.MAKEUP_LESSON = new HashSet<MAKEUP_LESSON>();
         }
     
         public int ID { get; set; }
@@ -27,6 +28,8 @@ namespace TeacherManager.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SUBJECT> SUBJECTs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MAKEUP_LESSON> MAKEUP_LESSON { get; set; }
         public virtual TEACHER TEACHER { get; set; }
     }
 }
