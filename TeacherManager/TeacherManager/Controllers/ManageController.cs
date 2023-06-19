@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -26,6 +29,64 @@ namespace TeacherManager.Controllers
             string Id_User = User.Identity.GetUserId();
             TEACHER tEACHER = db.TEACHERs.Where(m => m.ID_USER == Id_User).First();
             return View(tEACHER);
+        }
+
+        [HttpPost]
+        public ActionResult Upload(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                try
+                {
+                    string Id_User = User.Identity.GetUserId();
+                    TEACHER tEACHER = db.TEACHERs.Where(m => m.ID_USER == Id_User).First();
+                    // Lưu tên file vào CSDL
+                    var imageName = System.IO.Path.GetFileName(file.FileName);
+                    tEACHER.PROFILE_BACKGROUND = imageName;
+                    db.Entry(tEACHER).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    // Lưu ảnh vào thư mục App_Data
+                    var path = Server.MapPath("~/Content/images/account/" + imageName);
+                    file.SaveAs(path);
+
+                    return Json("Success");
+                }
+                catch (Exception ex)
+                {
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return Json("Upload failed: " + ex.Message);
+                }
+            }
+
+            Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return Json("No file selected.");
+        }
+
+        public ActionResult EditAccount( DateTime day, string address)
+        {
+
+            string Id_User = User.Identity.GetUserId();
+            TEACHER tEACHER = db.TEACHERs.Where(m => m.ID_USER == Id_User).First();
+            if(tEACHER.DATE_BIRTHDAY!=day | tEACHER.ADDRESS != address)
+            {
+                tEACHER.DATE_BIRTHDAY = day;
+                tEACHER.ADDRESS = address;
+                db.Entry(tEACHER).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return RedirectToAction("ReviewEditInforTeacher", "Manage");
+        }
+
+        public ActionResult DeleteProfileImg()
+        {
+
+            string Id_User = User.Identity.GetUserId();
+            TEACHER tEACHER = db.TEACHERs.Where(m => m.ID_USER == Id_User).First();
+            tEACHER.PROFILE_BACKGROUND = null;
+            db.Entry(tEACHER).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)

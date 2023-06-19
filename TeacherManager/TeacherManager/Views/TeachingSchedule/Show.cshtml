@@ -51,24 +51,12 @@
                 var TimeStart = $(this).data("timestart");
                 var TimeEnd = $(this).data("timeend");
 
-                //var data = { "ClassName": className, "SubjectName": SubjectName, "Day": Day, "TimeStart": TimeStart, "TimeEnd": TimeEnd };
-
-                // Alert hiển thị giá trị của các thuộc tính trong data
                 alert("Data - className: " + ClassName +
                     ", SubjectName: " + SubjectName +
                     ", Day: " + Day +
                     ", TimeStart: " + TimeStart +
                     ", TimeEnd: " + TimeEnd);
-                //var ClassName = $(this).data("ClassName");
-                //var SubjectName = $(this).data("SubjectName");
-                //var Day = $(this).data("Day")
-                //var TimeStart = $(this).data("TimeStart");
-                //var TimeEnd = $(this).data("TimeEnd");
-                //alert(ClassName);
-                //alert(SubjectName);
-                //alert(Day);
-                //alert(TimeStart);
-                //alert(TimeEnd);
+
                 $.ajax({
                     type: "POST",
                     url: "/TeachingSchedule/AddMakeupLesson",

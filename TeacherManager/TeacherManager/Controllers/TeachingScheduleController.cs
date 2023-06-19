@@ -14,7 +14,7 @@ namespace TeacherManager.Controllers
     {
       
         TeacherWorkEntities db = new TeacherWorkEntities();
-        //[Authorize]
+        [Authorize]
         
         // GET: TeachingSchedule
         public ActionResult Timetable()
@@ -231,6 +231,8 @@ namespace TeacherManager.Controllers
 
             return RedirectToAction("Index","Home");
         }
+
+
 
         public JsonResult LoadSubjects(int classroomId)
         {

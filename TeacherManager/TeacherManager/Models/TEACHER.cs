@@ -25,6 +25,7 @@ namespace TeacherManager.Models
             this.TEST_SCHEDULE = new HashSet<TEST_SCHEDULE>();
         }
 
+       
         public List<SUBJECT> GetSUBJECTs(DateTime date)
         {
             var result = db.SUBJECTs
@@ -44,6 +45,12 @@ namespace TeacherManager.Models
         {
             var result = db.TEST_SCHEDULE.Where(m => m.ID_TEACHER_CHECK == this.ID && m.DATE == date).ToList();
             return result;
+        }
+
+        public string GetImgProfile(string Id_User)
+        {
+            TEACHER tEACHER = db.TEACHERs.Where(m => m.ID_USER == Id_User).First();
+            return tEACHER.PROFILE_BACKGROUND;
         }
 
         public int ID { get; set; }
