@@ -20,10 +20,9 @@ namespace TeacherManager.Models
         public SUBJECT()
         {
             this.ARRANGE_TIME_SLOT = new HashSet<ARRANGE_TIME_SLOT>();
-            this.MAKEUP_LESSON = new HashSet<MAKEUP_LESSON>();
             this.TEST_SCHEDULE = new HashSet<TEST_SCHEDULE>();
+            this.MAKEUP_LESSON = new HashSet<MAKEUP_LESSON>();
         }
-
         public List<TIME_SLOT> GetTIME_SLOTs(DateTime Day)
         {
             var slots = db.SUBJECTs
@@ -35,7 +34,6 @@ namespace TeacherManager.Models
                    .ToList();
             return slots;
         }
-
         public int ID { get; set; }
         public Nullable<int> ID_TEACHER { get; set; }
         public Nullable<int> ID_CLASSROOM { get; set; }
@@ -43,14 +41,16 @@ namespace TeacherManager.Models
         public Nullable<System.DateTime> START_DAY { get; set; }
         public Nullable<System.DateTime> END_DAY { get; set; }
         public Nullable<int> NUMBER_OF_CREDIT { get; set; }
+        public Nullable<int> ID_ROOM { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ARRANGE_TIME_SLOT> ARRANGE_TIME_SLOT { get; set; }
         public virtual CLASSROOM CLASSROOM { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MAKEUP_LESSON> MAKEUP_LESSON { get; set; }
+        public virtual ROOM ROOM { get; set; }
+        public virtual TEACHER TEACHER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEST_SCHEDULE> TEST_SCHEDULE { get; set; }
-        public virtual TEACHER TEACHER { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MAKEUP_LESSON> MAKEUP_LESSON { get; set; }
     }
 }

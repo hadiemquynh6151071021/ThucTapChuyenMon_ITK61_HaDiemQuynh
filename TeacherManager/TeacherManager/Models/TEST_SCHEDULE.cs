@@ -24,7 +24,7 @@ namespace TeacherManager.Models
         public string TIME { get; set; }
     
         public virtual ROOM ROOM { get; set; }
-        public virtual SUBJECT SUBJECT { get; set; }
         public virtual TEACHER TEACHER { get; set; }
+        public virtual SUBJECT SUBJECT { get; set; }
     }
 }

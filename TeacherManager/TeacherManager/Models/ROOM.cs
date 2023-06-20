@@ -17,16 +17,20 @@ namespace TeacherManager.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ROOM()
         {
-            this.ROOM_IS_TAKEN = new HashSet<ROOM_IS_TAKEN>();
             this.TEST_SCHEDULE = new HashSet<TEST_SCHEDULE>();
+            this.SUBJECTs = new HashSet<SUBJECT>();
+            this.MAKEUP_LESSON = new HashSet<MAKEUP_LESSON>();
         }
     
         public int ID { get; set; }
         public string NAME_ROM { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ROOM_IS_TAKEN> ROOM_IS_TAKEN { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEST_SCHEDULE> TEST_SCHEDULE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SUBJECT> SUBJECTs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MAKEUP_LESSON> MAKEUP_LESSON { get; set; }
     }
+    
 }

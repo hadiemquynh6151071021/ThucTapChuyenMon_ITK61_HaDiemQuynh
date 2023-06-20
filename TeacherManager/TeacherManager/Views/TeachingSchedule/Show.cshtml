@@ -28,10 +28,13 @@
                             <div>@ViewBag.Schedule.Day</div>
                             <div>@ViewBag.ClassName.NAME</div>
                             <div>@ViewBag.SubjectName.NAME</div>
-                            <div>@ViewBag.timeStart</div>
-                            <div>@ViewBag.timeEnd</div>
+                            @**@<div>@ViewBag.Room.NAME_ROM</div>
+                            <br />
+                            <span>Bắt đầu: @ViewBag.timeStart</span>
+                            <span class="mx-2">Kết thúc: @ViewBag.timeEnd</span>
+                          
 
-                            <button data-classname="@ViewBag.ClassName.NAME" data-day="@ViewBag.Schedule.Day" data-subjectname="@ViewBag.SubjectName.NAME" data-timestart="@ViewBag.timeStart" data-timeend="@ViewBag.timeEnd" class="btn btn-register" id="btn-xacnhan">Xác nhận</button>
+                            <button data-classname="@ViewBag.ClassName.NAME" data-day="@ViewBag.Schedule.Day" data-subjectname="@ViewBag.SubjectName.NAME" data-timestart="@ViewBag.timeStart" data-timeend="@ViewBag.timeEnd" data-room="@ViewBag.Room.NAME_ROM" class="btn btn-register" id="btn-xacnhan">Xác nhận</button>
                         </div>
                     </div>
                 </div>
@@ -50,17 +53,18 @@
                 var Day = $(this).data("day")
                 var TimeStart = $(this).data("timestart");
                 var TimeEnd = $(this).data("timeend");
+                var Room = $(this).data("room");
 
                 alert("Data - className: " + ClassName +
                     ", SubjectName: " + SubjectName +
                     ", Day: " + Day +
                     ", TimeStart: " + TimeStart +
-                    ", TimeEnd: " + TimeEnd);
+                    ", TimeEnd: " + TimeEnd + ", Room: " + Room);
 
                 $.ajax({
                     type: "POST",
                     url: "/TeachingSchedule/AddMakeupLesson",
-                    data: { "classname": ClassName, "subjectname": SubjectName, "day": Day, "timestart": TimeStart, "timeend": TimeEnd },
+                    data: { "classname": ClassName, "subjectname": SubjectName, "day": Day, "timestart": TimeStart, "timeend": TimeEnd, "room": Room },
                     success: function (result) {
                         alert("Thêm thành công!");
                     },

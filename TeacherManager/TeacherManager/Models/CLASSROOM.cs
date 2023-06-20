@@ -26,10 +26,10 @@ namespace TeacherManager.Models
         public string NAME { get; set; }
         public Nullable<int> COURSE { get; set; }
     
+        public virtual TEACHER TEACHER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SUBJECT> SUBJECTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MAKEUP_LESSON> MAKEUP_LESSON { get; set; }
-        public virtual TEACHER TEACHER { get; set; }
     }
 }

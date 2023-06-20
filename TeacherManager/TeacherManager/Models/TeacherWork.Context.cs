@@ -30,13 +30,10 @@ namespace TeacherManager.Models
         public virtual DbSet<NEWS> NEWS { get; set; }
         public virtual DbSet<FILE_NOTIFICATION> FILE_NOTIFICATION { get; set; }
         public virtual DbSet<NOTIFICATION> NOTIFICATIONs { get; set; }
-        public virtual DbSet<ACADEMIC_RANK> ACADEMIC_RANK { get; set; }
         public virtual DbSet<ARRANGE_TIME_SLOT> ARRANGE_TIME_SLOT { get; set; }
         public virtual DbSet<CLASSROOM> CLASSROOMs { get; set; }
         public virtual DbSet<DAY> DAYs { get; set; }
         public virtual DbSet<ROOM> ROOMs { get; set; }
-        public virtual DbSet<ROOM_IS_TAKEN> ROOM_IS_TAKEN { get; set; }
-        public virtual DbSet<SUBJECT> SUBJECTs { get; set; }
         public virtual DbSet<TEACHER_TYPE> TEACHER_TYPE { get; set; }
         public virtual DbSet<TIME_SLOT> TIME_SLOT { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
@@ -45,8 +42,10 @@ namespace TeacherManager.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<APPLICATION_LEAVE> APPLICATION_LEAVE { get; set; }
-        public virtual DbSet<MAKEUP_LESSON> MAKEUP_LESSON { get; set; }
         public virtual DbSet<TEST_SCHEDULE> TEST_SCHEDULE { get; set; }
         public virtual DbSet<TEACHER> TEACHERs { get; set; }
+        public virtual DbSet<ACADEMIC_RANK> ACADEMIC_RANK { get; set; }
+        public virtual DbSet<SUBJECT> SUBJECTs { get; set; }
+        public virtual DbSet<MAKEUP_LESSON> MAKEUP_LESSON { get; set; }
     }
 }

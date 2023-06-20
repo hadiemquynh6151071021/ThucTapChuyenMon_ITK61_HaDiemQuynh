@@ -245,9 +245,6 @@
     <Compile Include="Models\ROOM.cs">
       <DependentUpon>TeacherWork.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ROOM_IS_TAKEN.cs">
-      <DependentUpon>TeacherWork.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SUBJECT.cs">
       <DependentUpon>TeacherWork.tt</DependentUpon>
     </Compile>

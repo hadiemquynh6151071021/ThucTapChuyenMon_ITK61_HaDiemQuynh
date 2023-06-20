@@ -18,7 +18,6 @@ namespace TeacherManager.Models
         public TIME_SLOT()
         {
             this.ARRANGE_TIME_SLOT = new HashSet<ARRANGE_TIME_SLOT>();
-            this.ROOM_IS_TAKEN = new HashSet<ROOM_IS_TAKEN>();
         }
     
         public int ID { get; set; }
@@ -28,7 +27,5 @@ namespace TeacherManager.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ARRANGE_TIME_SLOT> ARRANGE_TIME_SLOT { get; set; }
         public virtual DAY DAY { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ROOM_IS_TAKEN> ROOM_IS_TAKEN { get; set; }
     }
 }

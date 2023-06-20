@@ -41,7 +41,7 @@ namespace TeacherManager.Models.Class
                 var newPopulation = new SchedulePopulation(currentPopulation.Schedules.Count, bestSchedules.First().Teacher, bestSchedules.First().Day);
                 foreach (var schedule in newPopulation.Schedules)
                 {                  
-                    var courses = schedule.GetCoursesOnDay();
+                    var courses = schedule.GetCoursesOnDayOfTeacher();
 
                     //Tìm slot vướng lịch dạy của giảng viên
                     foreach (var course in courses)

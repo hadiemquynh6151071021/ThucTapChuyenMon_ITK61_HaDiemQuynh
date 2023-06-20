@@ -21,11 +21,9 @@ namespace TeacherManager.Models
         {
             this.APPLICATION_LEAVE = new HashSet<APPLICATION_LEAVE>();
             this.CLASSROOMs = new HashSet<CLASSROOM>();
-            this.SUBJECTs = new HashSet<SUBJECT>();
             this.TEST_SCHEDULE = new HashSet<TEST_SCHEDULE>();
+            this.SUBJECTs = new HashSet<SUBJECT>();
         }
-
-       
         public List<SUBJECT> GetSUBJECTs(DateTime date)
         {
             var result = db.SUBJECTs
@@ -52,7 +50,6 @@ namespace TeacherManager.Models
             TEACHER tEACHER = db.TEACHERs.Where(m => m.ID_USER == Id_User).First();
             return tEACHER.PROFILE_BACKGROUND;
         }
-
         public int ID { get; set; }
         public Nullable<int> ID_TEACHERTYPE { get; set; }
         public Nullable<int> ID_ACADEMIC_RANK { get; set; }
@@ -63,16 +60,16 @@ namespace TeacherManager.Models
         public string POSITION { get; set; }
         public string ADDRESS { get; set; }
     
-        public virtual ACADEMIC_RANK ACADEMIC_RANK { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<APPLICATION_LEAVE> APPLICATION_LEAVE { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLASSROOM> CLASSROOMs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SUBJECT> SUBJECTs { get; set; }
         public virtual TEACHER_TYPE TEACHER_TYPE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TEST_SCHEDULE> TEST_SCHEDULE { get; set; }
+        public virtual ACADEMIC_RANK ACADEMIC_RANK { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SUBJECT> SUBJECTs { get; set; }
     }
 }

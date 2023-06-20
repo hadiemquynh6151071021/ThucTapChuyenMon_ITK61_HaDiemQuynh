@@ -33,11 +33,11 @@ namespace TeacherManager.Controllers
             for (var date = startOfWeek.Date; date <= endOfWeek.Date; date = date.AddDays(1))
             {
                 List<SUBJECT> subjectList = teacher.GetSUBJECTs(date);
-                List<MAKEUP_LESSON> mAKEUP_LESSONs = db.MAKEUP_LESSON.Where(m => m.DATE == date && m.SUBJECT.TEACHER.ID==teacher.ID).ToList();
+                List<MAKEUP_LESSON> mAKEUP_LESSONs = db.MAKEUP_LESSON.Where(m => m.DATE == date && m.SUBJECT.TEACHER.ID==teacher.ID && m.SITUATION!="Đang chờ duyệt").ToList();
                 foreach(var item in mAKEUP_LESSONs)
                 {
                     Event schedule = new Event();
-                    schedule.title = "LỊCH BÙ\nMôn: " + item.SUBJECT.NAME + "\nLớp: " + item.CLASSROOM.NAME;
+                    schedule.title = "LỊCH BÙ\nMôn: " + item.SUBJECT.NAME + "\nLớp: " + item.CLASSROOM.NAME + "\nPhòng: " + item.ROOM.NAME_ROM;
                     schedule.start = date.ToString("yyyy-MM-dd") + 'T' + item.TIMESTART;
                     schedule.end = date.ToString("yyyy-MM-dd") + 'T' + item.TIMEEND;
                     schedule.className = "event-" + (item.ID % 5);
@@ -48,7 +48,7 @@ namespace TeacherManager.Controllers
                     List<TIME_SLOT> timeSlotList = subject.GetTIME_SLOTs(date);
 
                     Event schedule = new Event();
-                    schedule.title = "Môn: " + subject.NAME + "\nLớp: " + subject.CLASSROOM.NAME;
+                    schedule.title = "Môn: " + subject.NAME + "\nLớp: " + subject.CLASSROOM.NAME + "\nPhòng: " + subject.ROOM.NAME_ROM;
                     schedule.start = date.ToString("yyyy-MM-dd") + 'T' + timeSlotList.FirstOrDefault().NAME;
                     schedule.end = date.ToString("yyyy-MM-dd") + 'T' + timeSlotList.LastOrDefault().NAME;
                     schedule.className = "event-" + (subject.ID % 5);
@@ -88,7 +88,7 @@ namespace TeacherManager.Controllers
                     foreach (var item in tEST_SCHEDULEs)
                     {
                         Event schedule = new Event();
-                        schedule.title = "Môn: " + item.SUBJECT.NAME + " - " + item.ROOM.NAME_ROM;
+                        schedule.title = "Môn: " + item.SUBJECT.NAME + " - " + item.ROOM.NAME_ROM + "\nPhòng: "+item.ROOM.NAME_ROM;
                         schedule.start = date.ToString("yyyy-MM-dd") + 'T' + item.TIMESTART;
                         TimeSpan timestart = TimeSpan.ParseExact(item.TIMESTART, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
                         TimeSpan time = TimeSpan.ParseExact(item.TIME, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
@@ -194,7 +194,6 @@ namespace TeacherManager.Controllers
             var optimalSchedules = evolution.GetOptimalSchedulePopulation(schedulePopulation, 10, cLASSROOM);
 
             var timeslotsls = evolution.GetTIME_SLOTs().ToList();
-            ViewBag.timeslotsls = timeslotsls;
             var list = optimalSchedules.Schedules.OrderBy(m => m.GetFitness());
             Schedule temp = new Schedule();
             foreach (var item in list)
@@ -206,15 +205,28 @@ namespace TeacherManager.Controllers
                 }
 
             }
-            List<TIME_SLOT> lsTimeSlot = temp.SlotAvailible(ViewBag.timeslotsls);
+
+            //Tim phong
+
+            List<SUBJECT> SubOnDay = temp.GetCoursesOnDay();
+            List<ROOM> rOOMs = new List<ROOM>();
+            foreach (var item in SubOnDay)
+            {
+                ROOM rOOM = db.ROOMs.Find(item.ID_ROOM);
+                rOOMs.Add(rOOM);
+            }
+            ViewBag.Room = db.ROOMs.ToList().Except(rOOMs, new Room_Comparer()).First();
+            //Tim slot
+            List<TIME_SLOT> lsTimeSlot = temp.SlotAvailible(timeslotsls);
+            ViewBag.a = lsTimeSlot;
             ViewBag.timeStart = lsTimeSlot.OrderBy(s => s.ID).FirstOrDefault().NAME;
             var timeTemp = lsTimeSlot.ElementAt(numberLesson-1).NAME;
             TimeSpan time = TimeSpan.Parse("00:50:00");
             TimeSpan timeend = TimeSpan.ParseExact(timeTemp, "hh\\:mm\\:ss", CultureInfo.InvariantCulture).Add(time);
             ViewBag.timeEnd = timeend.ToString();
             ViewBag.Schedule = temp;
-            ViewBag.ClassName = db.CLASSROOMs.Find(Idsubjects);
-            ViewBag.SubjectName = db.SUBJECTs.Find(Idclassrooms);
+            ViewBag.ClassName = db.CLASSROOMs.Find(Idclassrooms);
+            ViewBag.SubjectName = db.SUBJECTs.Find(Idsubjects);
             return View("Show");
         }
 
@@ -225,16 +237,18 @@ namespace TeacherManager.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddMakeupLesson(string classname,string  subjectname, DateTime day, string timestart, string timeend)
+        public ActionResult AddMakeupLesson(string classname,string  subjectname, DateTime day, string timestart, string timeend,string room)
         {
             int IdClass = db.CLASSROOMs.Where(m => m.NAME == classname).First().ID;
             int IdSubject = db.SUBJECTs.Where(m => m.NAME == subjectname).First().ID;
+            int IdRoom = db.ROOMs.Where(m => m.NAME_ROM == room).First().ID;
             MAKEUP_LESSON mAKEUP_LESSON = new MAKEUP_LESSON();
             mAKEUP_LESSON.ID_CLASS = IdClass;
             mAKEUP_LESSON.ID_SUBJECT = IdSubject;
             mAKEUP_LESSON.DATE = day;
             mAKEUP_LESSON.TIMESTART = timestart;
             mAKEUP_LESSON.TIMEEND = timeend;
+            mAKEUP_LESSON.ID_ROOM=IdRoom;
             mAKEUP_LESSON.SITUATION = "Đang chờ duyệt";
             db.MAKEUP_LESSON.Add(mAKEUP_LESSON);
             db.SaveChanges();
@@ -295,5 +309,18 @@ namespace TeacherManager.Controllers
             return false;
         }
 
+    }
+
+    class Room_Comparer : IEqualityComparer<ROOM>
+    {
+        public bool Equals(ROOM x, ROOM y)
+        {
+            return x.ID == y.ID;
+        }
+
+        public int GetHashCode(ROOM obj)
+        {
+            return obj.ID.GetHashCode();
+        }
     }
 }

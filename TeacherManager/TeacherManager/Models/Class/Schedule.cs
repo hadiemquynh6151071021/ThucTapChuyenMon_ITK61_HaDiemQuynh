@@ -23,7 +23,7 @@ namespace TeacherManager.Models.Class
         {
         }
 
-        public List<SUBJECT> GetCoursesOnDay()
+        public List<SUBJECT> GetCoursesOnDayOfTeacher()
         {
 
             //DS MÔN GV DẠY TRONG 1 NGÀY CỤ THỂ
@@ -40,9 +40,26 @@ namespace TeacherManager.Models.Class
             return result;
 
         }
+        public List<SUBJECT> GetCoursesOnDay()
+        {
+
+            //DS MÔN GV DẠY TRONG 1 NGÀY CỤ THỂ
+            var result = db.SUBJECTs
+                .Join(db.ARRANGE_TIME_SLOT, subject => subject.ID, arrangeTimeSlot => arrangeTimeSlot.ID_SUBJECT, (subject, arrangeTimeSlot) => new { subject, arrangeTimeSlot })
+                .Join(db.TIME_SLOT, temp => temp.arrangeTimeSlot.ID_TIME_SLOT, timeSlot => timeSlot.ID, (temp, timeSlot) => new { temp.subject, temp.arrangeTimeSlot, timeSlot })
+                .Join(db.DAYs, temp => temp.timeSlot.ID_DAY, day => day.ID, (temp, day) => new { temp.subject, temp.arrangeTimeSlot, temp.timeSlot, day })
+                .Where(temp => temp.day.NAME.ToString() == Day.DayOfWeek.ToString() && Day > temp.subject.START_DAY && Day < temp.subject.END_DAY)
+                .GroupBy(temp => temp.subject.ID)
+                .Select(group => group.FirstOrDefault().subject)
+                .ToList();
+
+
+            return result;
+
+        }
         public double GetFitness()
         {
-            var courses = GetCoursesOnDay();
+            var courses = GetCoursesOnDayOfTeacher();
             //số khóa học của gv
             var a = db.SUBJECTs.Where(s => s.ID_TEACHER == Teacher.ID).Count();
 

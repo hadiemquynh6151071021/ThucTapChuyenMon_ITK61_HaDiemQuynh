@@ -18,7 +18,7 @@ namespace TeacherManager.Models
         public Nullable<int> ID_SUBJECT { get; set; }
         public Nullable<int> ID_TIME_SLOT { get; set; }
     
-        public virtual SUBJECT SUBJECT { get; set; }
         public virtual TIME_SLOT TIME_SLOT { get; set; }
+        public virtual SUBJECT SUBJECT { get; set; }
     }
 }

@@ -21,8 +21,10 @@ namespace TeacherManager.Models
         public string TIMESTART { get; set; }
         public string TIMEEND { get; set; }
         public string SITUATION { get; set; }
+        public Nullable<int> ID_ROOM { get; set; }
     
         public virtual CLASSROOM CLASSROOM { get; set; }
+        public virtual ROOM ROOM { get; set; }
         public virtual SUBJECT SUBJECT { get; set; }
     }
 }
