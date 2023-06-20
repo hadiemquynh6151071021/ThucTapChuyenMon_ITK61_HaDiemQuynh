@@ -33,6 +33,16 @@ namespace TeacherManager.Controllers
             for (var date = startOfWeek.Date; date <= endOfWeek.Date; date = date.AddDays(1))
             {
                 List<SUBJECT> subjectList = teacher.GetSUBJECTs(date);
+                List<MAKEUP_LESSON> mAKEUP_LESSONs = db.MAKEUP_LESSON.Where(m => m.DATE == date && m.SUBJECT.TEACHER.ID==teacher.ID).ToList();
+                foreach(var item in mAKEUP_LESSONs)
+                {
+                    Event schedule = new Event();
+                    schedule.title = "LỊCH BÙ\nMôn: " + item.SUBJECT.NAME + "\nLớp: " + item.CLASSROOM.NAME;
+                    schedule.start = date.ToString("yyyy-MM-dd") + 'T' + item.TIMESTART;
+                    schedule.end = date.ToString("yyyy-MM-dd") + 'T' + item.TIMEEND;
+                    schedule.className = "event-" + (item.ID % 5);
+                    scheduleList.Add(schedule);
+                }
                 foreach (var subject in subjectList)
                 {
                     List<TIME_SLOT> timeSlotList = subject.GetTIME_SLOTs(date);
