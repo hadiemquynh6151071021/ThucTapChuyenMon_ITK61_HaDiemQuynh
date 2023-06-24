@@ -25,6 +25,11 @@
         background-color: #191970;
         color: #F8CD0A;
     }
+        .btn-login:hover {
+            background-color: #1D1D84;
+            color: #F8CD0A;
+        }
+
     
 </style>
 
@@ -41,16 +46,16 @@
                     <div class="col-12 mx-auto">
                         <div class="card border-0 rounded-3 my-5">
                             <div class="card-body">
-                                <h3 class="card-title text-center mb-5">Sign In</h3>
+                                <h3 class="card-title text-center mb-5">Đăng nhập</h3>
                                 <form>
                                     <div class="form-floating mb-3">
                                         <input name="Email" type="email" class="form-control" id="floatingInput Email" placeholder="name@example.com">
-                                        <label for="floatingInput">Email address</label>
+                                        <label for="floatingInput">Email</label>
                                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input name="Password" type="password" class="form-control" id="floatingPassword Password" placeholder="Password">
-                                        <label for="floatingPassword">Password</label>
+                                        <label for="floatingPassword">Mật khẩu</label>
                                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
 
                                     </div>

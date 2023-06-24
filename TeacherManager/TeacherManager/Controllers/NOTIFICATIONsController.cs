@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -14,9 +15,13 @@ namespace TeacherManager.Controllers
     {
         private TeacherWorkEntities db = new TeacherWorkEntities();
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.NOTIFICATIONs.ToList());
+            if (page == null) page = 1;
+            var Notifications = db.NOTIFICATIONs.ToList();
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(Notifications.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: NOTIFICATIONs

@@ -58,9 +58,6 @@
                 background-color: #eee
             }
 
-            .profile ul li i {
-                margin-right: 7px
-            }
 
     .dropdown-content {
         display: none;
@@ -92,7 +89,7 @@
     .profile ul {
         background-color: #fff;
         width: 160px;
-        height: 280px;
+        height: 240px;
         border-radius: 10px;
         right: 0;
         top: 7px;
@@ -119,7 +116,9 @@
             }
 
             .profile ul li i {
-                margin-right: 7px
+                margin-right: 7px;
+                font-size: 14px;
+                color:black;
             }
 </style>
 @if (Request.IsAuthenticated)
@@ -142,7 +141,7 @@
                         }
                         else
                         {
-                            <img class="dropbtn" src="~/Content/images/account/icons8-account-64.png">
+                            <img class="dropbtn" src="~/Content/images/account/icons8-account-64.png" width="50px" height="50px" style="border-radius:50%">
                         }
                     }
 
@@ -153,9 +152,6 @@
                             </li>
                             <li>
                                 <span><a class="nav-link" href="/TeachingSchedule/Timetable"><i class="fa-solid fa-calendar-days"></i>Lịch dạy</a></span>
-                            </li>
-                            <li>
-                                <span><a class="nav-link" href="/TeachingSchedule/ExamTimetable">Lịch coi thi</a></span>
                             </li>
                             <li>
                                 <span><a class="nav-link" href="/TeachingSchedule/Register"><i class="fa-solid fa-calendar-plus"></i>Đăng ký dạy bù</a></span>

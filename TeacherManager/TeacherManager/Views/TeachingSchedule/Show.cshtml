@@ -2,9 +2,20 @@
 @{
     ViewBag.Title = "Show";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    string a = "bé";
 }
+<style>
+    .btn-register {
+        background-color: #191970;
+        color: #F8CD0A;
+    }
+        .btn-register:hover {
+            background-color: #1D1D84;
+            color: #F8CD0A;
+        }
+    .text-theme {
+        color: #F8CD0A;
+    }
+</style>
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="row justify-content-center my-4">
@@ -21,20 +32,18 @@
                     <div class="col-lg-7 col-md-12 input-infor my-5 shadow">
                         <div class="p-5">
                             <div class="mb-5">
-                                <h3 class="h4 font-weight-bold text-theme">Kết quả đăng ký</h3>
+                                <h3 class="font-weight-bold text-theme">Kết quả đăng ký</h3>
                             </div>
-                            <h3>Lịch học bù</h3>
+                            <h3 class="font-weight-bold">Lịch học bù</h3>
+                            <div><b>Lớp: </b> <span>@ViewBag.ClassName.NAME</span></div>
+                            <div><b>Môn: </b><span>@ViewBag.SubjectName.NAME</span></div>
+                            <div><b>Ngày:  </b><span>@ViewBag.Schedule.Day.ToString("dd/MM/yyyy")</span></div>
+                            <div><b>Phòng: </b><span>@ViewBag.Room.NAME_ROM</span></div>
+                            <div class="mb-4"><b>Bắt đầu: </b><span class="mx-1">@ViewBag.timeStart</span><b class="mx-2">Kết thúc: </b><span class="mx-1">@ViewBag.timeEnd</span></div>
 
-                            <div>@ViewBag.Schedule.Day</div>
-                            <div>@ViewBag.ClassName.NAME</div>
-                            <div>@ViewBag.SubjectName.NAME</div>
-                            @**@<div>@ViewBag.Room.NAME_ROM</div>
-                            <br />
-                            <span>Bắt đầu: @ViewBag.timeStart</span>
-                            <span class="mx-2">Kết thúc: @ViewBag.timeEnd</span>
-                          
-
-                            <button data-classname="@ViewBag.ClassName.NAME" data-day="@ViewBag.Schedule.Day" data-subjectname="@ViewBag.SubjectName.NAME" data-timestart="@ViewBag.timeStart" data-timeend="@ViewBag.timeEnd" data-room="@ViewBag.Room.NAME_ROM" class="btn btn-register" id="btn-xacnhan">Xác nhận</button>
+                            <div class="d-flex justify-content-center">
+                                <button data-classname="@ViewBag.ClassName.NAME" data-day="@ViewBag.Schedule.Day" data-subjectname="@ViewBag.SubjectName.NAME" data-timestart="@ViewBag.timeStart" data-timeend="@ViewBag.timeEnd" data-room="@ViewBag.Room.NAME_ROM" class="btn btn-register mx-auto" id="btn-xacnhan">Xác nhận</button>
+                            </div>                          
                         </div>
                     </div>
                 </div>

@@ -24,6 +24,13 @@
         background: #191970;
         color: #F8CD0A;
     }
+        .btn-register:hover {
+            background-color: #1D1D84;
+            color: #F8CD0A;
+        }
+    .text-theme {
+        color: #F8CD0A;
+    }
 </style>
 <div class="row justify-content-center my-4">
     <div class="col-xl-10 col-md-12">
@@ -55,13 +62,26 @@
                             @using (Html.BeginForm("Register", "TeachingSchedule", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
 
-                                @Html.DropDownList("Classrooms", ViewBag.Classrooms as SelectList, "-- Chọn lớp --", new { @class = "form-control col-md-2", id = "ddlClassrooms" })
+                                <div class="form-floating">
+                                    @Html.DropDownList("Classrooms", ViewBag.Classrooms as SelectList, new { @class = "form-control col-md-2", id = "ddlClassrooms" })
+                                    <label>Lớp</label>
+                                </div>
                                 <br />
-                                @Html.DropDownList("Subjects", new SelectList(string.Empty, "Value", "Text"), "-- Select Subject --", new { @class = "form-control col-md-2", id = "ddlSubject" })
+                                <div class="form-floating">
+                                    @Html.DropDownList("Subjects", new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control col-md-2", id = "ddlSubject" })
+                                    <label>Môn</label>
+                                </div>
                                 <br />
-                                <input type="number" class="col-md-2 form-control" id="number_lesson" name="number_lesson" min="1" max="10" value="1" />
+                                <div class="form-floating">
+                                    <input type="number" class="col-md-2 form-control" id="number_lesson" name="number_lesson" min="1" max="10" value="1" />
+                                    <label>Số lượng tiết</label>
+                                </div>
                                 <br />
-                                <button type="submit" class="btn btn-register" >Register</button>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-register">Đăng ký</button>
+                                </div>
+
+                                
                             }
                         </div>
                     </div>

@@ -176,6 +176,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\APPLICATION_LEAVEController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MAKEUP_LESSONController.cs" />
@@ -788,6 +789,13 @@
     <Content Include="Views\MAKEUP_LESSON\Edit.cshtml" />
     <Content Include="Views\MAKEUP_LESSON\Index.cshtml" />
     <Content Include="Views\Manage\ReviewEditInforTeacher.cshtml" />
+    <Content Include="Views\Shared\Nav_Tabs_TimeTable.cshtml" />
+    <Content Include="Views\APPLICATION_LEAVE\Create.cshtml" />
+    <Content Include="Views\APPLICATION_LEAVE\Delete.cshtml" />
+    <Content Include="Views\APPLICATION_LEAVE\Details.cshtml" />
+    <Content Include="Views\APPLICATION_LEAVE\Edit.cshtml" />
+    <Content Include="Views\APPLICATION_LEAVE\Index.cshtml" />
+    <Content Include="Views\TeachingSchedule\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

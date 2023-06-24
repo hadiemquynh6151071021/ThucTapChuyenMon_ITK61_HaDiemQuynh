@@ -40,7 +40,11 @@ namespace TeacherManager.Controllers
                     schedule.title = "LỊCH BÙ\nMôn: " + item.SUBJECT.NAME + "\nLớp: " + item.CLASSROOM.NAME + "\nPhòng: " + item.ROOM.NAME_ROM;
                     schedule.start = date.ToString("yyyy-MM-dd") + 'T' + item.TIMESTART;
                     schedule.end = date.ToString("yyyy-MM-dd") + 'T' + item.TIMEEND;
-                    schedule.className = "event-" + (item.ID % 5);
+
+                    schedule.backgroundColor = "#f56954";
+                    schedule.borderColor = "#f56954";
+                    schedule.textColor = "#191970";
+
                     scheduleList.Add(schedule);
                 }
                 foreach (var subject in subjectList)
@@ -50,8 +54,15 @@ namespace TeacherManager.Controllers
                     Event schedule = new Event();
                     schedule.title = "Môn: " + subject.NAME + "\nLớp: " + subject.CLASSROOM.NAME + "\nPhòng: " + subject.ROOM.NAME_ROM;
                     schedule.start = date.ToString("yyyy-MM-dd") + 'T' + timeSlotList.FirstOrDefault().NAME;
-                    schedule.end = date.ToString("yyyy-MM-dd") + 'T' + timeSlotList.LastOrDefault().NAME;
-                    schedule.className = "event-" + (subject.ID % 5);
+
+                    TimeSpan timestartlast = TimeSpan.ParseExact(timeSlotList.LastOrDefault().NAME, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+                    TimeSpan time = new TimeSpan(0,50,0);
+                    TimeSpan timeend = timestartlast.Add(time);
+
+                    schedule.end = date.ToString("yyyy-MM-dd") + 'T' + timeend.ToString();
+                    schedule.backgroundColor = "#FFA500";
+                    schedule.borderColor = "#FFA500";
+                    schedule.textColor = "#191970";
                     scheduleList.Add(schedule);
                 }
             }
@@ -88,14 +99,17 @@ namespace TeacherManager.Controllers
                     foreach (var item in tEST_SCHEDULEs)
                     {
                         Event schedule = new Event();
-                        schedule.title = "Môn: " + item.SUBJECT.NAME + " - " + item.ROOM.NAME_ROM + "\nPhòng: "+item.ROOM.NAME_ROM;
+                        schedule.title = "Môn: " + item.SUBJECT.NAME + "\nPhòng: "+item.ROOM.NAME_ROM;
                         schedule.start = date.ToString("yyyy-MM-dd") + 'T' + item.TIMESTART;
+
                         TimeSpan timestart = TimeSpan.ParseExact(item.TIMESTART, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
                         TimeSpan time = TimeSpan.ParseExact(item.TIME, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
                         TimeSpan timeend = timestart.Add(time);
 
                         schedule.end = date.ToString("yyyy-MM-dd") + 'T' + timeend.ToString();
-                        schedule.className = "event-" + (item.ID % 5);
+                        schedule.backgroundColor = "#FFA500";
+                        schedule.borderColor = "#FFA500";
+                        schedule.textColor = "#191970";
                         scheduleList.Add(schedule);
                     }
                 }
@@ -111,38 +125,61 @@ namespace TeacherManager.Controllers
             return Json(scheduleList, JsonRequestBehavior.AllowGet);
         }
 
-
-        public ActionResult RegistertoSchedule()
+        public ActionResult Create()
         {
-            TEACHER tEACHER = db.TEACHERs.Where(m => m.ID == 1).First();
-            var cLASSROOM = db.CLASSROOMs.ToList();
-            DateTime date = new DateTime(2023, 06, 05);
-            Schedule schedule = new Schedule(tEACHER, date);
-
-            // Khởi tạo lịch dạy bù cho giảng viên
-            var startDate = DateTime.Today.AddDays(7); // bắt đầu tính từ tuần sau
-            var schedulePopulation = new SchedulePopulation(7, tEACHER, startDate);
-
-            //Tối ưu hóa với thuật toán di truyền
-            var evolution = new ScheduleEvolution();
-            var optimalSchedules = evolution.GetOptimalSchedulePopulation(schedulePopulation, 10, cLASSROOM[0]);
-
-            var timeslotsls = evolution.GetTIME_SLOTs().ToList();
-            ViewBag.timeslotsls = timeslotsls;
-            int time = 5;
-            var list = optimalSchedules.Schedules.OrderBy(m => m.GetFitness());
-            Schedule schedule1 = new Schedule();
-            foreach (var item in list)
-            {
-                if (item.SlotAvailible(timeslotsls).Count >= time)
-                {
-                    ViewBag.schedule = item;
-                    break;
-                }
-
-            }
+            ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME");
             return View();
         }
+
+        // POST: APPLICATION_LEAVE/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ID,ID_TEACHER,DATE,REASON,STATUS")] APPLICATION_LEAVE aPPLICATION_LEAVE)
+        {
+            if (ModelState.IsValid)
+            {
+                db.APPLICATION_LEAVE.Add(aPPLICATION_LEAVE);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME", aPPLICATION_LEAVE.ID_TEACHER);
+            return View(aPPLICATION_LEAVE);
+        }
+
+        //public ActionResult RegistertoSchedule()
+        //{
+        //    TEACHER tEACHER = db.TEACHERs.Where(m => m.ID == 1).First();
+        //    var cLASSROOM = db.CLASSROOMs.ToList();
+        //    DateTime date = new DateTime(2023, 06, 05);
+        //    Schedule schedule = new Schedule(tEACHER, date);
+
+        //    // Khởi tạo lịch dạy bù cho giảng viên
+        //    var startDate = DateTime.Today.AddDays(7); // bắt đầu tính từ tuần sau
+        //    var schedulePopulation = new SchedulePopulation(7, tEACHER, startDate);
+
+        //    //Tối ưu hóa với thuật toán di truyền
+        //    var evolution = new ScheduleEvolution();
+        //    var optimalSchedules = evolution.GetOptimalSchedulePopulation(schedulePopulation, 10, cLASSROOM[0]);
+
+        //    var timeslotsls = evolution.GetTIME_SLOTs().ToList();
+        //    ViewBag.timeslotsls = timeslotsls;
+        //    int time = 5;
+        //    var list = optimalSchedules.Schedules.OrderBy(m => m.GetFitness());
+        //    Schedule schedule1 = new Schedule();
+        //    foreach (var item in list)
+        //    {
+        //        if (item.SlotAvailible(timeslotsls).Count >= time)
+        //        {
+        //            ViewBag.schedule = item;
+        //            break;
+        //        }
+
+        //    }
+        //    return View();
+        //}
 
         public ActionResult Register()
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -40,10 +41,18 @@ namespace TeacherManager.Models.Class
             return result;
 
         }
+
+        public List<MAKEUP_LESSON> GetMakeupLessonOnDayOfTeacher()
+        {
+            //DS DẠY BÙ GV DẠY TRONG 1 NGÀY CỤ THỂ
+            var result = db.MAKEUP_LESSON.Where(m => m.SUBJECT.ID_TEACHER == Teacher.ID && m.DATE == Day && m.SITUATION!="Đang chờ duyệt").ToList();
+            return result;
+
+        }
         public List<SUBJECT> GetCoursesOnDay()
         {
 
-            //DS MÔN GV DẠY TRONG 1 NGÀY CỤ THỂ
+            //DS MÔN TRONG 1 NGÀY CỤ THỂ
             var result = db.SUBJECTs
                 .Join(db.ARRANGE_TIME_SLOT, subject => subject.ID, arrangeTimeSlot => arrangeTimeSlot.ID_SUBJECT, (subject, arrangeTimeSlot) => new { subject, arrangeTimeSlot })
                 .Join(db.TIME_SLOT, temp => temp.arrangeTimeSlot.ID_TIME_SLOT, timeSlot => timeSlot.ID, (temp, timeSlot) => new { temp.subject, temp.arrangeTimeSlot, timeSlot })
@@ -60,9 +69,7 @@ namespace TeacherManager.Models.Class
         public double GetFitness()
         {
             var courses = GetCoursesOnDayOfTeacher();
-            //số khóa học của gv
-            var a = db.SUBJECTs.Where(s => s.ID_TEACHER == Teacher.ID).Count();
-
+            var makeup_lessons = GetMakeupLessonOnDayOfTeacher();
             //nếu ds trống thì độ tương thích là 0
             if (courses == null)
             {
@@ -73,6 +80,22 @@ namespace TeacherManager.Models.Class
 
                 var fitness = 0.0;
 
+                int lessonDuration = 50; //mỗi tiết học có thời lượng 50 phút 
+                int breakDuration = 5; //thời lượng giữa các tiết là 5 phút 
+
+                foreach ( var makeup_lesson in makeup_lessons)
+                {
+                    TimeSpan timestart = TimeSpan.ParseExact(makeup_lesson.TIMESTART, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+                    TimeSpan timeend = TimeSpan.ParseExact(makeup_lesson.TIMEEND, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+
+                    TimeSpan duration = timeend-timestart;
+                    int totalMinutes = (int)duration.TotalMinutes;
+
+                    int timeBetweenLessons = lessonDuration + breakDuration;
+                    int lessonCount = (totalMinutes + breakDuration) / timeBetweenLessons;
+
+                    fitness += lessonCount;
+                }
                 foreach (var course in courses)
                 {
                     var slots = db.SUBJECTs

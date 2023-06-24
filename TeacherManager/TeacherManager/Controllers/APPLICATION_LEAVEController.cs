@@ -1,5 +1,4 @@
-﻿using PagedList;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -11,135 +10,112 @@ using TeacherManager.Models;
 
 namespace TeacherManager.Controllers
 {
-    public class NEWSController : Controller
+    public class APPLICATION_LEAVEController : Controller
     {
         private TeacherWorkEntities db = new TeacherWorkEntities();
 
-        public ActionResult Index(int? page)
+        // GET: APPLICATION_LEAVE
+        public ActionResult Index()
         {
-            if (page == null) page = 1;
-            var News = db.NEWS.ToList();
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            ViewBag.image = db.IMAGES_NEW.Where(m => m.ID_IMAGES_NEW_TYPE == 1).ToList();
-            return View(News.ToPagedList(pageNumber, pageSize));
+            var aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Include(a => a.TEACHER);
+            return View(aPPLICATION_LEAVE.ToList());
         }
 
-        // GET: NEWS
-        public PartialViewResult ListNewsReview()
-        {
-            ViewBag.image = db.IMAGES_NEW.Where(m => m.ID_IMAGES_NEW_TYPE == 1).ToList();
-            return PartialView(db.NEWS.OrderByDescending(m => m.DATESUBMIT).Take(15).ToList());
-        }
-
-
-        // GET: NEWS newdate
-        public PartialViewResult GetListNewsNew()
-        {
-            return PartialView(db.NEWS.OrderByDescending(m => m.DATESUBMIT).Take(4).ToList());
-        }
-
-        // GET: NEWS similar
-        public PartialViewResult GetListNewsSimilar(int? id)
-        {
-            Recommend recommend = new Recommend();
-            string searchTerm = db.NEWS.Find(id).TITLE;
-            return PartialView(db.NEWS.Where(n => n.ID != id).ToList().OrderByDescending(n => recommend.ComputeSimilarity(n.TITLE, searchTerm)).Take(10));
-        }
-       
-        // GET: NEWS/Details/5
+        // GET: APPLICATION_LEAVE/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NEWS nEWS = db.NEWS.Find(id);
-            if (nEWS == null)
+            APPLICATION_LEAVE aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Find(id);
+            if (aPPLICATION_LEAVE == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.image = db.IMAGES_NEW.Where(n => n.ID_NEWS == id).ToList();
-            return View(nEWS);
+            return View(aPPLICATION_LEAVE);
         }
 
-        // GET: NEWS/Create
+        // GET: APPLICATION_LEAVE/Create
         public ActionResult Create()
         {
+            ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME");
             return View();
         }
 
-        // POST: NEWS/Create
+        // POST: APPLICATION_LEAVE/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,TITLE,CONTENT,DATESUBMIT")] NEWS nEWS)
+        public ActionResult Create([Bind(Include = "ID,ID_TEACHER,DATE,REASON,STATUS")] APPLICATION_LEAVE aPPLICATION_LEAVE)
         {
             if (ModelState.IsValid)
             {
-                db.NEWS.Add(nEWS);
+                db.APPLICATION_LEAVE.Add(aPPLICATION_LEAVE);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(nEWS);
+            ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME", aPPLICATION_LEAVE.ID_TEACHER);
+            return View(aPPLICATION_LEAVE);
         }
 
-        // GET: NEWS/Edit/5
+        // GET: APPLICATION_LEAVE/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NEWS nEWS = db.NEWS.Find(id);
-            if (nEWS == null)
+            APPLICATION_LEAVE aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Find(id);
+            if (aPPLICATION_LEAVE == null)
             {
                 return HttpNotFound();
             }
-            return View(nEWS);
+            ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME", aPPLICATION_LEAVE.ID_TEACHER);
+            return View(aPPLICATION_LEAVE);
         }
 
-        // POST: NEWS/Edit/5
+        // POST: APPLICATION_LEAVE/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "ID,TITLE,CONTENT,DATESUBMIT")] NEWS nEWS)
+        public ActionResult Edit([Bind(Include = "ID,ID_TEACHER,DATE,REASON,STATUS")] APPLICATION_LEAVE aPPLICATION_LEAVE)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nEWS).State = EntityState.Modified;
+                db.Entry(aPPLICATION_LEAVE).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(nEWS);
+            ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME", aPPLICATION_LEAVE.ID_TEACHER);
+            return View(aPPLICATION_LEAVE);
         }
 
-        // GET: NEWS/Delete/5
+        // GET: APPLICATION_LEAVE/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NEWS nEWS = db.NEWS.Find(id);
-            if (nEWS == null)
+            APPLICATION_LEAVE aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Find(id);
+            if (aPPLICATION_LEAVE == null)
             {
                 return HttpNotFound();
             }
-            return View(nEWS);
+            return View(aPPLICATION_LEAVE);
         }
 
-        // POST: NEWS/Delete/5
+        // POST: APPLICATION_LEAVE/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NEWS nEWS = db.NEWS.Find(id);
-            db.NEWS.Remove(nEWS);
+            APPLICATION_LEAVE aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Find(id);
+            db.APPLICATION_LEAVE.Remove(aPPLICATION_LEAVE);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
