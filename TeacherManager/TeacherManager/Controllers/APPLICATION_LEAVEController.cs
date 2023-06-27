@@ -48,7 +48,7 @@ namespace TeacherManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ID_TEACHER,DATE,REASON,STATUS")] APPLICATION_LEAVE aPPLICATION_LEAVE)
+        public ActionResult Create([Bind(Include = "ID,ID_TEACHER,DATESTART,REASON,STATUS,DATEEND,TYPELEAVE")] APPLICATION_LEAVE aPPLICATION_LEAVE)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace TeacherManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ID_TEACHER,DATE,REASON,STATUS")] APPLICATION_LEAVE aPPLICATION_LEAVE)
+        public ActionResult Edit([Bind(Include = "ID,ID_TEACHER,DATESTART,REASON,STATUS,DATEEND,TYPELEAVE")] APPLICATION_LEAVE aPPLICATION_LEAVE)
         {
             if (ModelState.IsValid)
             {

@@ -1,10 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "Schedule";
+    ViewBag.Title = "Lịch giảng dạy - Teacher TimeTable";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-</style>
 <ul class="nav nav-tabs m-4" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Lịch dạy</button>
@@ -79,7 +77,7 @@
                 },
                 header: {
                     left: 'prev,next today',
-                    center: 'Thứ D, DD/MM/YYYY',
+                    center: 'title',
                     right: 'agendaWeek'
                 },
                 defaultView: 'agendaWeek',

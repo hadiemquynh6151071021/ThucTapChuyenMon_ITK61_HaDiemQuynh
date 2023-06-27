@@ -16,9 +16,11 @@ namespace TeacherManager.Models
     {
         public int ID { get; set; }
         public Nullable<int> ID_TEACHER { get; set; }
-        public Nullable<System.DateTime> DATE { get; set; }
+        public Nullable<System.DateTime> DATESTART { get; set; }
         public string REASON { get; set; }
         public string STATUS { get; set; }
+        public Nullable<System.DateTime> DATEEND { get; set; }
+        public string TYPELEAVE { get; set; }
     
         public virtual TEACHER TEACHER { get; set; }
     }

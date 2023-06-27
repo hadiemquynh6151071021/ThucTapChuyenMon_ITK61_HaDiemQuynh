@@ -1,9 +1,10 @@
 ﻿@model TeacherManager.Models.APPLICATION_LEAVE
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Đăng ký nghỉ phép - Teacher Timetable";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <style>
 
     .text-theme {
@@ -36,16 +37,19 @@
     .text-theme {
         color: #F8CD0A;
     }
+    .form-check-label, .form-check-input {
+        font-size: 14px;
+    }
 </style>
 <div class="row justify-content-center my-4">
     <div class="col-xl-10 col-md-12">
         <div class="card border-0">
             <div class="card-body p-0">
                 <div class="row no-gutters">
-                    <div class="col-lg-7 col-md-12 input-infor my-5 shadow">
-                        <div class="p-5">
+                    <div class="col-lg-7 col-md-12">
+                        <div class="p-5 input-infor my-5 mx-3 shadow">
                             <div class="mb-5">
-                                <h3 class="h4 font-weight-bold text-theme">Vui lòng điền đầy đủ thông tin</h3>
+                                <h3 class="h4 font-weight-bold text-theme">ĐƠN XIN NGHỈ PHÉP</h3>
                             </div>
                             @using (Html.BeginForm())
                             {
@@ -54,26 +58,45 @@
                                 <div class="form-horizontal">
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                                    <div class="form-group my-3">
-                                        <div class="col-md-12 form-floating">
-                                            @Html.EditorFor(model => model.DATE, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                                            <label class="control-label col-md-2">Ngày nghỉ</label>
-                                            @Html.ValidationMessageFor(model => model.DATE, "", new { @class = "text-danger" })
-                                        </div>
+                                    <div class="form-floating mb-2">
+                                        @Html.EditorFor(model => model.DATESTART, new { htmlAttributes = new { type = "date", id = "floatingDatestart", placeholder = "Nhập ngày", @class = "form-control" } })
+                                        <label for="floatingDatestart">Ngày bắt đầu</label>
+                                        @Html.ValidationMessageFor(model => model.DATESTART, "", new { @class = "text-danger" })
                                     </div>
 
-                                    <div class="form-group my-3">
-
-                                        <div class="col-md-12 form-floating">
-                                            @Html.EditorFor(model => model.REASON, new { htmlAttributes = new { @class = "form-control" } })
-                                            <label class="control-label col-md-2">Lý do</label>
-                                            @Html.ValidationMessageFor(model => model.REASON, "", new { @class = "text-danger" })
-                                        </div>
+                                    <div class="form-floating mb-3">
+                                        @Html.EditorFor(model => model.DATEEND, new { htmlAttributes = new { type = "date", placeholder = "Nhập ngày", @class = "form-control", id = "floatingDateend" } })
+                                        <label for="floatingDateend">Ngày kết thúc</label>
+                                        @Html.ValidationMessageFor(model => model.DATEEND, "", new { @class = "text-danger" })
                                     </div>
 
-                                    <div class="form-group mt-3">
-                                        <div class="col-md-offset-2 col-md-12 align-items-baseline">
-                                            <input type="submit" value="Xác nhận" class="btn btn-register" />
+                                    <div class="form-floating mb-3">
+                                        @Html.EditorFor(model => model.REASON, new { htmlAttributes = new { id = "floatingReason", placeholder = "Nhập lý do", @class = "form-control" } })
+                                        <label class="form-label" for="floatingReason">Lý do</label>
+                                        @Html.ValidationMessageFor(model => model.REASON, "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div class="form-group mb-3 d-flex align-content-center justify-content-center">
+                                        <div class="col-md-6 d-flex flex-row">
+                                            <div class="form-check flex-fill">
+                                                @Html.RadioButtonFor(model => model.TYPELEAVE, "Phép năm", new { @class = "form-check-input", @checked = "checked" })
+                                                <label class="form-check-label ms-2" for="model.TYPELEAVE">Phép năm</label>
+                                            </div>
+                                            <div class="form-check flex-fill">
+                                                @Html.RadioButtonFor(model => model.TYPELEAVE, "Nghỉ chế độ", new { @class = "form-check-input" })
+                                                <label class="form-check-label ms-2" for="model.TYPELEAVE">Nghỉ chế độ</label>
+                                            </div>
+                                            <div class="form-check flex-fill">
+                                                @Html.RadioButtonFor(model => model.TYPELEAVE, "Nghỉ ốm", new { @class = "form-check-input" })
+                                                <label class="form-check-label ms-2" for="model.TYPELEAVE">Nghỉ ốm</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <div class="col-md-offset-2 col-md-12 d-flex align-content-center justify-content-center">
+                                            <input type="submit" value="Đăng ký" class="btn btn-register" />
                                         </div>
                                     </div>
                                 </div>

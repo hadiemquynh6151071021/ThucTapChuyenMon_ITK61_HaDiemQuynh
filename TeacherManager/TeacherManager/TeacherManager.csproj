@@ -790,12 +790,12 @@
     <Content Include="Views\MAKEUP_LESSON\Index.cshtml" />
     <Content Include="Views\Manage\ReviewEditInforTeacher.cshtml" />
     <Content Include="Views\Shared\Nav_Tabs_TimeTable.cshtml" />
+    <Content Include="Views\TeachingSchedule\RegisterApplicationForLeave.cshtml" />
     <Content Include="Views\APPLICATION_LEAVE\Create.cshtml" />
     <Content Include="Views\APPLICATION_LEAVE\Delete.cshtml" />
     <Content Include="Views\APPLICATION_LEAVE\Details.cshtml" />
     <Content Include="Views\APPLICATION_LEAVE\Edit.cshtml" />
     <Content Include="Views\APPLICATION_LEAVE\Index.cshtml" />
-    <Content Include="Views\TeachingSchedule\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

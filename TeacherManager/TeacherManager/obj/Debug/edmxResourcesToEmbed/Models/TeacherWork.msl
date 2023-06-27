@@ -165,17 +165,6 @@
         <ScalarProperty Name="Id" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="APPLICATION_LEAVE">
-      <EntityTypeMapping TypeName="TeacherWorkModel.APPLICATION_LEAVE">
-        <MappingFragment StoreEntitySet="APPLICATION_LEAVE">
-          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-          <ScalarProperty Name="REASON" ColumnName="REASON" />
-          <ScalarProperty Name="DATE" ColumnName="DATE" />
-          <ScalarProperty Name="ID_TEACHER" ColumnName="ID_TEACHER" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TEST_SCHEDULE">
       <EntityTypeMapping TypeName="TeacherWorkModel.TEST_SCHEDULE">
         <MappingFragment StoreEntitySet="TEST_SCHEDULE">
@@ -237,6 +226,19 @@
           <ScalarProperty Name="DATE" ColumnName="DATE" />
           <ScalarProperty Name="ID_SUBJECT" ColumnName="ID_SUBJECT" />
           <ScalarProperty Name="ID_CLASS" ColumnName="ID_CLASS" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="APPLICATION_LEAVE">
+      <EntityTypeMapping TypeName="TeacherWorkModel.APPLICATION_LEAVE">
+        <MappingFragment StoreEntitySet="APPLICATION_LEAVE">
+          <ScalarProperty Name="TYPELEAVE" ColumnName="TYPELEAVE" />
+          <ScalarProperty Name="DATEEND" ColumnName="DATEEND" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="REASON" ColumnName="REASON" />
+          <ScalarProperty Name="DATESTART" ColumnName="DATESTART" />
+          <ScalarProperty Name="ID_TEACHER" ColumnName="ID_TEACHER" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

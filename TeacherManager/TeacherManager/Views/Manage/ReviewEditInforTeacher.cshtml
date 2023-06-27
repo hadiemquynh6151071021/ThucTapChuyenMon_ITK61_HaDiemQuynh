@@ -1,7 +1,7 @@
 ﻿@model TeacherManager.Models.TEACHER
 
 @{
-    ViewBag.Title = "ReviewEditInforTeacher";
+    ViewBag.Title = "Quản lý tài khoản - Teacher Timetable";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 
     <style>
@@ -75,12 +75,12 @@
                         <label for="floatingInput">Chức vụ</label>
                     </div>
                     <div class="form-floating mb-3 w-25">
-                        <input type="date" class="form-control" id="day" value="@Model.DATE_BIRTHDAY.Value.ToString("yyyy-MM-dd")">
-                        <label for="floatingInput">Ngày sinh<i class="fas fa-pencil-alt mx-1"></i></label>
+                        <input type="date" class="form-control" id="day floatingDateBirthday" value="@Model.DATE_BIRTHDAY.Value.ToString("yyyy-MM-dd")" placeholder="Nhập ngày sinh">
+                        <label for="floatingDateBirthday">Ngày sinh<i class="fas fa-pencil-alt mx-1"></i></label>
                     </div>
                     <div class="form-floating mb-3 flex-fill">
-                        <input type="text" class="form-control" id="address" value="@Model.ADDRESS">
-                        <label for="floatingInput">Địa chỉ<i class="fas fa-pencil-alt mx-1"></i></label>
+                        <input type="text" class="form-control" id="address floatingAddress" value="@Model.ADDRESS" placeholder="Nhập địa chỉ">
+                        <label for="floatingAddress">Địa chỉ<i class="fas fa-pencil-alt mx-1"></i></label>
                     </div>
                 </div>
 

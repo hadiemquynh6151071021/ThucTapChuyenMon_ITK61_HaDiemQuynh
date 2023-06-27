@@ -10,11 +10,11 @@ using System.Globalization;
 
 namespace TeacherManager.Controllers
 {
+    [Authorize]
     public class TeachingScheduleController : Controller
     {
       
         TeacherWorkEntities db = new TeacherWorkEntities();
-        [Authorize]
         
         // GET: TeachingSchedule
         public ActionResult Timetable()
@@ -25,16 +25,33 @@ namespace TeacherManager.Controllers
         public ActionResult GetEventsTimetable(DateTime startOfWeek)
         {
             string ID_USER = User.Identity.GetUserId();
-            TEACHER teacher = db.TEACHERs.FirstOrDefault(t => t.ID_USER==ID_USER);
+            TEACHER teacher = db.TEACHERs.FirstOrDefault(t => t.ID_USER == ID_USER);
 
             List<Event> scheduleList = new List<Event>();
 
             DateTime endOfWeek = startOfWeek.AddDays(6);
+
+            APPLICATION_LEAVE aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Where(m => m.ID_TEACHER==teacher.ID && m.STATUS!="Đang chờ duyệt").FirstOrDefault();
+
+            List<DateTime> days = new List<DateTime>();
+            if (aPPLICATION_LEAVE != null)
+            {
+                DateTime startDate = (DateTime)aPPLICATION_LEAVE.DATESTART; // Ngày bắt đầu
+                DateTime endDate = (DateTime)aPPLICATION_LEAVE.DATEEND; // Ngày kết thúc
+                days = Enumerable.Range(0, 1 + endDate.Subtract(startDate).Days)
+                            .Select(day => startDate.AddDays(day))
+                            .ToList(); // Danh sách các ngày giữa startDate và endDate
+            }
+
             for (var date = startOfWeek.Date; date <= endOfWeek.Date; date = date.AddDays(1))
             {
+                if(days.Any(x => x == date) == true)
+                {
+                    continue;
+                }
                 List<SUBJECT> subjectList = teacher.GetSUBJECTs(date);
-                List<MAKEUP_LESSON> mAKEUP_LESSONs = db.MAKEUP_LESSON.Where(m => m.DATE == date && m.SUBJECT.TEACHER.ID==teacher.ID && m.SITUATION!="Đang chờ duyệt").ToList();
-                foreach(var item in mAKEUP_LESSONs)
+                List<MAKEUP_LESSON> mAKEUP_LESSONs = db.MAKEUP_LESSON.Where(m => m.DATE == date && m.SUBJECT.TEACHER.ID == teacher.ID && m.SITUATION != "Đang chờ duyệt").ToList();
+                foreach (var item in mAKEUP_LESSONs)
                 {
                     Event schedule = new Event();
                     schedule.title = "LỊCH BÙ\nMôn: " + item.SUBJECT.NAME + "\nLớp: " + item.CLASSROOM.NAME + "\nPhòng: " + item.ROOM.NAME_ROM;
@@ -56,7 +73,7 @@ namespace TeacherManager.Controllers
                     schedule.start = date.ToString("yyyy-MM-dd") + 'T' + timeSlotList.FirstOrDefault().NAME;
 
                     TimeSpan timestartlast = TimeSpan.ParseExact(timeSlotList.LastOrDefault().NAME, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
-                    TimeSpan time = new TimeSpan(0,50,0);
+                    TimeSpan time = new TimeSpan(0, 50, 0);
                     TimeSpan timeend = timestartlast.Add(time);
 
                     schedule.end = date.ToString("yyyy-MM-dd") + 'T' + timeend.ToString();
@@ -124,8 +141,8 @@ namespace TeacherManager.Controllers
 
             return Json(scheduleList, JsonRequestBehavior.AllowGet);
         }
-
-        public ActionResult Create()
+        
+        public ActionResult RegisterApplicationForLeave()
         {
             ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME");
             return View();
@@ -136,13 +153,18 @@ namespace TeacherManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ID_TEACHER,DATE,REASON,STATUS")] APPLICATION_LEAVE aPPLICATION_LEAVE)
+        public ActionResult RegisterApplicationForLeave([Bind(Include = "ID,ID_TEACHER,DATESTART,REASON,STATUS,DATEEND,TYPELEAVE")] APPLICATION_LEAVE aPPLICATION_LEAVE)
         {
             if (ModelState.IsValid)
             {
+                string ID_USER = User.Identity.GetUserId();
+                TEACHER teacher = db.TEACHERs.FirstOrDefault(t => t.ID_USER == ID_USER);
+                aPPLICATION_LEAVE.ID_TEACHER = teacher.ID;
+                aPPLICATION_LEAVE.STATUS = "Đang chờ duyệt";
+
                 db.APPLICATION_LEAVE.Add(aPPLICATION_LEAVE);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME", aPPLICATION_LEAVE.ID_TEACHER);
@@ -322,7 +344,7 @@ namespace TeacherManager.Controllers
             return weekDays;
         }
 
-        public bool HasConsecutiveNumbers(List<int> numbers)
+        public bool HasConsecutiveNumbers(List<int> numbers, int lesson)
         {
             int count = 1;
             for (int i = 0; i < numbers.Count - 1; i++)
@@ -330,7 +352,7 @@ namespace TeacherManager.Controllers
                 if (numbers[i] == numbers[i + 1] - 1)
                 {
                     count++;
-                    if (count == 5)
+                    if (count == lesson)
                     {
                         // Tìm thấy 5 số liên tiếp
                         return true;

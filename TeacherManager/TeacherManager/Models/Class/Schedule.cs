@@ -71,7 +71,7 @@ namespace TeacherManager.Models.Class
             var courses = GetCoursesOnDayOfTeacher();
             var makeup_lessons = GetMakeupLessonOnDayOfTeacher();
             //nếu ds trống thì độ tương thích là 0
-            if (courses == null)
+            if (courses == null && makeup_lessons==null)
             {
                 return 0;
             }
@@ -106,6 +106,8 @@ namespace TeacherManager.Models.Class
                     .Select(temp => temp.timeSlot)
                     .ToList();
 
+
+
                     //Tổng số tiết đã được lên lịch dạy
                     fitness += (double)slots.Count;
                 }
@@ -132,9 +134,45 @@ namespace TeacherManager.Models.Class
 
         }
 
+        public double FindLongestContSubseq(List<int> ls)
+        {
+            int maxLen = 1; // khởi tạo độ dài dãy con lớn nhất ban đầu là 1
+            int currentLen = 1; // khởi tạo độ dài dãy con hiện tại ban đầu là 1
+            bool hasConsecutive = false;
+            for (int i = 1; i < ls.Count; i++)
+            {
+                if (ls[i] == ls[i - 1] + 1 || ls[i] == ls[i - 1] - 1)
+                {
+                    currentLen++;
+                    hasConsecutive = true;
+                }
+                else // nếu phần tử hiện tại không liên tiếp với phần tử trước đó
+                {
+                    if (currentLen > maxLen) // nếu độ dài dãy con hiện tại lớn hơn độ dài dãy con lớn nhất
+                    {
+                        maxLen = currentLen; // cập nhật độ dài dãy con lớn nhất bằng độ dài dãy con hiện tại
+                    }
+
+                    // reset lại độ dài dãy conện tại về 1 để bắt đầu tính dãy con mới
+                    currentLen = 1;
+                }
+            }
+
+            // kiểm tra lại một lần cu trước khi kết thúc hàm
+            if (currentLen > maxLen)
+            {
+                maxLen = currentLen;
+            }
+
+            double decimalMaxLen = (double)maxLen / 10;
+            decimalMaxLen = Math.Round(decimalMaxLen, 2);
+
+            return hasConsecutive ? decimalMaxLen : 0;
+        }
 
 
     }
+
     class Time_Slot_Comparer : IEqualityComparer<TIME_SLOT>
     {
         public bool Equals(TIME_SLOT x, TIME_SLOT y)

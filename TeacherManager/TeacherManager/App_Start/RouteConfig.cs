@@ -14,10 +14,42 @@ namespace TeacherManager
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+               name: "DetailsNotification",
+               url: "thong-bao/{name}",
+               defaults: new { controller = "NOTIFICATIONs", action = "Details", name = (string)null }
+           );
+            routes.MapRoute(
+                name: "DetailsNew",
+                url: "tin-tuc/{name}",
+                defaults: new { controller = "NEWS", action = "Details",name=(string)null }
             );
+            routes.MapRoute(
+                name: "RegisterApplicationForLeave",
+                url: "dang-ky-nghi-phep",
+                defaults: new { controller = "TeachingSchedule", action = "RegisterApplicationForLeave" }
+            );
+            routes.MapRoute(
+                name: "AccountManage",
+                url: "quan-ly-tai-khoan",
+                defaults: new { controller = "Manage", action = "ReviewEditInforTeacher" }
+            );
+            routes.MapRoute(
+                name: "TimetableView",
+                url: "lich-giang-day",
+                defaults: new { controller = "TeachingSchedule", action = "Timetable" }
+            );
+            routes.MapRoute(
+                name: "RegisterMakeupLesson",
+                url: "dang-ky-day-bu",
+                defaults: new { controller = "TeachingSchedule", action = "Register" }
+            );
+
+
+            routes.MapRoute(
+               name: "Default",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+           );
         }
     }
 }

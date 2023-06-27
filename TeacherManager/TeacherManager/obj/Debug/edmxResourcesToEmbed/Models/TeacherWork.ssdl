@@ -23,9 +23,11 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_TEACHER" Type="int" />
-    <Property Name="DATE" Type="date" />
+    <Property Name="DATESTART" Type="date" />
     <Property Name="REASON" Type="nvarchar" MaxLength="100" />
     <Property Name="STATUS" Type="nvarchar" MaxLength="100" />
+    <Property Name="DATEEND" Type="date" />
+    <Property Name="TYPELEAVE" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="ARRANGE_TIME_SLOT">
     <Key>
@@ -164,7 +166,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NAME_ROM" Type="ntext" />
+    <Property Name="NAME_ROM" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="SUBJECT">
     <Key>

@@ -6,25 +6,28 @@
         color: #191970;
         font-size: 18px;
     }
+
     .card-body {
         background-color: #F8F8FF;
     }
+
     .icon {
         display: flex;
         justify-content: center;
     }
+
     i {
-        align-self:center;
-        font-size:45px;
+        align-self: center;
+        font-size: 45px;
         color: #191970;
     }
+
     .title {
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
-    
 </style>
 
 @foreach (var item in Model)
@@ -38,7 +41,7 @@
                 <div class="col-10">
                     <div class="title">
                         <h6 class="mb-1">
-                            @Html.ActionLink(item.TITLE, "Details", new { id = item.ID }, new { @class = "details" })
+                            @Html.ActionLink(item.TITLE, "Details", new { id = item.ID, name = item.TITLE }, new { @class = "details" })
                         </h6>
                         <div class="row align-items-center">
                             <div class="col-12">

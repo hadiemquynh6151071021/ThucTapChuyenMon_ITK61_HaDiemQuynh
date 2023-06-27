@@ -28,9 +28,11 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_TEACHER" Type="int" />
-          <Property Name="DATE" Type="date" />
+          <Property Name="DATESTART" Type="date" />
           <Property Name="REASON" Type="nvarchar" MaxLength="100" />
           <Property Name="STATUS" Type="nvarchar" MaxLength="100" />
+          <Property Name="DATEEND" Type="date" />
+          <Property Name="TYPELEAVE" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ARRANGE_TIME_SLOT">
           <Key>
@@ -169,7 +171,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME_ROM" Type="ntext" />
+          <Property Name="NAME_ROM" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SUBJECT">
           <Key>
@@ -750,17 +752,12 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="APPLICATION_LEAVE" EntityType="TeacherWorkModel.APPLICATION_LEAVE" />
           <EntitySet Name="TEST_SCHEDULE" EntityType="TeacherWorkModel.TEST_SCHEDULE" />
           <AssociationSet Name="TEST_SCHEDULE3" Association="TeacherWorkModel.TEST_SCHEDULE3">
             <End Role="ROOM" EntitySet="ROOMs" />
             <End Role="TEST_SCHEDULE" EntitySet="TEST_SCHEDULE" />
           </AssociationSet>
           <EntitySet Name="TEACHERs" EntityType="TeacherWorkModel.TEACHER" />
-          <AssociationSet Name="APPLICATIONLEAVE" Association="TeacherWorkModel.APPLICATIONLEAVE">
-            <End Role="TEACHER" EntitySet="TEACHERs" />
-            <End Role="APPLICATION_LEAVE" EntitySet="APPLICATION_LEAVE" />
-          </AssociationSet>
           <AssociationSet Name="FK__TEACHER__ID_USER__03F0984C" Association="TeacherWorkModel.FK__TEACHER__ID_USER__03F0984C">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="TEACHER" EntitySet="TEACHERs" />
@@ -815,6 +812,11 @@
           <AssociationSet Name="MAKEUP_LESSON3" Association="TeacherWorkModel.MAKEUP_LESSON3">
             <End Role="SUBJECT" EntitySet="SUBJECTs" />
             <End Role="MAKEUP_LESSON" EntitySet="MAKEUP_LESSON" />
+          </AssociationSet>
+          <EntitySet Name="APPLICATION_LEAVE" EntityType="TeacherWorkModel.APPLICATION_LEAVE" />
+          <AssociationSet Name="APPLICATIONLEAVE" Association="TeacherWorkModel.APPLICATIONLEAVE">
+            <End Role="TEACHER" EntitySet="TEACHERs" />
+            <End Role="APPLICATION_LEAVE" EntitySet="APPLICATION_LEAVE" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="FILE_NOTIFICATION">
@@ -1023,17 +1025,6 @@
           <End Type="TeacherWorkModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="TeacherWorkModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityType Name="APPLICATION_LEAVE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_TEACHER" Type="Int32" />
-          <Property Name="DATE" Type="DateTime" Precision="0" />
-          <Property Name="REASON" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TEACHER" Relationship="TeacherWorkModel.APPLICATIONLEAVE" FromRole="APPLICATION_LEAVE" ToRole="TEACHER" />
-        </EntityType>
         <EntityType Name="TEST_SCHEDULE">
           <Key>
             <PropertyRef Name="ID" />
@@ -1075,26 +1066,14 @@
           <Property Name="DATE_BIRTHDAY" Type="DateTime" Precision="0" />
           <Property Name="POSITION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="APPLICATION_LEAVE" Relationship="TeacherWorkModel.APPLICATIONLEAVE" FromRole="TEACHER" ToRole="APPLICATION_LEAVE" />
           <NavigationProperty Name="AspNetUser" Relationship="TeacherWorkModel.FK__TEACHER__ID_USER__03F0984C" FromRole="TEACHER" ToRole="AspNetUser" />
           <NavigationProperty Name="CLASSROOMs" Relationship="TeacherWorkModel.PF_CLASSROOM" FromRole="TEACHER" ToRole="CLASSROOM" />
           <NavigationProperty Name="TEACHER_TYPE" Relationship="TeacherWorkModel.PF_TEACHER_1" FromRole="TEACHER" ToRole="TEACHER_TYPE" />
           <NavigationProperty Name="TEST_SCHEDULE" Relationship="TeacherWorkModel.TEST_SCHEDULE1" FromRole="TEACHER" ToRole="TEST_SCHEDULE" />
           <NavigationProperty Name="ACADEMIC_RANK" Relationship="TeacherWorkModel.PF_TEACHER_2" FromRole="TEACHER" ToRole="ACADEMIC_RANK" />
           <NavigationProperty Name="SUBJECTs" Relationship="TeacherWorkModel.PF_SUBJECT_1" FromRole="TEACHER" ToRole="SUBJECT" />
+          <NavigationProperty Name="APPLICATION_LEAVE" Relationship="TeacherWorkModel.APPLICATIONLEAVE" FromRole="TEACHER" ToRole="APPLICATION_LEAVE" />
         </EntityType>
-        <Association Name="APPLICATIONLEAVE">
-          <End Type="TeacherWorkModel.TEACHER" Role="TEACHER" Multiplicity="0..1" />
-          <End Type="TeacherWorkModel.APPLICATION_LEAVE" Role="APPLICATION_LEAVE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TEACHER">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="APPLICATION_LEAVE">
-              <PropertyRef Name="ID_TEACHER" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TEACHER__ID_USER__03F0984C">
           <End Type="TeacherWorkModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
           <End Type="TeacherWorkModel.TEACHER" Role="TEACHER" Multiplicity="*" />
@@ -1294,6 +1273,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="APPLICATION_LEAVE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_TEACHER" Type="Int32" />
+          <Property Name="DATESTART" Type="DateTime" Precision="0" />
+          <Property Name="REASON" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DATEEND" Type="DateTime" Precision="0" />
+          <Property Name="TYPELEAVE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TEACHER" Relationship="TeacherWorkModel.APPLICATIONLEAVE" FromRole="APPLICATION_LEAVE" ToRole="TEACHER" />
+        </EntityType>
+        <Association Name="APPLICATIONLEAVE">
+          <End Type="TeacherWorkModel.TEACHER" Role="TEACHER" Multiplicity="0..1" />
+          <End Type="TeacherWorkModel.APPLICATION_LEAVE" Role="APPLICATION_LEAVE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TEACHER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="APPLICATION_LEAVE">
+              <PropertyRef Name="ID_TEACHER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1464,17 +1468,6 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="APPLICATION_LEAVE">
-            <EntityTypeMapping TypeName="TeacherWorkModel.APPLICATION_LEAVE">
-              <MappingFragment StoreEntitySet="APPLICATION_LEAVE">
-                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-                <ScalarProperty Name="REASON" ColumnName="REASON" />
-                <ScalarProperty Name="DATE" ColumnName="DATE" />
-                <ScalarProperty Name="ID_TEACHER" ColumnName="ID_TEACHER" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TEST_SCHEDULE">
             <EntityTypeMapping TypeName="TeacherWorkModel.TEST_SCHEDULE">
               <MappingFragment StoreEntitySet="TEST_SCHEDULE">
@@ -1536,6 +1529,19 @@
                 <ScalarProperty Name="DATE" ColumnName="DATE" />
                 <ScalarProperty Name="ID_SUBJECT" ColumnName="ID_SUBJECT" />
                 <ScalarProperty Name="ID_CLASS" ColumnName="ID_CLASS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APPLICATION_LEAVE">
+            <EntityTypeMapping TypeName="TeacherWorkModel.APPLICATION_LEAVE">
+              <MappingFragment StoreEntitySet="APPLICATION_LEAVE">
+                <ScalarProperty Name="TYPELEAVE" ColumnName="TYPELEAVE" />
+                <ScalarProperty Name="DATEEND" ColumnName="DATEEND" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="REASON" ColumnName="REASON" />
+                <ScalarProperty Name="DATESTART" ColumnName="DATESTART" />
+                <ScalarProperty Name="ID_TEACHER" ColumnName="ID_TEACHER" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

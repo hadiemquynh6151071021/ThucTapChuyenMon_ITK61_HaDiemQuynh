@@ -33,32 +33,54 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DATE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TIMESTART)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TIMEEND)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SITUATION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CLASSROOM.NAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SUBJECT.NAME)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DATE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIMESTART)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIMEEND)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SITUATION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CLASSROOM.NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SUBJECT.NAME)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "modalLink" })                |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content"></div>
+        <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+</div>
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("body").on("click", ".modalLink", function (e) {
+                e.preventDefault();
+                $('#myModal').modal('show');
+                $.post($(this).attr("href"), function (data) {
+                    $('#myModal .modal-content').html(data);
+                });
+            });
+        });
+    </script>
+}

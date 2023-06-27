@@ -19,10 +19,10 @@ namespace TeacherManager.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TEACHER()
         {
-            this.APPLICATION_LEAVE = new HashSet<APPLICATION_LEAVE>();
             this.CLASSROOMs = new HashSet<CLASSROOM>();
             this.TEST_SCHEDULE = new HashSet<TEST_SCHEDULE>();
             this.SUBJECTs = new HashSet<SUBJECT>();
+            this.APPLICATION_LEAVE = new HashSet<APPLICATION_LEAVE>();
         }
         public List<SUBJECT> GetSUBJECTs(DateTime date)
         {
@@ -60,8 +60,6 @@ namespace TeacherManager.Models
         public string POSITION { get; set; }
         public string ADDRESS { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<APPLICATION_LEAVE> APPLICATION_LEAVE { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLASSROOM> CLASSROOMs { get; set; }
@@ -71,5 +69,7 @@ namespace TeacherManager.Models
         public virtual ACADEMIC_RANK ACADEMIC_RANK { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SUBJECT> SUBJECTs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<APPLICATION_LEAVE> APPLICATION_LEAVE { get; set; }
     }
 }

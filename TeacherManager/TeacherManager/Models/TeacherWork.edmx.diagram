@@ -29,11 +29,9 @@
         <AssociationConnector Association="TeacherWorkModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="TeacherWorkModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="TeacherWorkModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="TeacherWorkModel.APPLICATION_LEAVE" Width="1.5" PointX="16.375" PointY="8.375" />
         <EntityTypeShape EntityType="TeacherWorkModel.TEST_SCHEDULE" Width="1.5" PointX="33.125" PointY="2.25" />
         <AssociationConnector Association="TeacherWorkModel.TEST_SCHEDULE3" />
         <EntityTypeShape EntityType="TeacherWorkModel.TEACHER" Width="1.5" PointX="20.375" PointY="5.25" />
-        <AssociationConnector Association="TeacherWorkModel.APPLICATIONLEAVE" />
         <AssociationConnector Association="TeacherWorkModel.FK__TEACHER__ID_USER__03F0984C" />
         <AssociationConnector Association="TeacherWorkModel.PF_CLASSROOM" />
         <AssociationConnector Association="TeacherWorkModel.PF_TEACHER_1" />
@@ -50,6 +48,8 @@
         <AssociationConnector Association="TeacherWorkModel.MAKEUP_LESSON2" />
         <AssociationConnector Association="TeacherWorkModel.FK__MAKEUP_LE__ID_RO__4E53A1AA" />
         <AssociationConnector Association="TeacherWorkModel.MAKEUP_LESSON3" />
+        <EntityTypeShape EntityType="TeacherWorkModel.APPLICATION_LEAVE" Width="1.5" PointX="22.625" PointY="6" />
+        <AssociationConnector Association="TeacherWorkModel.APPLICATIONLEAVE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
