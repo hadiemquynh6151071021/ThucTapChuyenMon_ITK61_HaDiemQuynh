@@ -13,12 +13,17 @@ namespace TeacherManager
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-           // routes.MapRoute(
-           //    name: "AdminLogout1",
-           //    url: "Admin/Default/Logout",
-           //    defaults: new { controller = "Default", action = "Logout" },
-           //    namespaces: new[] { "TeacherManager.Areas.Admin.Controllers" } // nếu cần
-           //);
+            // routes.MapRoute(
+            //    name: "AdminLogout1",
+            //    url: "Admin/Default/Logout",
+            //    defaults: new { controller = "Default", action = "Logout" },
+            //    namespaces: new[] { "TeacherManager.Areas.Admin.Controllers" } // nếu cần
+            //);GetApplicaMakeupLessonForTeacher
+            routes.MapRoute(
+               name: "GetApplicaMakeupLessonForTeacher",
+               url: "quan-ly-don-xin-phep-don-day-bu",
+               defaults: new { controller = "Home", action = "GetApplicaMakeupLessonForTeacher"}
+           );
             routes.MapRoute(
                name: "DetailsNotification",
                url: "thong-bao/{name}",

@@ -10,18 +10,18 @@ using TeacherManager.Models;
 
 namespace TeacherManager.Controllers
 {
-    public class APPLICATION_LEAVEController : Controller
+    public class APPLICATION_LEAVETeacherController : Controller
     {
         private TeacherWorkEntities db = new TeacherWorkEntities();
 
-        // GET: APPLICATION_LEAVE
+        // GET: APPLICATION_LEAVETeacher
         public ActionResult Index()
         {
             var aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Include(a => a.TEACHER);
             return View(aPPLICATION_LEAVE.ToList());
         }
 
-        // GET: APPLICATION_LEAVE/Details/5
+        // GET: APPLICATION_LEAVETeacher/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,14 +36,14 @@ namespace TeacherManager.Controllers
             return View(aPPLICATION_LEAVE);
         }
 
-        // GET: APPLICATION_LEAVE/Create
+        // GET: APPLICATION_LEAVETeacher/Create
         public ActionResult Create()
         {
             ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME");
             return View();
         }
 
-        // POST: APPLICATION_LEAVE/Create
+        // POST: APPLICATION_LEAVETeacher/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -61,7 +61,7 @@ namespace TeacherManager.Controllers
             return View(aPPLICATION_LEAVE);
         }
 
-        // GET: APPLICATION_LEAVE/Edit/5
+        // GET: APPLICATION_LEAVETeacher/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -77,7 +77,7 @@ namespace TeacherManager.Controllers
             return View(aPPLICATION_LEAVE);
         }
 
-        // POST: APPLICATION_LEAVE/Edit/5
+        // POST: APPLICATION_LEAVETeacher/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -94,7 +94,7 @@ namespace TeacherManager.Controllers
             return View(aPPLICATION_LEAVE);
         }
 
-        // GET: APPLICATION_LEAVE/Delete/5
+        // GET: APPLICATION_LEAVETeacher/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,7 +109,7 @@ namespace TeacherManager.Controllers
             return View(aPPLICATION_LEAVE);
         }
 
-        // POST: APPLICATION_LEAVE/Delete/5
+        // POST: APPLICATION_LEAVETeacher/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

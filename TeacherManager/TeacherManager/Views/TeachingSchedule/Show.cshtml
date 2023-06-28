@@ -64,21 +64,15 @@
                 var TimeEnd = $(this).data("timeend");
                 var Room = $(this).data("room");
 
-                alert("Data - className: " + ClassName +
-                    ", SubjectName: " + SubjectName +
-                    ", Day: " + Day +
-                    ", TimeStart: " + TimeStart +
-                    ", TimeEnd: " + TimeEnd + ", Room: " + Room);
-
                 $.ajax({
                     type: "POST",
                     url: "/TeachingSchedule/AddMakeupLesson",
                     data: { "classname": ClassName, "subjectname": SubjectName, "day": Day, "timestart": TimeStart, "timeend": TimeEnd, "room": Room },
                     success: function (result) {
-                        alert("Thêm thành công!");
+                        alert("Bạn đã gửi đơn đăng ký thành công!");
                     },
                     error: function () {
-                        alert("Thất bại");
+                        alert("Đã có lỗi xảy ra trong quá trình đăng ký. Vui lòng thử lại sau!");
                     }
                 });
             });

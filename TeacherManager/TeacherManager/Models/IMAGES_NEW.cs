@@ -11,7 +11,7 @@ namespace TeacherManager.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class IMAGES_NEW
     {
         public int ID { get; set; }

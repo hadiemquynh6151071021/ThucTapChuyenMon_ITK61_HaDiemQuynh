@@ -164,7 +164,7 @@ namespace TeacherManager.Controllers
 
                 db.APPLICATION_LEAVE.Add(aPPLICATION_LEAVE);
                 db.SaveChanges();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home", new { areas = "" });
             }
 
             ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME", aPPLICATION_LEAVE.ID_TEACHER);
@@ -312,7 +312,7 @@ namespace TeacherManager.Controllers
             db.MAKEUP_LESSON.Add(mAKEUP_LESSON);
             db.SaveChanges();
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home", new { areas = "" });
         }
 
 

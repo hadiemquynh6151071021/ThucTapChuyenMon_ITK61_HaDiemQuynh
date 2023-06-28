@@ -19,7 +19,15 @@
     <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet">
     @Styles.Render("~/Content/bootstrap.css")
     @Styles.Render("~/Content/bootstrap.min.css")
-</head>
+    <style>
+        .sidebar{
+            background-color:#191970;
+        }
+        .sidebar-brand-text, .sidebar-heading, i {
+            color: #F8CD0A;
+        }
+    </style>
+
 <body id="page-top">
 
 
@@ -27,7 +35,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -40,20 +48,12 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Quản lý
+            <div class="sidebar-heading" style="color: #F8CD0A">
+                Tác vụ
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -68,12 +68,12 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/Admin/MAKEUP_LESSON/Index">
                     <i class="fas fa-clipboard-list"></i>
-                    Đăng ký dạy bù
+                    Đơn đăng ký dạy bù
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="javascript:document.getElementById('logoutF').submit()">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                     Logout
                 </a>
             </li>
@@ -81,13 +81,16 @@
             {
                 <div style="display:none">
 
-                    @using (Html.BeginForm("LogOff", "AccountAdmin", FormMethod.Post, new { @id = "logoutF"}))
+                    @using (Html.BeginForm("LogOff", "AccountAdmin", FormMethod.Post, new { @id = "logoutF" }))
                     {
                         @Html.AntiForgeryToken()
                     }
                 </div>
             }
-
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
 
         </ul>
         <!-- End of Sidebar -->
@@ -151,7 +154,6 @@
                                 </h6>
                                 @Html.Action("RenderListMakeupLesson", "Homee", new { area = "Admin" })
                                 @Html.Action("RenderListApplicationForLeave", "Homee", new { area = "Admin" })
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
                         </li>
 
@@ -160,9 +162,10 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-itemno-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Quản trị viên</span>
+                        <li class="nav-item no-arrow ">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline small" style="color: #F8CD0A">Quản trị viên</span>
                                 <img class="img-profile rounded-circle"
                                      src="~/Content/img/undraw_profile.svg">
                             </a>
@@ -509,7 +512,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Design By DiemQuynh</span>
                     </div>
                 </div>
             </footer>

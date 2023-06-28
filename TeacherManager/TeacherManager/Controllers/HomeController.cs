@@ -18,6 +18,11 @@ namespace TeacherManager.Controllers
             return View();
         }
 
+        public ActionResult GetApplicaMakeupLessonForTeacher()
+        {
+            return View();
+        }
+
         //public ActionResult GetEvents()
         //{
         //    string ID_USER = User.Identity.GetUserId();

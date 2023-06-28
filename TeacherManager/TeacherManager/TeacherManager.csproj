@@ -181,10 +181,10 @@
     <Compile Include="Areas\Admin\Controllers\HomeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\MAKEUP_LESSONController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\APPLICATION_LEAVEController.cs" />
+    <Compile Include="Controllers\APPLICATION_LEAVETeacherController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MAKEUP_LESSONController.cs" />
+    <Compile Include="Controllers\MAKEUP_LESSONTeacherController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NEWSController.cs" />
     <Compile Include="Controllers\NOTIFICATIONsController.cs" />
@@ -647,6 +647,7 @@
     <Content Include="Content\images\slider\cong-doan.jpeg" />
     <Content Include="Content\images\slider\thuong-binh-liet-si.jpg" />
     <Content Include="Content\images\slider\thanh-nien-xung-phong.jpg" />
+    <Content Include="Content\img\logo %281%29.png" />
     <Content Include="Content\img\undraw_posting_photo.svg" />
     <Content Include="Content\img\undraw_profile.svg" />
     <Content Include="Content\img\undraw_profile_1.svg" />
@@ -730,20 +731,11 @@
     <Content Include="Content\files_notification\QD573.pdf" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\Admin_layout.cshtml" />
-    <Content Include="Areas\Admin\Views\APPLICATION_LEAVE\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\APPLICATION_LEAVE\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\APPLICATION_LEAVE\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\APPLICATION_LEAVE\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\APPLICATION_LEAVE\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\MAKEUP_LESSON\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\MAKEUP_LESSON\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\MAKEUP_LESSON\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\MAKEUP_LESSON\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\MAKEUP_LESSON\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Homee\CountItems.cshtml" />
     <Content Include="Areas\Admin\Views\Homee\MakeupLessonNumber.cshtml" />
     <Content Include="Areas\Admin\Views\Homee\ApplicationForLeaveNumber.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\Partial.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2487,19 +2479,9 @@
     <Content Include="Views\TeachingSchedule\Register.cshtml" />
     <Content Include="Views\TeachingSchedule\Show.cshtml" />
     <Content Include="Views\TeachingSchedule\ExamTimetable.cshtml" />
-    <Content Include="Views\MAKEUP_LESSON\Create.cshtml" />
-    <Content Include="Views\MAKEUP_LESSON\Delete.cshtml" />
-    <Content Include="Views\MAKEUP_LESSON\Details.cshtml" />
-    <Content Include="Views\MAKEUP_LESSON\Edit.cshtml" />
-    <Content Include="Views\MAKEUP_LESSON\Index.cshtml" />
     <Content Include="Views\Manage\ReviewEditInforTeacher.cshtml" />
     <Content Include="Views\Shared\Nav_Tabs_TimeTable.cshtml" />
     <Content Include="Views\TeachingSchedule\RegisterApplicationForLeave.cshtml" />
-    <Content Include="Views\APPLICATION_LEAVE\Create.cshtml" />
-    <Content Include="Views\APPLICATION_LEAVE\Delete.cshtml" />
-    <Content Include="Views\APPLICATION_LEAVE\Details.cshtml" />
-    <Content Include="Views\APPLICATION_LEAVE\Edit.cshtml" />
-    <Content Include="Views\APPLICATION_LEAVE\Index.cshtml" />
     <Content Include="Scripts\vendor\bootstrap\js\bootstrap.bundle.js.map" />
     <Content Include="Scripts\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\vendor\bootstrap\js\bootstrap.js.map" />
@@ -2649,6 +2631,15 @@
     <Content Include="Scripts\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Scripts\vendor\jquery\jquery.min.map" />
     <Content Include="Scripts\vendor\jquery\jquery.slim.min.map" />
+    <Content Include="Views\Home\GetApplicaMakeupLessonForTeacher.cshtml" />
+    <Content Include="Views\APPLICATION_LEAVETeacher\Create.cshtml" />
+    <Content Include="Views\APPLICATION_LEAVETeacher\Delete.cshtml" />
+    <Content Include="Views\APPLICATION_LEAVETeacher\Edit.cshtml" />
+    <Content Include="Views\APPLICATION_LEAVETeacher\Index.cshtml" />
+    <Content Include="Views\MAKEUP_LESSONTeacher\Create.cshtml" />
+    <Content Include="Views\MAKEUP_LESSONTeacher\Delete.cshtml" />
+    <Content Include="Views\MAKEUP_LESSONTeacher\Edit.cshtml" />
+    <Content Include="Views\MAKEUP_LESSONTeacher\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

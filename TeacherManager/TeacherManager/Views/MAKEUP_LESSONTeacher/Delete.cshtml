@@ -1,18 +1,13 @@
 ﻿@model TeacherManager.Models.MAKEUP_LESSON
 
 @{
-    ViewBag.Title = "Details";
-    Layout = null;
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-           
-        </div>
-    </div>
-</div>
-<h2>Details</h2>
 
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>MAKEUP_LESSON</h4>
     <hr />
@@ -58,6 +53,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.ROOM.NAME_ROM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROOM.NAME_ROM)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.SUBJECT.NAME)
         </dt>
 
@@ -66,8 +69,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
