@@ -1,0 +1,63 @@
+﻿@model TeacherManager.Models.MAKEUP_LESSON
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+@Styles.Render("~/Content/bootstrap.css")
+@Styles.Render("~/Content/bootstrap.min.css")
+
+<div>
+    <h4 class="text-center">ĐƠN ĐĂNG KÝ DẠY BÙ</h4>
+    <hr />
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Tên giảng viên: </span>
+        @Html.DisplayFor(model => model.SUBJECT.TEACHER.NAME)
+    </div>
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Lớp: </span>
+        @Html.DisplayFor(model => model.CLASSROOM.NAME)
+    </div>
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Môn: </span>
+        @Html.DisplayFor(model => model.SUBJECT.NAME)
+    </div>
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Phòng: </span>
+        @Html.DisplayFor(model => model.ROOM.NAME_ROM)
+    </div>
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Giờ bắt đầu: </span>
+        @Html.DisplayFor(model => model.TIMESTART)
+    </div>
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Giờ kết thúc: </span>
+        @Html.DisplayFor(model => model.TIMEEND)
+    </div>
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Tình trạng xử lý: </span>
+        @Html.DisplayFor(model => model.SITUATION)
+    </div>
+</div>
+<div class="d-flex align-content-center justify-content-center my-2">
+    <button id="btn-duyet" type="button" class="btn btn-primary" data-id="@Model.ID">Duyệt</button>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $('#btn-duyet').click(function () {
+        var Id = $(this).data("id");
+        alert(Id);
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/Home/ChangeStatusMakeupLesson',
+            data: { id: Id },
+            success: function () {
+                alert('Success');
+            },
+            error: function () {
+                alert('Error');
+            }
+        })
+    });
+</script>

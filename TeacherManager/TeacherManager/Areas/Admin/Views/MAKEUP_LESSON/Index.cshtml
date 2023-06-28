@@ -1,0 +1,101 @@
+﻿@model IEnumerable<TeacherManager.Models.MAKEUP_LESSON>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_layout.cshtml";
+}
+<style>
+    .btn-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        padding: 0.5rem 0.75rem;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+</style>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIMESTART)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIMEEND)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CLASSROOM.NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ROOM.NAME_ROM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SUBJECT.NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SITUATION)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <p>@item.DATE.Value.ToString("dd/MM/yyyy")</p>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIMESTART)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIMEEND)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CLASSROOM.NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ROOM.NAME_ROM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SUBJECT.NAME)
+            </td>
+            <td>
+                <p class="font-weight-bold text-primary">@item.SITUATION</p>
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("body").on("click", ".modalLink", function (e) {
+                e.preventDefault();
+                $('#exampleModal').modal('show');
+                $.post($(this).attr("href"), function (data) {
+                    $('#exampleModal .modal-body').html(data);
+                });
+            });
+        });
+    </script>
+}
+

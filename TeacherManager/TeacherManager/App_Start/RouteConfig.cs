@@ -13,6 +13,12 @@ namespace TeacherManager
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+           // routes.MapRoute(
+           //    name: "AdminLogout1",
+           //    url: "Admin/Default/Logout",
+           //    defaults: new { controller = "Default", action = "Logout" },
+           //    namespaces: new[] { "TeacherManager.Areas.Admin.Controllers" } // nếu cần
+           //);
             routes.MapRoute(
                name: "DetailsNotification",
                url: "thong-bao/{name}",

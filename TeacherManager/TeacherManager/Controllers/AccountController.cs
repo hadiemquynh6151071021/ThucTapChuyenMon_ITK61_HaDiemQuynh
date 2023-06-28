@@ -85,7 +85,17 @@ namespace TeacherManager.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    // Kiểm tra quyền của người dùng đã đăng nhập và điều hướng đến trang phù hợp
+                    ApplicationUser user = await UserManager.FindByEmailAsync(model.Email);
+                    if (await UserManager.IsInRoleAsync(user.Id, "Admin"))
+                    {
+                        return RedirectToAction("Index", "APPLICATION_LEAVE", new { area = "Admin" });
+                    }
+                    else if (await UserManager.IsInRoleAsync(user.Id, "Teacher"))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "" });
+                    }
+                    break; // Hãy đảm bảo bạn thêm từ khóa break ở cuối mỗi case.
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -95,6 +105,7 @@ namespace TeacherManager.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+            return View(model);
         }
 
         //
@@ -398,7 +409,7 @@ namespace TeacherManager.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home",new { areas = "" });
         }
 
         //

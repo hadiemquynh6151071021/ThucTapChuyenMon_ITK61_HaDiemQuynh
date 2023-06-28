@@ -1,0 +1,55 @@
+﻿@model TeacherManager.Models.APPLICATION_LEAVE
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<div>
+    <h4 class="text-center">ĐƠN XIN NGHỈ PHÉP</h4>
+    <hr />
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Tên giảng viên: </span>
+        @Html.DisplayFor(model => model.TEACHER.NAME)
+    </div>
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Ngày bắt đầu: </span>
+        <span>@Model.DATESTART.Value.ToString("dd/MM/yyyy")</span>
+    </div>
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Ngày kết thúc: </span>
+        <span>@Model.DATEEND.Value.ToString("dd/MM/yyyy")</span>
+    </div>
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Lý do: </span>
+        @Html.DisplayFor(model => model.REASON)
+    </div>
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Loại phép: </span>
+        @Html.DisplayFor(model => model.TYPELEAVE)
+    </div>
+    <div class="my-1 ms-2">
+        <span class="font-weight-bold">Tình trạng xử lý: </span>
+        @Html.DisplayFor(model => model.STATUS)
+    </div>
+</div>
+<div class="d-flex align-content-center justify-content-center my-2">
+    <button id="btn-duyet" type="button" class="btn btn-primary" data-id="@Model.ID">Duyệt</button>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $('#btn-duyet').click(function () {
+        var Id = $(this).data("id");
+        $.ajax({
+            type: 'GET',
+            url: '/Admin/Home/ChangeStatusApplicationLeave',
+            data: { id: Id },
+            success: function () {
+                alert('Success');
+            },
+            error: function () {
+                alert('Error');
+            }
+        })
+    });
+</script>

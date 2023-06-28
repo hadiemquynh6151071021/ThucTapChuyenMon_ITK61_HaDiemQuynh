@@ -1,0 +1,93 @@
+﻿@model IEnumerable<TeacherManager.Models.APPLICATION_LEAVE>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Admin_layout.cshtml";
+}
+<style>
+    .btn-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        padding: 0.5rem 0.75rem;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+</style>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TEACHER.NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATESTART)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATEEND)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.REASON)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TYPELEAVE)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.STATUS)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TEACHER.NAME)
+    </td>
+    <td>
+        <p>@item.DATESTART.Value.ToString("dd/MM/yyyy")</p>
+    </td>
+    <td>
+        <p>@item.DATEEND.Value.ToString("dd/MM/yyyy")</p>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.REASON)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TYPELEAVE)
+    </td>
+    <td>
+        <p class="font-weight-bold text-primary">@item.STATUS</p>
+    </td>
+</tr>
+    }
+
+</table>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("body").on("click", ".modalLink", function (e) {
+                e.preventDefault();
+                $('#exampleModal').modal('show');
+                $.post($(this).attr("href"), function (data) {
+                    $('#exampleModal .modal-body').html(data);
+                });
+            });
+        });
+    </script>
+}

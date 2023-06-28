@@ -15,6 +15,7 @@ namespace TeacherManager.Controllers
         private TeacherWorkEntities db = new TeacherWorkEntities();
 
         // GET: MAKEUP_LESSON
+        [Authorize(Roles = "Teacher")]
         public ActionResult Index()
         {
             var mAKEUP_LESSON = db.MAKEUP_LESSON.Include(m => m.CLASSROOM).Include(m => m.SUBJECT);
