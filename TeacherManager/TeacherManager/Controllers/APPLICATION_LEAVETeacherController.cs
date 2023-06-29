@@ -36,31 +36,7 @@ namespace TeacherManager.Controllers
             return View(aPPLICATION_LEAVE);
         }
 
-        // GET: APPLICATION_LEAVETeacher/Create
-        public ActionResult Create()
-        {
-            ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME");
-            return View();
-        }
-
-        // POST: APPLICATION_LEAVETeacher/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ID_TEACHER,DATESTART,REASON,STATUS,DATEEND,TYPELEAVE")] APPLICATION_LEAVE aPPLICATION_LEAVE)
-        {
-            if (ModelState.IsValid)
-            {
-                db.APPLICATION_LEAVE.Add(aPPLICATION_LEAVE);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.ID_TEACHER = new SelectList(db.TEACHERs, "ID", "NAME", aPPLICATION_LEAVE.ID_TEACHER);
-            return View(aPPLICATION_LEAVE);
-        }
-
+       
         // GET: APPLICATION_LEAVETeacher/Edit/5
         public ActionResult Edit(int? id)
         {

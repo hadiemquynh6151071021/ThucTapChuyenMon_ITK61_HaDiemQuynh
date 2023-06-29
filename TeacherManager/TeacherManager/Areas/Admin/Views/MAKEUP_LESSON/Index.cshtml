@@ -29,8 +29,6 @@
                 </div>
                 <div class="modal-body">
                     <div>
-
-                        <hr />
                         <div class="my-1 ms-2">
                             <span class="font-weight-bold">Tên giảng viên: </span>
                             <span>@item.SUBJECT.TEACHER.NAME</span>
@@ -185,8 +183,7 @@
                 <p class="font-weight-bold text-primary">@item.SITUATION</p>
             </td>
             <td>
-                <a href="#" data-toggle="modal" data-target="#applicationModal-@item.ID" class="btn btn-success">Chi tiết</a> |
-                @*@Html.ActionLink("Xem chi tiết", "Details", new { id = item.ID }, new { @class = "modalLink btn btn-success" })                |*@
+                <a href="#" data-toggle="modal" data-target="#applicationModal-@item.ID" class="btn btn-success">Chi tiết</a>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#example">
                     Xóa
                 </button>

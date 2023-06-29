@@ -66,17 +66,16 @@
                 @{
                     if (item.SITUATION != "Đã duyệt")
                     {
-                        <a href="#" data-toggle="modal" data-target="#applicationModal-@item.ID" class="btn btn-success">Chỉnh sửa</a> |
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#example">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleMAKEUP_LESSON">
                             Hủy
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleMAKEUP_LESSON" tabindex="-1" aria-labelledby="exampleModalLabelMAKEUP_LESSON" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h3 class="modal-title fs-5" id="exampleModalLabel">Hủy đơn đăng ký dạy bù</h3>
+                                        <h3 class="modal-title fs-5" id="exampleModalLabelMAKEUP_LESSON">Hủy đơn đăng ký dạy bù</h3>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -84,7 +83,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
-                                        <a href="javascript:submitForm(@item.ID)" class="btn btn-primary">Xóa</a>
+                                        <a href="javascript:submitFormMAKEUP_LESSON(@item.ID)" class="btn btn-primary">Hủy</a>
                                         <div style="display:none">
                                             @using (Html.BeginForm("Delete", "MAKEUP_LESSONTeacher", FormMethod.Post, new { @id = "formDelete" }))
                                             {
@@ -95,25 +94,25 @@
                                 </div>
                             </div>
                         </div>
+
                     }
                     else
                     {
                         <p class="text-warning">Không thể thao tác</p>
                     }
-            }
+                }
             </td>
         </tr>
+       
     }
 
 </table>
-@section scripts{
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script>
-        function submitForm(Id) {
-            document.getElementById('formDelete').action = '/Admin/MAKEUP_LESSON/Delete/' + Id;
-            document.getElementById('formDelete').submit();
-        }
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    function submitFormMAKEUP_LESSON(Id) {
+        document.getElementById('formDelete').action = '/Admin/MAKEUP_LESSONTeacher/Delete/' + Id;
+        document.getElementById('formDelete').submit();
+    }
 
-    </script>
-}
+</script>

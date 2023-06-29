@@ -63,20 +63,19 @@
                 <p class="font-weight-bold text-primary">@item.STATUS</p>
             </td>
             <td>
-            @{
+                @{
                     if (item.STATUS != "Đã duyệt")
                     {
-                        <a href="#" data-toggle="modal" data-target="#applicationModal-@item.ID" class="btn btn-success">Chỉnh sửa</a> |
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#example">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleAPPLICATION_LEAVE">
                             Hủy
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="exampleAPPLICATION_LEAVE" tabindex="-1" aria-labelledby="exampleModalLabelAPPLICATION_LEAVE" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h3 class="modal-title fs-5" id="exampleModalLabel">Hủy đơn xin nghỉ phép</h3>
+                                        <h3 class="modal-title fs-5" id="exampleModalLabelAPPLICATION_LEAVE">Hủy đơn xin nghỉ phép</h3>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -84,7 +83,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
-                                        <a href="javascript:submitForm(@item.ID)" class="btn btn-primary">Xóa</a>
+                                        <a href="javascript:submitForm(@item.ID)" class="btn btn-primary">Hủy</a>
                                         <div style="display:none">
                                             @using (Html.BeginForm("Delete", "APPLICATION_LEAVETeacher", FormMethod.Post, new { @id = "formDelete" }))
                                             {
@@ -98,9 +97,9 @@
                     }
                     else
                     {
-                    <p class="text-warning">Không thể thao tác</p>
+                        <p class="text-warning">Không thể thao tác</p>
                     }
-            }
+                }
 
 
             </td>
@@ -109,16 +108,13 @@
 
 </table>
 
-@section scripts{
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script>
-
-        function submitForm(Id) {
-            document.getElementById('formDelete').action = '/Admin/APPLICATION_LEAVE/Delete/' + Id;
-            document.getElementById('formDelete').submit();
-        }
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    function submitFormAPPLICATION_LEAVE(Id) {
+        document.getElementById('formDelete').action = '/Admin/APPLICATION_LEAVETeacher/Delete/' + Id;
+        document.getElementById('formDelete').submit();
+    }
 
 
-    </script>
-}
+</script>

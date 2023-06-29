@@ -183,7 +183,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APPLICATION_LEAVETeacherController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MAKEUP_LESSONTeacherController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NEWSController.cs" />
@@ -2434,8 +2433,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -2457,7 +2454,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\NEWS\Create.cshtml" />
     <Content Include="Views\NEWS\Delete.cshtml" />
     <Content Include="Views\NEWS\Details.cshtml" />
@@ -2475,12 +2471,10 @@
     <Content Include="Views\NEWS\Index.cshtml" />
     <Content Include="Views\NOTIFICATIONs\Index.cshtml" />
     <Content Include="Views\TeachingSchedule\Timetable.cshtml" />
-    <Content Include="Views\TeachingSchedule\RegistertoSchedule.cshtml" />
     <Content Include="Views\TeachingSchedule\Register.cshtml" />
     <Content Include="Views\TeachingSchedule\Show.cshtml" />
     <Content Include="Views\TeachingSchedule\ExamTimetable.cshtml" />
     <Content Include="Views\Manage\ReviewEditInforTeacher.cshtml" />
-    <Content Include="Views\Shared\Nav_Tabs_TimeTable.cshtml" />
     <Content Include="Views\TeachingSchedule\RegisterApplicationForLeave.cshtml" />
     <Content Include="Scripts\vendor\bootstrap\js\bootstrap.bundle.js.map" />
     <Content Include="Scripts\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
@@ -2632,11 +2626,9 @@
     <Content Include="Scripts\vendor\jquery\jquery.min.map" />
     <Content Include="Scripts\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Views\Home\GetApplicaMakeupLessonForTeacher.cshtml" />
-    <Content Include="Views\APPLICATION_LEAVETeacher\Create.cshtml" />
     <Content Include="Views\APPLICATION_LEAVETeacher\Delete.cshtml" />
     <Content Include="Views\APPLICATION_LEAVETeacher\Edit.cshtml" />
     <Content Include="Views\APPLICATION_LEAVETeacher\Index.cshtml" />
-    <Content Include="Views\MAKEUP_LESSONTeacher\Create.cshtml" />
     <Content Include="Views\MAKEUP_LESSONTeacher\Delete.cshtml" />
     <Content Include="Views\MAKEUP_LESSONTeacher\Edit.cshtml" />
     <Content Include="Views\MAKEUP_LESSONTeacher\Index.cshtml" />
