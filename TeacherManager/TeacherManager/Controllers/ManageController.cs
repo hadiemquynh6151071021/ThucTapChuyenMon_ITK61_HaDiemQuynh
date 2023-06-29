@@ -23,14 +23,14 @@ namespace TeacherManager.Controllers
         public ManageController()
         {
         }
-
+        [Authorize(Roles = "Teacher")]
         public ActionResult ReviewEditInforTeacher()
         {
             string Id_User = User.Identity.GetUserId();
             TEACHER tEACHER = db.TEACHERs.Where(m => m.ID_USER == Id_User).First();
             return View(tEACHER);
         }
-
+        [Authorize(Roles = "Teacher")]
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase file)
         {
@@ -62,7 +62,7 @@ namespace TeacherManager.Controllers
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return Json("No file selected.");
         }
-
+        [Authorize(Roles = "Teacher")]
         public ActionResult EditAccount( DateTime day, string address)
         {
 
@@ -77,7 +77,7 @@ namespace TeacherManager.Controllers
             }
             return RedirectToAction("ReviewEditInforTeacher", "Manage");
         }
-
+        [Authorize(Roles = "Teacher")]
         public ActionResult DeleteProfileImg()
         {
 

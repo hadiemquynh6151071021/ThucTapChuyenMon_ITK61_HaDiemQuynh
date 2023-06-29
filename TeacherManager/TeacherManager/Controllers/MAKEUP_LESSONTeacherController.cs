@@ -10,6 +10,7 @@ using TeacherManager.Models;
 
 namespace TeacherManager.Controllers
 {
+    [Authorize(Roles = "Teacher")]
     public class MAKEUP_LESSONTeacherController : Controller
     {
         private TeacherWorkEntities db = new TeacherWorkEntities();

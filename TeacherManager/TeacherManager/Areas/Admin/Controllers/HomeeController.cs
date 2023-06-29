@@ -10,6 +10,7 @@ using TeacherManager.Models;
 
 namespace TeacherManager.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class HomeeController : Controller
     {
         private TeacherWorkEntities db = new TeacherWorkEntities();

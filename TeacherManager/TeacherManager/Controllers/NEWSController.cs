@@ -19,7 +19,7 @@ namespace TeacherManager.Controllers
         {
             if (page == null) page = 1;
             var News = db.NEWS.ToList();
-            int pageSize = 10;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             ViewBag.image = db.IMAGES_NEW.Where(m => m.ID_IMAGES_NEW_TYPE == 1).ToList();
             return View(News.ToPagedList(pageNumber, pageSize));

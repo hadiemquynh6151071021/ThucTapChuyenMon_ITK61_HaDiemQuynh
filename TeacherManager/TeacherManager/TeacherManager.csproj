@@ -639,10 +639,24 @@
     <Content Include="Content\images\news\dinh_gia_xd_4.JPG" />
     <Content Include="Content\images\news\dinh_gia_xd_5.JPG" />
     <Content Include="Content\images\news\dinh_gia_xd_6.JPG" />
+    <Content Include="Content\images\news\DSC07687.JPG" />
+    <Content Include="Content\images\news\DSC07759.JPG" />
+    <Content Include="Content\images\news\DSC07818.JPG" />
+    <Content Include="Content\images\news\image%28211%29.png" />
+    <Content Include="Content\images\news\IMG_2631.png" />
+    <Content Include="Content\images\news\IMG_4696.JPG" />
     <Content Include="Content\images\news\khanh_thanh_cv_1.JPG" />
     <Content Include="Content\images\news\khanh_thanh_cv_2.JPG" />
     <Content Include="Content\images\news\khanh_thanh_cv_3.JPG" />
     <Content Include="Content\images\news\khanh_thanh_cv_4.JPG" />
+    <Content Include="Content\images\news\z4409113658630_60a40fdd1387b2222.jpg" />
+    <Content Include="Content\images\news\z4409113662211_e1276385332.jpg" />
+    <Content Include="Content\images\news\z4409113679970_daa644238f.jpg" />
+    <Content Include="Content\images\news\z4422555038139_ae56862273a8750dcf5deda0c10db5f4 %281%29.jpg" />
+    <Content Include="Content\images\news\z4422556741085_c991af2e88b601240872a689cef77bff.jpg" />
+    <Content Include="Content\images\news\z4436458352230_b76c4d14bea18bee9a49274dbae367a2.jpg" />
+    <Content Include="Content\images\news\z4436458361665_702db1d629cb4854afc4472b5456f6dc.jpg" />
+    <Content Include="Content\images\news\z4436458372077_3baccebf205a07565d8098ceb7b469e4.jpg" />
     <Content Include="Content\images\slider\cong-doan.jpeg" />
     <Content Include="Content\images\slider\thuong-binh-liet-si.jpg" />
     <Content Include="Content\images\slider\thanh-nien-xung-phong.jpg" />
@@ -700,8 +714,6 @@
       <Generator>SassTranspiler</Generator>
       <LastGenOutput>styles.css</LastGenOutput>
     </Content>
-    <Content Include="Content\images\Chapter 9. ASP.Net Web API.pdf" />
-    <Content Include="Content\images\Game_Design_Doc.docx" />
     <EntityDeploy Include="Models\TeacherWork.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TeacherWork.Designer.cs</LastGenOutput>
@@ -735,6 +747,11 @@
     <Content Include="Areas\Admin\Views\Homee\CountItems.cshtml" />
     <Content Include="Areas\Admin\Views\Homee\MakeupLessonNumber.cshtml" />
     <Content Include="Areas\Admin\Views\Homee\ApplicationForLeaveNumber.cshtml" />
+    <Content Include="Content\files_notification\DSHB_ K63_HK2_2022-2023.pdf" />
+    <Content Include="Content\files_notification\TBHB_ K63_HK2_2022-2023.pdf" />
+    <Content Include="Content\files_notification\DGTS.pdf" />
+    <Content Include="Content\files_notification\TB_BL.pdf" />
+    <Content Include="Content\files_notification\TBKH2023-2024.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

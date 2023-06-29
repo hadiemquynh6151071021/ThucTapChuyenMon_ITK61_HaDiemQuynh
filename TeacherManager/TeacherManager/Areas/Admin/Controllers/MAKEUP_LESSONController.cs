@@ -10,7 +10,7 @@ using TeacherManager.Models;
 
 namespace TeacherManager.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class MAKEUP_LESSONController : Controller
     {
         private TeacherWorkEntities db = new TeacherWorkEntities();

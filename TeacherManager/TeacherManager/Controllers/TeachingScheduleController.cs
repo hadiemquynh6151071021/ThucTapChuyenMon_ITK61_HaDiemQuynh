@@ -10,7 +10,7 @@ using System.Globalization;
 
 namespace TeacherManager.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Teacher")]
     public class TeachingScheduleController : Controller
     {
       
@@ -116,7 +116,7 @@ namespace TeacherManager.Controllers
                     foreach (var item in tEST_SCHEDULEs)
                     {
                         Event schedule = new Event();
-                        schedule.title = "Môn: " + item.SUBJECT.NAME + "\nPhòng: "+item.ROOM.NAME_ROM;
+                        schedule.title = "Môn: " + item.SUBJECT.NAME + " - "+item.ROOM.NAME_ROM;
                         schedule.start = date.ToString("yyyy-MM-dd") + 'T' + item.TIMESTART;
 
                         TimeSpan timestart = TimeSpan.ParseExact(item.TIMESTART, "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
