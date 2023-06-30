@@ -18,7 +18,7 @@ namespace TeacherManager.Controllers
         public ActionResult Index(int? page)
         {
             if (page == null) page = 1;
-            var News = db.NEWS.ToList();
+            var News = db.NEWS.OrderByDescending(m => m.DATESUBMIT).ToList();
             int pageSize = 5;
             int pageNumber = (page ?? 1);
             ViewBag.image = db.IMAGES_NEW.Where(m => m.ID_IMAGES_NEW_TYPE == 1).ToList();

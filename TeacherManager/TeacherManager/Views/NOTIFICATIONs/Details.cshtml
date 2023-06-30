@@ -17,7 +17,7 @@
 <section id="about" class="mt-4">
     <div class="container px-4">
         <div class="row gx-4 justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-12">
                 <b class="fs-4">@Model.TITLE</b>
                 <p class="fst-italic">@Model.DATESUBMIT</p>
                 @Html.Raw("<div class='content-new'>" + Model.CONTENT + "</div>")
@@ -28,7 +28,7 @@
                     <br />
                 }
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 d-none d-lg-block">
                 <div class="row fs-5"><b>TIN TỨC</b></div>
                 <div class="row">
                     @Html.Action("GetListNewsNew", "NEWS")

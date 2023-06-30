@@ -649,6 +649,15 @@
     <Content Include="Content\images\news\khanh_thanh_cv_2.JPG" />
     <Content Include="Content\images\news\khanh_thanh_cv_3.JPG" />
     <Content Include="Content\images\news\khanh_thanh_cv_4.JPG" />
+    <Content Include="Content\images\news\z4392576477004_ceb9edf63d12174d49a349457fb8f7e2.jpg" />
+    <Content Include="Content\images\news\z4392576482710_58dae99782d7530c9e01f6c4a43dc33f.jpg" />
+    <Content Include="Content\images\news\z4392576483345_d15eb4a61e40201dd33e23a5b2cd8875.jpg" />
+    <Content Include="Content\images\news\z4392576486997_8593dafd65fd08678d48348f861319c5.jpg" />
+    <Content Include="Content\images\news\z4392576488952_ec3c6f9005cc8e70bd865f89a3828d9b.jpg" />
+    <Content Include="Content\images\news\z4392576494715_6346cf38897ad15bc3ae3a14e8549bde.jpg" />
+    <Content Include="Content\images\news\z4392576495846_00a3948a2f47be7965e39bd64f2dd5fa.jpg" />
+    <Content Include="Content\images\news\z4392576499817_b0b7c2a0167fe750ee5c44a9fd9e7b8b.jpg" />
+    <Content Include="Content\images\news\z4392576503881_54d9d678a1daa8bebb61c2b733895783.jpg" />
     <Content Include="Content\images\news\z4409113658630_60a40fdd1387b2222.jpg" />
     <Content Include="Content\images\news\z4409113662211_e1276385332.jpg" />
     <Content Include="Content\images\news\z4409113679970_daa644238f.jpg" />
@@ -657,6 +666,7 @@
     <Content Include="Content\images\news\z4436458352230_b76c4d14bea18bee9a49274dbae367a2.jpg" />
     <Content Include="Content\images\news\z4436458361665_702db1d629cb4854afc4472b5456f6dc.jpg" />
     <Content Include="Content\images\news\z4436458372077_3baccebf205a07565d8098ceb7b469e4.jpg" />
+    <Content Include="Content\images\news\_MG_7562.JPG" />
     <Content Include="Content\images\slider\cong-doan.jpeg" />
     <Content Include="Content\images\slider\thuong-binh-liet-si.jpg" />
     <Content Include="Content\images\slider\thanh-nien-xung-phong.jpg" />
@@ -752,6 +762,10 @@
     <Content Include="Content\files_notification\DGTS.pdf" />
     <Content Include="Content\files_notification\TB_BL.pdf" />
     <Content Include="Content\files_notification\TBKH2023-2024.pdf" />
+    <Content Include="Content\images\news\sach-vo-ta-han-168084900761489145959.webp" />
+    <Content Include="Content\files_notification\TB122.pdf" />
+    <Content Include="Content\files_notification\CV_KSCSGD.pdf" />
+    <Content Include="Content\files_notification\QD_998.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

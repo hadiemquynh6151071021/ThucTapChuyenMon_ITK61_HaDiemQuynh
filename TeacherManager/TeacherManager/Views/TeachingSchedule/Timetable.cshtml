@@ -26,6 +26,7 @@
 @section scripts{
 
     <script>
+
        
 
         $(document).ready(function () {
@@ -62,6 +63,12 @@
                 viewRender: function (view, element) {
                     currentStartOfWeek = moment(view.start).toISOString();
                     calendar.fullCalendar("refetchEvents");
+                }
+            });
+            window.addEventListener('resize', function () {
+                var screenWidth = window.innerWidth;
+                if (screenWidth < 768) {
+                    calendar.fullCalendar('changeView', 'listWeek');
                 }
             });
         });
@@ -101,9 +108,15 @@
                     calendar.fullCalendar("refetchEvents");
                 }
             });
+            window.addEventListener('resize', function () {
+                var screenWidth = window.innerWidth;
+                if (screenWidth < 768) {
+                    calendar.fullCalendar('changeView', 'listWeek');
+                }
+            });
         });
 
-       
+        
 
         $('a[data-bs-toggle="tab"]').on("shown.bs.tab", function (e) {
             var calendar = $(e.target.hash).find(".m-5");

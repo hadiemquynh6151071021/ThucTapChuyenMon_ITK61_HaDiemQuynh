@@ -18,7 +18,7 @@ namespace TeacherManager.Controllers
         public ActionResult Index(int? page)
         {
             if (page == null) page = 1;
-            var Notifications = db.NOTIFICATIONs.ToList();
+            var Notifications = db.NOTIFICATIONs.OrderByDescending(m => m.DATESUBMIT).ToList();
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(Notifications.ToPagedList(pageNumber, pageSize));
