@@ -59,7 +59,7 @@
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                                     <div class="form-floating mb-2">
-                                        @Html.EditorFor(model => model.DATESTART, new { htmlAttributes = new { type = "date", id = "floatingDatestart", placeholder = "Nhập ngày", @class = "form-control" } })
+                                        @Html.EditorFor(model => model.DATESTART, new { htmlAttributes = new { type = "date", id = "floatingDatestart", placeholder = "Nhập ngày", @class = "form-control"} })
                                         <label for="floatingDatestart">Ngày bắt đầu</label>
                                         @Html.ValidationMessageFor(model => model.DATESTART, "", new { @class = "text-danger" })
                                     </div>
@@ -108,13 +108,10 @@
                             <p class="fs-4 fw-bold note-title text-theme">Lưu ý</p>
                             <p class="fst-italic fs-6 lh-base">
                                 Chào bạn,
-                                Để đảm bảo quy trình đăng ký nghỉ dạy được thuận tiện và đảm bảo sự suôn sẻ cho tất cả nhân viên, trang web đăng ký nghỉ dạy yêu cầu người đăng ký phải đăng ký trước ít nhất 1 tuần trước khi nghỉ dạy. Điều này giúp đảm bảo rằng các yêu cầu nghỉ dạy có thể được giải quyết kịp thời và các biện pháp thích hợp có thể được thực hiện để giải quyết bất kỳ vấn đề nào.
+                                Để đảm bảo quy trình đăng ký nghỉ dạy được thuận tiện và đảm bảo sự suôn sẻ, yêu cầu người đăng ký phải đăng ký trước ít nhất 1 tuần trước khi nghỉ dạy. Để đảm bảo rằng các yêu cầu nghỉ dạy có thể được giải quyết kịp thời và các biện pháp thích hợp có thể được thực hiện để giải quyết bất kỳ vấn đề nào.
                             </p>
                             <p class="fst-italic fs-6 lh-base">
-                                Vì vậy, nếu bạn mong muốn đăng ký nghỉ dạy, hãy đăng ký trước ít nhất 1 tuần. Nếu yêu cầu của bạn được chấp nhận, bạn sẽ nhận được thông báo xác nhận từ phía quản lý hệ thống. Nếu yêu cầu của bạn không được chấp nhận, bạn sẽ nhận được thông báo về lý do và có thể được yêu cầu cung cấp thông tin bổ sung hoặc điều chỉnh yêu cầu của mình.
-                            </p>
-                            <p class="fst-italic fs-6 lh-base">
-                                Chúng tôi hi vọng rằng quy trình đăng ký nghỉ dạy của chúng tôi sẽ giúp các nhân viên của chúng ta có được một thời gian làm việc hiệu quả và nâng cao sức khỏe cũng như sự phục vụ của họ. Nếu bạn cần thêm thông tin hoặc có bất kỳ câu hỏi nào, vui lòng liên hệ với phòng hành chính để được hỗ trợ.
+                                Hi vọng rằng quy trình đăng ký sẽ giúp bạn có được một thời gian làm việc hiệu quả. Nếu bạn cần thêm thông tin hoặc có bất kỳ câu hỏi nào, vui lòng liên hệ với phòng hành chính để được hỗ trợ.
                             </p>
                             <p class="fst-italic fs-6 lh-base">
                                 Chân thành cảm ơn!

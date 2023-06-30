@@ -44,11 +44,11 @@ namespace TeacherManager.Controllers
         {
             Recommend recommend = new Recommend();
             string searchTerm = db.NEWS.Find(id).TITLE;
-            return PartialView(db.NEWS.Where(n => n.ID != id).ToList().OrderByDescending(n => recommend.ComputeSimilarity(n.TITLE, searchTerm)).Take(10));
+            return PartialView(db.NEWS.Where(n => n.ID != id).ToList().OrderByDescending(n => recommend.ComputeSimilarity(n.TITLE, searchTerm)).Take(5));
         }
        
         // GET: NEWS/Details/5
-        public ActionResult Details(int? id,string name)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {

@@ -42,9 +42,9 @@
                             <p class="fs-4 fw-bold note-title">Lưu ý</p>
                             <p class="fst-italic fs-6 lh-base">
                                 Xin chào giảng viên,
-                                Chúng tôi xin thông báo đến bạn rằng để đảm bảo chất lượng giảng dạy tốt nhất, quý khách
+                                Chúng tôi xin thông báo rằng để đảm bảo chất lượng giảng dạy tốt nhất, giảng viên
                                 cần đăng ký dạy bù trước 1 tuần tính từ thời điểm đăng ký. Hệ thống
-                                sẽ tự động chọn ngày và thời gian thích hợp và thông báo cho bạn.
+                                sẽ tự động chọn ngày và thời gian thích hợp và thông báo.
                             </p>
                             <p class="fst-italic fs-6 lh-base">
                                 Điều này sẽ giúp bạn và học sinh chuẩn bị tốt hơn
@@ -63,7 +63,7 @@
                             {
 
                                 <div class="form-floating">
-                                    @Html.DropDownList("Classrooms", ViewBag.Classrooms as SelectList, new { @class = "form-control col-md-2", id = "ddlClassrooms" })
+                                    @Html.DropDownList("Classrooms", ViewBag.Classrooms as SelectList, "-- Chọn lớp --", new { @class = "form-control col-md-2", id = "ddlClassrooms" })
                                     <label>Lớp</label>
                                 </div>
                                 <br />

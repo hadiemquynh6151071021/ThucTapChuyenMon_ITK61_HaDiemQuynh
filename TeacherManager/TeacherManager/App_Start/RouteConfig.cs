@@ -24,16 +24,16 @@ namespace TeacherManager
                url: "quan-ly-don-xin-phep-don-day-bu",
                defaults: new { controller = "Home", action = "GetApplicaMakeupLessonForTeacher"}
            );
-            routes.MapRoute(
-               name: "DetailsNotification",
-               url: "thong-bao/{name}",
-               defaults: new { controller = "NOTIFICATIONs", action = "Details", name = (string)null }
-           );
-            routes.MapRoute(
-                name: "DetailsNew",
-                url: "tin-tuc/{name}",
-                defaults: new { controller = "NEWS", action = "Details",name=(string)null }
-            );
+           // routes.MapRoute(
+           //    name: "DetailsNotification",
+           //    url: "thong-bao/{name}",
+           //    defaults: new { controller = "NOTIFICATIONs", action = "Details", name = (string)null }
+           //);
+           // routes.MapRoute(
+           //     name: "DetailsNew",
+           //     url: "tin-tuc/{name}",
+           //     defaults: new { controller = "NEWS", action = "Details",name=(string)null }
+           // );
             routes.MapRoute(
                 name: "RegisterApplicationForLeave",
                 url: "dang-ky-nghi-phep",

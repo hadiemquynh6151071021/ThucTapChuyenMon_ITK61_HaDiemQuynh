@@ -97,7 +97,7 @@ namespace TeacherManager.Controllers
             MAKEUP_LESSON mAKEUP_LESSON = db.MAKEUP_LESSON.Find(id);
             db.MAKEUP_LESSON.Remove(mAKEUP_LESSON);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("GetApplicaMakeupLessonForTeacher", "Home", new { areas = "" });
         }
 
         protected override void Dispose(bool disposing)

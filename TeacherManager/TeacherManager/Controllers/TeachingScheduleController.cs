@@ -155,8 +155,10 @@ namespace TeacherManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegisterApplicationForLeave([Bind(Include = "ID,ID_TEACHER,DATESTART,REASON,STATUS,DATEEND,TYPELEAVE")] APPLICATION_LEAVE aPPLICATION_LEAVE)
         {
+           
             if (ModelState.IsValid)
             {
+
                 string ID_USER = User.Identity.GetUserId();
                 TEACHER teacher = db.TEACHERs.FirstOrDefault(t => t.ID_USER == ID_USER);
                 aPPLICATION_LEAVE.ID_TEACHER = teacher.ID;
@@ -171,37 +173,6 @@ namespace TeacherManager.Controllers
             return View(aPPLICATION_LEAVE);
         }
 
-        //public ActionResult RegistertoSchedule()
-        //{
-        //    TEACHER tEACHER = db.TEACHERs.Where(m => m.ID == 1).First();
-        //    var cLASSROOM = db.CLASSROOMs.ToList();
-        //    DateTime date = new DateTime(2023, 06, 05);
-        //    Schedule schedule = new Schedule(tEACHER, date);
-
-        //    // Khởi tạo lịch dạy bù cho giảng viên
-        //    var startDate = DateTime.Today.AddDays(7); // bắt đầu tính từ tuần sau
-        //    var schedulePopulation = new SchedulePopulation(7, tEACHER, startDate);
-
-        //    //Tối ưu hóa với thuật toán di truyền
-        //    var evolution = new ScheduleEvolution();
-        //    var optimalSchedules = evolution.GetOptimalSchedulePopulation(schedulePopulation, 10, cLASSROOM[0]);
-
-        //    var timeslotsls = evolution.GetTIME_SLOTs().ToList();
-        //    ViewBag.timeslotsls = timeslotsls;
-        //    int time = 5;
-        //    var list = optimalSchedules.Schedules.OrderBy(m => m.GetFitness());
-        //    Schedule schedule1 = new Schedule();
-        //    foreach (var item in list)
-        //    {
-        //        if (item.SlotAvailible(timeslotsls).Count >= time)
-        //        {
-        //            ViewBag.schedule = item;
-        //            break;
-        //        }
-
-        //    }
-        //    return View();
-        //}
 
         public ActionResult Register()
         {
@@ -215,8 +186,7 @@ namespace TeacherManager.Controllers
             .GroupBy(temp => temp.classroom.ID)
             .Select(group => group.FirstOrDefault().classroom)
             .ToList();
-            ViewBag.Classrooms = new SelectList(result, "ID", "NAME");
-            ViewBag.Subject = new SelectList(db.SUBJECTs.Where(m => m.ID_TEACHER==1), "ID", "NAME");
+            ViewBag.Classrooms = new SelectList(result, "ID", "NAME", "Chọn lớp");
             return View();
         }
 
@@ -323,7 +293,7 @@ namespace TeacherManager.Controllers
             TEACHER tEACHER = db.TEACHERs.FirstOrDefault(t => t.ID_USER == ID_USER);
 
             var subjects = db.SUBJECTs
-                .Where(s => s.ID_CLASSROOM == classroomId && s.TEACHER.ID == tEACHER.ID )
+                .Where(s => s.ID_CLASSROOM == classroomId && s.TEACHER.ID == tEACHER.ID && s.START_DAY < DateTime.Now && s.END_DAY > DateTime.Now)
                 .Select(s => new { Value = s.ID, Text = s.NAME })
                 .ToList();
             return Json(subjects, JsonRequestBehavior.AllowGet);

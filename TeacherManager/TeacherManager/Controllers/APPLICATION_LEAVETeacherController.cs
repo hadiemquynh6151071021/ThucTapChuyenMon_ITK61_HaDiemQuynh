@@ -94,7 +94,7 @@ namespace TeacherManager.Controllers
             APPLICATION_LEAVE aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Find(id);
             db.APPLICATION_LEAVE.Remove(aPPLICATION_LEAVE);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("GetApplicaMakeupLessonForTeacher","Home", new { areas = "" });
         }
 
         protected override void Dispose(bool disposing)

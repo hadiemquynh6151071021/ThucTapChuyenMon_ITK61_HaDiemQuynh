@@ -42,11 +42,11 @@ namespace TeacherManager.Controllers
         {
             Recommend recommend = new Recommend();
             string searchTerm = db.NOTIFICATIONs.Find(id).TITLE;
-            return PartialView(db.NOTIFICATIONs.Where(n => n.ID != id).ToList().OrderByDescending(n => recommend.ComputeSimilarity(n.TITLE, searchTerm)).Take(10));
+            return PartialView(db.NOTIFICATIONs.Where(n => n.ID != id).ToList().OrderByDescending(n => recommend.ComputeSimilarity(n.TITLE, searchTerm)).Take(5));
         }
 
         // GET: NOTIFICATIONs/Details/5
-        public ActionResult Details(int? id,string name)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {

@@ -75,7 +75,7 @@ namespace TeacherManager.Controllers
                 db.Entry(tEACHER).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            return RedirectToAction("ReviewEditInforTeacher", "Manage");
+            return RedirectToAction("Index", "Home");
         }
         [Authorize(Roles = "Teacher")]
         public ActionResult DeleteProfileImg()
@@ -307,7 +307,7 @@ namespace TeacherManager.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return RedirectToAction("Index", "Home");
             }
             AddErrors(result);
             return View(model);

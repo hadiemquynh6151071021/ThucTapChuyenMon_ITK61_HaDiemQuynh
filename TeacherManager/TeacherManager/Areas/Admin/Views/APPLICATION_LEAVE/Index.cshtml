@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TeacherManager.Models.APPLICATION_LEAVE>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý đơn nghỉ phép - Teacher Timetable";
     Layout = "~/Areas/Admin/Views/Shared/Admin_layout.cshtml";
 }
 <style>
@@ -15,6 +15,7 @@
         border: none;
         outline: none;
     }
+    h4{color: #191970;}
 </style>
 @foreach (var item in ViewBag.ls)
 {
@@ -119,9 +120,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
             </div>
         </div>
     </div>
@@ -195,7 +193,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title fs-5" id="exampleModalLabel">Xóa đơn xin nghỉ phép</h3>
+                                <h4 class="modal-title fs-5" id="exampleModalLabel">Xóa đơn xin nghỉ phép</h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -224,26 +222,26 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script>
-        $(document).ready(function () {
-            document.addEventListener('click', function (event) {
-                var clickedButtonId = event.target.id;
-                $("#" + clickedButtonId).click(function () {
-                    var Id = $(this).data("id");
-                    $.ajax({
-                        type: 'GET',
-                        url: '/Admin/Homee/ChangeStatusApplicationLeave',
-                        data: { id: Id },
-                        success: function () {
-                            alert('Bạn đã duyệt đơn thành công!');
-                            window.location.reload();
-                        },
-                        error: function () {
-                            alert('Có lỗi xảy ra, mời bạn thử lại sau!');
-                        }
-                    });
-                });
-            });
-        });
+        //$(document).ready(function () {
+        //    document.addEventListener('click', function (event) {
+        //        var clickedButtonId = event.target.id;
+        //        $("#" + clickedButtonId).click(function () {
+        //            var Id = $(this).data("id");
+        //            $.ajax({
+        //                type: 'GET',
+        //                url: '/Admin/Homee/ChangeStatusApplicationLeave',
+        //                data: { id: Id },
+        //                success: function () {
+        //                    alert('Bạn đã duyệt đơn thành công!');
+        //                    window.location.reload();
+        //                },
+        //                error: function () {
+        //                    alert('Có lỗi xảy ra, mời bạn thử lại sau!');
+        //                }
+        //            });
+        //        });
+        //    });
+        //});
 
         function submitForm(Id) {
             document.getElementById('formDelete').action = '/Admin/APPLICATION_LEAVE/Delete/' + Id;

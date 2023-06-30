@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TeacherManager.Models.MAKEUP_LESSON>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý đơn đăng ký - Teacher Timetable";
     Layout = "~/Areas/Admin/Views/Shared/Admin_layout.cshtml";
 }
 <style>
@@ -14,6 +14,9 @@
         background-color: transparent;
         border: none;
         outline: none;
+    }
+    h4 {
+        color: #191970;
     }
 </style>
 @foreach (var item in ViewBag.ls)
@@ -119,9 +122,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
             </div>
         </div>
     </div>
@@ -159,7 +159,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.SUBJECT.NAME)
+                @Html.DisplayFor(modelItem => item.SUBJECT.TEACHER.NAME)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CLASSROOM.NAME)
@@ -193,7 +193,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title fs-5" id="exampleModalLabel">Xóa đơn đăng ký dạy bù</h3>
+                                <h4 class="modal-title fs-5" id="exampleModalLabel">Xóa đơn đăng ký dạy bù</h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
