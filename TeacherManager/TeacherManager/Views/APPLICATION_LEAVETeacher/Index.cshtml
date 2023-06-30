@@ -79,14 +79,16 @@
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleAPPLICATION_LEAVE" tabindex="-1" aria-labelledby="exampleModalLabelAPPLICATION_LEAVE" aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h4 class="modal-title fs-5" id="exampleModalLabelAPPLICATION_LEAVE">Hủy đơn xin nghỉ phép</h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Bạn có chắc chắn muốn hủy đơn xin nghỉ phép này không?
+                                            <div class="overflow-auto">
+                                                Bạn có chắc chắn muốn hủy đơn xin nghỉ phép này không?
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <a href="javascript:submitFormAPPLICATION_LEAVE(@item.ID)" class="btn btn-modal">Hủy</a>
