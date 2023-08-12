@@ -18,8 +18,8 @@ namespace TeacherManager.Areas.Admin.Controllers
         // GET: Admin/MAKEUP_LESSON
         public ActionResult Index()
         {
-            var mAKEUP_LESSON = db.MAKEUP_LESSON.Include(m => m.CLASSROOM).Include(m => m.ROOM).Include(m => m.SUBJECT).Where(m => m.SITUATION=="Đã duyệt");
-            var ls = db.MAKEUP_LESSON.Include(m => m.CLASSROOM).Include(m => m.ROOM).Include(m => m.SUBJECT).Where(m => m.SITUATION != "Đã duyệt");
+            var mAKEUP_LESSON = db.MAKEUP_LESSON.Include(m => m.CLASSROOM).Include(m => m.ROOM).Include(m => m.SUBJECT).Where(m => m.SITUATION=="Đã duyệt").OrderByDescending(m => m.DATE);
+            var ls = db.MAKEUP_LESSON.Include(m => m.CLASSROOM).Include(m => m.ROOM).Include(m => m.SUBJECT).Where(m => m.SITUATION != "Đã duyệt").OrderByDescending(m => m.DATE);
             ViewBag.ls = ls;
             return View(mAKEUP_LESSON.ToList());
         }

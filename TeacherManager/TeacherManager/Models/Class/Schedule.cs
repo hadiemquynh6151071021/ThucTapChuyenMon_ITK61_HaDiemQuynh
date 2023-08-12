@@ -72,19 +72,26 @@ namespace TeacherManager.Models.Class
             var courses = GetCoursesOnDayOfTeacher();
             var makeup_lessons = GetMakeupLessonOnDayOfTeacher();
 
-            APPLICATION_LEAVE aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Where(m => m.ID_TEACHER == Teacher.ID && m.STATUS != "Đang chờ duyệt").FirstOrDefault();
+            var aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Where(m => m.ID_TEACHER == Teacher.ID && m.STATUS != "Đang chờ duyệt");
 
-            List<DateTime> days = new List<DateTime>();
-            if (aPPLICATION_LEAVE != null)
+            List<DateTime> dateTimes = new List<DateTime>();
+
+            foreach (var temp in aPPLICATION_LEAVE)
             {
-                DateTime startDate = (DateTime)aPPLICATION_LEAVE.DATESTART; // Ngày bắt đầu
-                DateTime endDate = (DateTime)aPPLICATION_LEAVE.DATEEND; // Ngày kết thúc
-                days = Enumerable.Range(0, 1 + endDate.Subtract(startDate).Days)
-                            .Select(day => startDate.AddDays(day))
-                            .ToList(); // Danh sách các ngày giữa startDate và endDate
+                List<DateTime> days = new List<DateTime>();
+                if (aPPLICATION_LEAVE != null)
+                {
+                    DateTime startDate = (DateTime)temp.DATESTART; // Ngày bắt đầu
+                    DateTime endDate = (DateTime)temp.DATEEND; // Ngày kết thúc
+                    days = Enumerable.Range(0, 1 + endDate.Subtract(startDate).Days)
+                                .Select(day => startDate.AddDays(day))
+                                .ToList(); // Danh sách các ngày giữa startDate và endDate
+                    dateTimes.AddRange(days);
+
+                }
             }
 
-            if (days.Any(x => x == Day) == true)
+            if (dateTimes.Any(x => x == Day) == true)
             {
                 return 10;
             }

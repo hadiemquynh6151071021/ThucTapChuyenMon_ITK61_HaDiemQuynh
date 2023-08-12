@@ -238,26 +238,26 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script>
-        //$(document).ready(function () {
-        //    document.addEventListener('click', function (event) {
-        //        var clickedButtonId = event.target.id;
-        //        $("#" + clickedButtonId).click(function () {
-        //            var Id = $(this).data("id");
-        //            $.ajax({
-        //                type: 'GET',
-        //                url: '/Admin/Homee/ChangeStatusApplicationLeave',
-        //                data: { id: Id },
-        //                success: function () {
-        //                    alert('Bạn đã duyệt đơn thành công!');
-        //                    window.location.reload();
-        //                },
-        //                error: function () {
-        //                    alert('Có lỗi xảy ra, mời bạn thử lại sau!');
-        //                }
-        //            });
-        //        });
-        //    });
-        //});
+        $(document).ready(function () {
+            document.addEventListener('click', function (event) {
+                var clickedButtonId = event.target.id;
+                $("#" + clickedButtonId).click(function () {
+                    var Id = $(this).data("id");
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Admin/Homee/ChangeStatusApplicationLeave',
+                        data: { id: Id },
+                        success: function () {
+                            alert('Bạn đã duyệt đơn thành công!');
+                            window.location.reload();
+                        },
+                        error: function () {
+                            alert('Có lỗi xảy ra, mời bạn thử lại sau!');
+                        }
+                    });
+                });
+            });
+        });
 
         function submitForm(Id) {
             document.getElementById('formDelete').action = '/Admin/APPLICATION_LEAVE/Delete/' + Id;

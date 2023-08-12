@@ -18,7 +18,7 @@ namespace TeacherManager.Areas.Admin.Controllers
         // GET: Admin/APPLICATION_LEAVE
         public ActionResult Index()
         {
-            var aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Include(a => a.TEACHER).Where(m => m.STATUS=="Đã duyệt");
+            var aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Include(a => a.TEACHER).Where(m => m.STATUS=="Đã duyệt").OrderByDescending(m => m.DATESTART);
             var ls = db.APPLICATION_LEAVE.Include(a => a.TEACHER).Where(m => m.STATUS != "Đã duyệt").ToList();
             ViewBag.ls = ls;
             return View(aPPLICATION_LEAVE.ToList());

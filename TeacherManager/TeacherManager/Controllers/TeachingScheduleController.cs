@@ -31,21 +31,28 @@ namespace TeacherManager.Controllers
 
             DateTime endOfWeek = startOfWeek.AddDays(6);
 
-            APPLICATION_LEAVE aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Where(m => m.ID_TEACHER==teacher.ID && m.STATUS!="Đang chờ duyệt").FirstOrDefault();
+            var aPPLICATION_LEAVE = db.APPLICATION_LEAVE.Where(m => m.ID_TEACHER==teacher.ID && m.STATUS!="Đang chờ duyệt");
 
-            List<DateTime> days = new List<DateTime>();
-            if (aPPLICATION_LEAVE != null)
+            List<DateTime> dateTimes = new List<DateTime>();
+
+            foreach (var temp in aPPLICATION_LEAVE)
             {
-                DateTime startDate = (DateTime)aPPLICATION_LEAVE.DATESTART; // Ngày bắt đầu
-                DateTime endDate = (DateTime)aPPLICATION_LEAVE.DATEEND; // Ngày kết thúc
-                days = Enumerable.Range(0, 1 + endDate.Subtract(startDate).Days)
-                            .Select(day => startDate.AddDays(day))
-                            .ToList(); // Danh sách các ngày giữa startDate và endDate
+                List<DateTime> days = new List<DateTime>();
+                if (aPPLICATION_LEAVE != null)
+                {
+                    DateTime startDate = (DateTime)temp.DATESTART; // Ngày bắt đầu
+                    DateTime endDate = (DateTime)temp.DATEEND; // Ngày kết thúc
+                    days = Enumerable.Range(0, 1 + endDate.Subtract(startDate).Days)
+                                .Select(day => startDate.AddDays(day))
+                                .ToList(); // Danh sách các ngày giữa startDate và endDate
+                    dateTimes.AddRange(days);
+
+                }
             }
 
             for (var date = startOfWeek.Date; date <= endOfWeek.Date; date = date.AddDays(1))
             {
-                if(days.Any(x => x == date) == true)
+                if(dateTimes.Any(x => x == date) == true)
                 {
                     continue;
                 }
